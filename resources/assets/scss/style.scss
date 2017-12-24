@@ -1,0 +1,143 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+	background: #f2f2fa;
+	font-family: 'Nunito';
+	color: #31313a;
+	margin: 0;
+}
+
+h1 {
+	font-weight: 500;
+}
+
+#login-form-wrap {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    form {
+	    width: 300px;
+	    padding: 15px;
+        h1 {
+            text-align: center
+        }
+        button {
+            margin-top: 25px;
+        }
+    }
+}
+
+.fieldset {
+    margin-bottom: 15px;
+}
+
+label {
+   display: block;
+   margin-bottom: 5px;
+   font-size: 13px;
+}
+
+input[type='text'],
+input[type='password'] {
+    height: 30px;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    padding: 5px;
+    font-family: 'Nunito';
+    font-weight: 500;
+    &:focus {
+        outline: 3px solid #798BB3;
+    }
+}
+
+button {
+    font-family: 'Nunito';
+    background: #31313a;
+    color: #f2f2fa;
+    border: none;
+    padding: 5px 15px;
+    height: 30px;
+    &.full-width {
+        display: block;
+        width: 100%;
+    }
+
+    &:focus {
+        outline: 3px solid #798BB3;
+    }
+}
+
+// SIDEBAR TING
+.sidebar-ting {
+    position: fixed;
+    width: 180px;
+    background: #31313a;
+    color: #ffffff;
+    height: 100%;
+    padding: 15px 0px;
+
+
+    h2 {
+        font-weight: 500;
+        font-size: 22px;
+        margin: 0;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar-header {
+        padding: 0px 15px;
+    }
+
+    .sidebar-list {
+        padding: 15px 0px;
+        li {
+            a {
+                color: #ffffff;
+                text-decoration: none;
+                padding: 5px 15px;
+                display: block;
+                font-size: 14px;
+                min-height: 30px;
+            }
+        }
+
+        .menu-list>li>a.is-active{
+            background: #3194A2;
+        }
+
+        .submenu {
+            display: none;
+            &.is-active {
+                display: block;
+                background: #246C76;
+            }
+
+            a.is-active {
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+
+// CONTENT TING
+.content-ting {
+    margin-left: 180px;
+    padding: 15px;
+}
+
+
+// TYPOPGRAPHY AND DAT
+h1 {
+    margin: 0;
+}

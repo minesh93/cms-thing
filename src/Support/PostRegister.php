@@ -30,6 +30,7 @@ class PostRegister{
             'template' => "template-{$post['name']}",
             'createText' => "Create {$postTitle}",
             'listTitle' => "All {$postTitlePlural}",
+            'icon' => "fa-file-alt",
             'urlBase' => "/{$post['name']}/",
             'listName' => $postTitlePlural,
             'meta' => []

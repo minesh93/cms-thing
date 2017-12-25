@@ -1,32 +1,16 @@
 <?php
 
-namespace Claws\Http\Controllers\Auth;
+namespace Claws\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use Claws\Http\Controllers\Controller;
+use Claws\Models\Admin;
 use Auth;
 
-class AdminLoginController extends Controller {
+class AdminController extends Controller {
 
-    public function __construct() {
-        $this->middleware('claws_admin');
+    public function getAdmins() {
+        $admins = Admin::all();
+        return view('claws::admin.user-list',['admins'=>$admins]);
     }
 
-    public function getLoginForm() {
-        return view('claws::admin.login');
-    }
-    public function login(Request $request) {
-        // Validate the form data
-        $this->validate($request, [
-            'password' => 'required|min:6'
-        ]);
-
-        // Attempt to log the user in
-
-        if (Auth::guard('claws_admin')->attempt(['username' => $request->username, 'password' => $request->password])) {
-            // if successful, then redirect to their intended location
-            return redirect()->intended('/admin/dashboard');
-        }
-            // if unsuccessful, then redirect back to the login with the form data
-            return redirect()->back()->withInput($request->only('username', 'remember'));
-        }
 }

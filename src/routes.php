@@ -23,7 +23,9 @@ PostRegister::register([
 
 PostRegister::register([
     'name' => 'post',
+    'createText' => 'Write A New Post',
     'urlBase' => '/',
+    'icon' => 'fa-thumbtack',
 ]);
 
 Route::group(['prefix'=>'admin','middleware' => 'web'], function () {
@@ -33,18 +35,21 @@ Route::group(['prefix'=>'admin','middleware' => 'web'], function () {
 
     Route::group(['middleware' => ['claws_admin_check']],function (){
 
-        Route::get('/dashboard', function(){
+        Route::get('/dashboard', function() {
             return view('claws::admin.dashboard');
         });
 
-        Route::get('/content/{type}', function(){
-            return view('claws::admin.post-list');
-        });
-        Route::get('/content/{type}/{id}', function(){
-            return view('claws::admin.post-list');
-        });
-        Route::get('/contents/{type}/add', function(){
-            return view('claws::admin.post-list');
-        });
+        Route::get('/content/{type}','\Claws\Http\Controllers\Backend\PostController@getPosts');
+
+        Route::get('/content/{type}/{id}','\Claws\Http\Controllers\Backend\PostController@create');
+        Route::get('/content/{type}/add','\Claws\Http\Controllers\Backend\PostController@create');
+
+        Route::post('/slug','\Claws\Http\Controllers\Backend\PostController@slugGen');
+
+        Route::post('/content/{type}/{id}','\Claws\Http\Controllers\Backend\PostController@update');
+        Route::post('/content/{type}/add','\Claws\Http\Controllers\Backend\PostController@update');
+
+        Route::get('/users', '\Claws\Http\Controllers\Backend\AdminController@getAdmins');
+
     });
 });

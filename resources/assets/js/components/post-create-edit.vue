@@ -7,18 +7,20 @@
                     <input class="large-field" type="text" placeholder="Name Here" v-model="post.name" v-on:change="generateSlug">
                 </div>
 
-                <div class="fieldset">
-                    <label class="label">URL</label>
-                    <input type="text" placeholder="" v-model="post.slug">
-                </div>
                 <div class="meta-section" v-if="renderMeta">
                     <slot></slot>
                 </div>
             </div>
             
             <div class="col-xs-3">
+
+                
                 <div class="post-sidebar-wrap">
                     <div class="post-sidebar">                    
+                        <div class="fieldset">
+                            <label class="label">URL</label>
+                            <input type="text" placeholder="" v-model="post.slug">
+                        </div>
                         <div class="post-stats" v-if="post.id">
                             <div class="post-date">Last Updated: {{post.updated_at}}</div>
                             <div class="post-date">Created: {{post.created_at}}</div>

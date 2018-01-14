@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClawsAdminMetaTable extends Migration
+class CreateClawsAdminRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateClawsAdminMetaTable extends Migration
      */
     public function up()
     {
-        Schema::create('claws_admin_meta', function (Blueprint $table) {
+        Schema::create('claws_admin_roles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('admin_id')->nullable();
-            $table->string('key');
-            $table->string('type')->default('string');
-            $table->longText('value')->nullable();
+            $table->string('name');
+            $table->longText('roles')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateClawsAdminMetaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('claws_admin_meta');
+        Schema::dropIfExists('claws_admin_roles');
     }
 }

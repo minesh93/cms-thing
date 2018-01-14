@@ -22,6 +22,10 @@
 			        <th class="col-xs-1">-</th>
 			        <th class="col-xs-1">-</th>
 			        <th class="col-xs-1">-</th>
+			        <th class="col-xs-1">-</th>
+			        <th class="col-xs-1">-</th>
+			        <th class="col-xs-1">-</th>
+			        <th class="col-xs-1">-</th>
 			    </tr>
 		    </thead>
 		    <tbody>

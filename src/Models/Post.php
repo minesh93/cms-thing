@@ -24,8 +24,7 @@ class Post extends Model
 
 
 
-    public function __construct($name = '',$content = '',$type = 'page',$attributes = array())
-    {
+    public function __construct($name = '',$content = '',$type = 'page',$attributes = array()) {
         parent::__construct($attributes);
         $this->name = $name;
         $this->content = $content;

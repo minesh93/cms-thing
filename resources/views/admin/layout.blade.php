@@ -35,9 +35,17 @@
                             <a class="@if(Request::is('admin/settings/general')) is-active @endif" href="/admin/settings/general">
                                 <i class="fas fa-cog"></i> <span>Settings</span>
                             </a>
-                            <a class="@if(Request::is('admin/users/')) is-active @endif" href="/admin/users/">
+                        </li>
+                        <li>
+                            <a class="@if(strpos(url()->current(),'admin/users'))is-active @endif"" href="/admin/users/">
                                 <i class="fas fa-users"></i> <span>Users</span>
                             </a>
+                            <ul class="submenu @if(strpos(url()->current(),'admin/users'))is-active @endif">
+                                <li>
+                                    <a class="@if(Request::is('admin/users')) is-active @endif" href="/admin/settings/general">All Users</a>
+                                </li>
+                                <li><a>Stuff</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>

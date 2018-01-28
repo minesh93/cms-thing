@@ -16,6 +16,7 @@
 
                 
                 <div class="post-sidebar-wrap">
+                    <h3>Settings</h3>
                     <div class="post-sidebar">                    
                         <div class="fieldset">
                             <label class="label">URL</label>

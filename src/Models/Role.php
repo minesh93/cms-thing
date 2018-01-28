@@ -19,26 +19,32 @@ class Role extends Model
         'updated_at',
     ];
 
+    protected $casts = [
+        'permissions' => 'array',
+    ];
+
+
 
     public function __construct($name = '',$attributes = array()) {
         parent::__construct($attributes);
+        $this->permissions = [];
         $this->name = $name;
     }
 
-    public function setPermissionsAttribute($value) {
-        $this->attributes['permissions'] = serialize($value);
-    }
-
-    public function getPermissionsAttribute() {
-        return unserialize($this->attributes['permissions']);
-    }
-
+    //- Someone should really clean this up.
     public function addPermission($permission) {
-        if(!in_array($permission, $this->attributes['permissions'], true)){
-            array_push($this->attributes['permissions'], $permission);
+        $permissions = $this->permissions;
+        if(!in_array($permission,  $permissions, true)){
+            $permissions[] = $permission;
+            $this->permissions = $permissions;
         }
     }
 
+    public function resetPermissions(){
+        $this->permissions = [];
+    }
+
+    //- Eh.... 
     public function removePermission($permission) {
         array_forget($this->attributes['permissions'], $permission);
     }

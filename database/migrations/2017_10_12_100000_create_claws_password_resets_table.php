@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClawsAdminRolesTable extends Migration
+class CreateClawsPasswordResetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateClawsAdminRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('claws_admin_roles', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->longText('roles')->nullable();
-            $table->timestamps();
+        Schema::create('claws_password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token')->index();
+            $table->timestamp('created_at')->nullable();
         });
     }
 
@@ -28,6 +27,6 @@ class CreateClawsAdminRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('claws_admin_roles');
+        Schema::dropIfExists('claws_password_resets');
     }
 }

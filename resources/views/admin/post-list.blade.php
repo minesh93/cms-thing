@@ -19,6 +19,14 @@
 		<table class="post-list">
 		    <thead>
 			    <tr class="row">
+					<th class="col-xs-1">
+						<div class="checkbox-wrap">
+							<label>
+								<input type="checkbox">
+								<div></div>
+							</label>
+						</div>
+					</th>
 			        <th class="col-xs-6">Name</th>
 			        <th class="col-xs-3"></th>
 			        <th class="col-xs-1">Edited</th>
@@ -28,6 +36,7 @@
 		    <tbody>
 		        @foreach ($posts as $post)
 		            <tr class="row middle-xs">
+		                <td class="col-xs-1"></td>
 		                <td class="col-xs-6">
 		                	<div class="post-name">{{$post->name}}</div>
 		                </td>

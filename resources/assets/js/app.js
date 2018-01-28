@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('post-create-edit', require('./components/post-create-edit.vue'));
+Vue.component('role-create-edit', require('./components/role-create-edit.vue'));
 
 const app = new Vue({
     el: '#app'

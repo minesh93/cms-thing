@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSettingsTable extends Migration
+class CreateClawsAdminRoleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('claws_setting', function (Blueprint $table) {
+        Schema::create('claws_admin_role', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->string('key')->unique();
-            $table->longText('value');
+            $table->longText('permissions')->nullable();
             $table->timestamps();
         });
     }
@@ -26,7 +27,8 @@ class CreateSettingsTable extends Migration
      *
      * @return void
      */
-    public function down(){
-        Schema::dropIfExists('claws_setting');
+    public function down()
+    {
+        Schema::dropIfExists('claws_admin_role');
     }
 }

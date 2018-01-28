@@ -2,86 +2,70 @@
 
 namespace Claws\Support;
 
-class PermissionRegister{
+class PermissionRegister {
 
     static private $registered = [];
-    static private $currentMeta = '';
-    static private $currentPost = '';
 
-    public static function derp(){
-    	return 'derp';
-    }
+    public static function registerSection($name, $key = '', $description = '') {
 
-    public static function register($post){
-        if(!array_key_exists('name',$post)){
+        if(empty($name)){
             return false;
         }
 
-        if(self::isRegistered($post['name'])){
-            return false;
-        }
-
-        $postPlural = str_plural($post['name']);
-        $postTitle = title_case($post['name']);
-        $postTitlePlural = title_case($postPlural);
-
-        $defaultPost = [
-            'name' => $post['name'],
-            'template' => "template-{$post['name']}",
-            'createText' => "Create {$postTitle}",
-            'listTitle' => "All {$postTitlePlural}",
-            'icon' => "fa-file-alt",
-            'urlBase' => "/{$post['name']}/",
-            'listName' => $postTitlePlural,
-            'meta' => [],
-            'createRoleName' => "create-{$post['name']}",
-            'deleteRoleName' => "delete-{$post['name']}"
+        $defaultSection = [
+            'name' => $name,
+            'key' => str_slug($name),
+            'description' => '',
+            'permissions' => []
         ];
 
-        $postToRegister = $post + $defaultPost;
+        $sectionToMerge = [
+            'name' => $name,
+            'key' => $key,
+            'description' => $description,
+        ];
 
-        self::$registered[$post['name']] = (object)$postToRegister;
+        $sectionToRegister = $sectionToMerge + $defaultSection;
+
+        self::$registered[$sectionToRegister['key']] = (object) $sectionToRegister;
     }
 
-    public static function isRegistered($post){
-        return array_key_exists($post,self::$registered);
-    }
+    public static function register($permission, $section) {
 
-    public static function addPostMeta($post,$key,$template){
-        self::$registered[$post]->meta[$key] = [];
-        self::$registered[$post]->meta[$key]['template'] = $template;
-        self::$registered[$post]->meta[$key]['data'] = new \StdClass();
-
-        self::$currentMeta = $key;
-        self::$currentPost = $post;
-
-        // ob_start();
-        //     include Theme::getThemePath() . "/" . self::$registered[$post]->meta[$key]['template'];
-        // ob_get_clean();
-    }
-
-    public static function getMetaObject($post){
-        $meta = [];
-        foreach (self::$registered[$post]->meta as $key => $value) {
-            $meta[$key] = $value['data'];
+        if(!self::sectionRegistered($section)) {
+            return false;
         }
-        return (object) $meta;
-    }
 
-    public static function getMetaTemplates($post){
-        foreach (self::$registered[$post]->meta as $key => $value) {
-            self::$currentMeta = $key;
-            self::$currentPost = $post;
-            // include Theme::getThemePath() . "/" . self::$registered[$post]->meta[$key]['template'];
+        $permissionToRegister = [];
+
+        if(is_array($permission)){
+            if(!array_key_exists('name',$permission)){
+                return false;
+            }
+            
+            $defaultPermission = [
+                'name' => $permission['name'],
+                'key' => str_slug($permission['name']),
+            ];
+
+            $permissionToRegister = $permission + $defaultPermission;
+        } else {
+            $defaultPermission = [
+                'name' => $permission,
+                'key' => str_slug($permission),
+            ];
+
+            $permissionToRegister = $defaultPermission;
         }
+
+        if(!in_array($permissionToRegister['key'], self::$registered[$section]->permissions)){
+            self::$registered[$section]->permissions []= (object) $permissionToRegister;
+        }
+
     }
 
-    public static function addMetaField($key){
-        self::$registered[self::$currentPost]->meta[self::$currentMeta]['data']->{$key} = '';
-    }
-
-    public static function getRegisteredPost($post){
-        return self::$registered[$post];
+    public static function sectionRegistered($permission){
+        return array_key_exists($permission,self::$registered);
     }
 
     public static function getRegister(){

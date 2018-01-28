@@ -24,21 +24,34 @@ class PostRegister{
         $postPlural = str_plural($post['name']);
         $postTitle = title_case($post['name']);
         $postTitlePlural = title_case($postPlural);
+        $safeName = str_slug($post['name']);
 
         $defaultPost = [
             'name' => $post['name'],
-            'template' => "template-{$post['name']}",
+            'template' => "template-{$safeName}",
             'createText' => "Create {$postTitle}",
+            'deleteText' => "Delete {$postTitle}",
             'listTitle' => "All {$postTitlePlural}",
             'icon' => "fa-file-alt",
-            'urlBase' => "/{$post['name']}/",
+            'urlBase' => "/{$safeName}/",
             'listName' => $postTitlePlural,
-            'meta' => []
+            'meta' => [],
+            'createRoleName' => "create-{$safeName}",
+            'deleteRoleName' => "delete-{$safeName}"
         ];
 
         $postToRegister = $post + $defaultPost;
 
         self::$registered[$post['name']] = (object)$postToRegister;
+
+        PermissionRegister::register([
+            'name' => self::$registered[$post['name']]->createText,
+            'key' => self::$registered[$post['name']]->createRoleName,
+        ] , 'content');
+        PermissionRegister::register([
+            'name' => self::$registered[$post['name']]->deleteText,
+            'key' => self::$registered[$post['name']]->deleteRoleName,
+        ] , 'content');
     }
 
     public static function isRegistered($post){

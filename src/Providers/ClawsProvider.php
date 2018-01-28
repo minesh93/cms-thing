@@ -5,6 +5,7 @@ namespace Claws\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 use Claws\Support\PostRegister;
+use Claws\Support\PermissionRegister;
 
 class ClawsProvider extends ServiceProvider
 {
@@ -18,6 +19,9 @@ class ClawsProvider extends ServiceProvider
         $this->app->booting(function() {
             $loader = AliasLoader::getInstance();
             $loader->alias('PostRegister', PostRegister::class);
+            $loader->alias('PermissionRegister', PermissionRegister::class);
+
+            PermissionRegister::registerSection('Content Permissions' ,'content' ,'All content related permissions');
         });
 
     }

@@ -1,21 +1,40 @@
-$some-red: #D71A2D;
+$some-red: #CE3B3B;
 $some-blue: #1789FC;
 $some-green: #46A95A;
+
+
+//-Colours and shit
+$white: #ffffff;
+$base-font-color: #32373c;
+$link-color: #4D9DE0;
+$accent:#dbebf9;
+$background: #f9f9f9;
+
+//- Typography and shit
+$open-sans: 'Open Sans';
+$small-letter-spacing: 0.2px;
+
 
 *, *:before, *:after {
   box-sizing: border-box;
 }
 
 body {
-	background: #f2f2fa;
-	font-family: 'Nunito';
-	color: #31313a;
+	background: $background;
+	font-family: $open-sans;
+	color: #32373c;
 	margin: 0;
     font-size: 14px;
 }
 
 h1 {
 	font-weight: 500;
+    margin: 0 0 15px;
+}
+
+a {
+    color: $link-color;
+    text-decoration: none;
 }
 
 #login-form-wrap {
@@ -53,13 +72,13 @@ input[type='text'],
 input[type='password'] {
     height: 30px;
     width: 100%;
-    border: none;
+    border: 1px solid $accent;
     border-radius: 0;
     padding: 5px;
-    font-family: 'Nunito';
+    font-family: $open-sans;
     font-weight: 500;
     &:focus {
-        outline: 3px solid #798BB3;
+        outline: 3px solid #adbbda;
     }
 
     &.large-field {
@@ -69,12 +88,42 @@ input[type='password'] {
     }
 }
 
+.checkbox-wrap {
+    label {    
+        display: flex;
+        align-items:center;
+        margin: 0;
+        div:before {
+            content:'';
+            background: transparent;
+            border: 2px solid #818890;
+            height: 15px;
+            width: 15px;
+            display: inline-block;
+            margin-right: 5px;
+            vertical-align:top;
+        }
+        input[type="checkbox"]{
+            position: absolute;
+            left: -1000000px;
+            &:checked + div:before {
+                background: #818890
+            }
+            &:focus + div:before {
+                outline: 3px solid #adbbda;
+            }
+        }
+    }
+}
+
+
+
 button,
 .button {
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    font-family: 'Nunito';
+    font-family: $open-sans;
     background: #31313a;
     color: #f2f2fa;
     border: none;
@@ -93,7 +142,7 @@ button,
     }
 
     &:focus {
-        outline: 3px solid #798BB3;
+        outline: 3px solid #adbbda;
     }
 
     &.danger { 
@@ -108,16 +157,22 @@ button,
 // SIDEBAR TING
 .sidebar-ting {
     position: fixed;
-    width: 180px;
-    background: #31313a;
-    color: #ffffff;
+    width: 240px;
+    background: $white;
+    color: #32373c;
     height: 100%;
     padding: 15px 0px;
 
     h2 {
         font-weight: 500;
         font-size: 22px;
-        margin: 0;
+        margin: 0 0 30px;
+    }
+
+    h3 {
+        margin: 5px 15px;
+        font-size: 11px;
+        letter-spacing: $small-letter-spacing;
     }
 
     ul {
@@ -131,36 +186,46 @@ button,
     }
 
     .sidebar-list {
-        padding: 15px 0px;
         margin-bottom: 30px;
         li {
             a {
-                color: #ffffff;
+                color: #4D9DE0;
                 text-decoration: none;
-                padding: 5px 15px;
+                padding: 10px 15px;
                 display: block;
-                font-size: 14px;
+                font-size: 12px;
+                letter-spacing: -0.1px;
                 min-height: 30px;
+                transition: all 0.1s ease;
 
                 i {
                     margin-right: 5px;
                 }
 
+                span {
+                    display: inline-block;
+                }
+
                 &:focus {
-                    outline: 3px solid #798BB3;
+                    outline: 3px solid #adbbda;
+                }
+
+                &:hover {
+                    text-indent: 2px;
                 }
             }
         }
 
         .menu-list>li>a.is-active{
-            background: #3194A2;
+            background: rgba(77, 157, 224, 0.2);
+            color: #2d72ad;
         }
 
         .submenu {
             display: none;
+            margin-left: 30px;
             &.is-active {
                 display: block;
-                background: #246C76;
             }
 
             a.is-active {
@@ -178,24 +243,28 @@ button,
 
 // CONTENT TING
 .content-ting {
-    margin-left: 180px;
+    margin-left: 240px;
     padding: 15px;
 }
-
-
-// TYPOPGRAPHY AND DAT
-h1 {
-    margin: 0;
-}
-
 
 
 // EDITOR SCREEN
 .post-sidebar-wrap {
     position: relative;
+    background: #ffffff;
+
+    h3 {
+        margin: 0;
+        padding: 15px;
+        border-bottom: 1px solid $accent;
+        font-weight: 600;
+        font-size: 11px;
+        letter-spacing: 0.2px;
+        text-align: center;
+    }
+
     .post-sidebar {
-        color: #ffffff;
-        background: #31313a;
+        color: #32373c;
         padding: 15px;
         width: 100%;
     }
@@ -247,34 +316,44 @@ h1 {
 
 .user-list {
     width: 100%;
-    border-collapse: collapse;
+    font-size: 13px;
 
-    .user-name {
-        font-size: 18px;
-        font-weight: 600;
+    .header {
+        height: 30px;
+        background: red;
+        line-height: 30px;
+        background: #929292;
+        color: $white;
+        font-size: 12px;
     }
 
-    .user-real-name {
+    .username {
+        font-weight: 600;
+        font-size: 11px;
+        letter-spacing: 0.2px;
+        margin-top: 5px;
+    }
+
+    .list-item {
+        background: #ffffff;
+        border-bottom: 1px solid #dadada;
+        transition: all 0.1s ease;
+        > div {
+            padding: 5px;
+        }
+    }
+
+    a { 
         font-size: 13px;
     }
 
-    th {
-        text-align: left;
-        font-weight: 500;
-        background-color: #fafafa;
+    .checkbox {
+        width: 30px;
+        flex-grow: 0;
     }
 
-    th,td {
-        text-align: left;
-        padding: 5px 15px;
-    }
-
-    tr {
-        background-color: #C1C3C9;
-        border-bottom: 1px solid #8890A5;
-        &:nth-child(odd){
-            background-color: #D2D5DD;
-        }
+    .row > div {
+        padding: 5px;
     }
 
     button,
@@ -289,6 +368,58 @@ h1 {
         th,td {
             text-align: left;
             padding: 0px;
+        }
+    }
+}
+
+
+// ROLES
+
+.role-form {
+    max-width: 900px;
+    width: 100%;
+    margin: 0px auto;
+}
+
+.role-wrapper {
+    margin: 30px 0px;
+    .role-collection {
+        background: $white;
+        margin-bottom: 30px;
+
+        h2 {
+            font-size: 14px;
+            letter-spacing: $small-letter-spacing;
+            border-bottom: 1px solid $accent;
+            margin: 0 15px;
+            padding: 15px 0;
+        }
+
+        .permission-selector-wrap {
+            padding: 0px 15px;
+            .description {
+                color: #6c757d;
+                font-size: 12px;
+                margin: 15px 0px;
+                letter-spacing: $small-letter-spacing;
+            }
+            .permission-selector .checkbox-wrap {
+                margin-bottom: 15px;
+                label {
+                    > div {
+                        font-size: 13px;
+                    }
+                    :before {
+                        vertical-align: middle;
+                        border-color: $some-red;
+                        background-color: $some-red;
+                    }
+                    input:checked + div:before{
+                        border-color: $some-green;
+                        background-color: $some-green;
+                    }
+                }
+            }
         }
     }
 }

@@ -13,44 +13,52 @@
 
 	</div>
 	<div class="user-list-wrap">
-		<table class="user-list">
-		    <thead>
-			    <tr class="row">
-			        <th class="col-xs-2">Name</th>
-			        <th class="col-xs-2">Email</th>
-			        <th class="col-xs-1">Role</th>
-			        <th class="col-xs-1">-</th>
-			        <th class="col-xs-1">-</th>
-			        <th class="col-xs-1">-</th>
-			        <th class="col-xs-1">-</th>
-			        <th class="col-xs-1">-</th>
-			        <th class="col-xs-1">-</th>
-			        <th class="col-xs-1">-</th>
-			    </tr>
-		    </thead>
-		    <tbody>
+		<div class="user-list">
+			    <div class="row middle-xs header">
+			    	<div class="col-xs checkbox">
+			        	<div class="checkbox-wrap">
+			        		<label>
+			        			<input type="checkbox">
+			        			<div></div>
+			        		</label>
+			        	</div>
+			        </div>
+			        <div class="col-xs-2">Name</div>
+			        <div class="col-xs-2">Email</div>
+			        <div class="col-xs-1">Role</div>
+			        <div class="col-xs-1">-</div>
+			        <div class="col-xs-1">-</div>
+			        <div class="col-xs-1">-</div>
+			        <div class="col-xs-1">-</div>
+			        <div class="col-xs-1">-</div>
+			        <div class="col-xs-1">-</div>
+			    </div>
+		    <div class="list-content">
 		        @foreach ($admins as $admin)
-		            <tr class="row middle-xs">
-		                <td class="col-xs-2">
-		                	<table class="nested-info">
-		                		<tr>
-		                			<td class="user-name">{{$admin->username}}</td>
-		                		</tr>
-		                		<tr>
-		                			<td class="user-real-name">{{$admin->first_name}}</td>
-		                			<td class="user-real-name">{{$admin->last_name}}</td>
-		                		</tr>
-		                	</table>
-		                </td>
-		                <td class="col-xs-2"><a href="mailto:{{$admin->email}}">{{$admin->email}}</a></td>
-		                <td class="col-xs-1">-</td>
-		                <td class="col-xs-1">
+		            <div class="row middle-xs list-item">
+
+				    	<div class="col-xs checkbox">
+				        	<div class="checkbox-wrap">
+				        		<label>
+				        			<input type="checkbox">
+				        			<div></div>
+				        		</label>
+				        	</div>
+				        </div>
+
+		                <div class="col-xs-2">
+                			<div class="real-name">{{$admin->first_name}} {{$admin->last_name}}</div>
+                			<div class="username">{{$admin->username}}</div>
+		                </div>
+		                <div class="col-xs-2"><a href="mailto:{{$admin->email}}"><i class="fas fa-at"></i> {{$admin->email}}</a></div>
+		                <div class="col-xs-1">-</div>
+		                <div class="col-xs-1">
 	                        <a class="button primary" href='/admin/user/{{$admin->id}}'">Edit</a>
-		                </td>
-			        	<td class="col-xs-1">-</td>
-		            </tr>
+		                </div>
+			        	<div class="col-xs-1">-</div>
+		            </div>
 		        @endforeach
-		    </tbody>
-		</table>
+		    </div>
+		</div>
 	</div>
 @endsection

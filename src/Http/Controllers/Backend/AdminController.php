@@ -32,26 +32,28 @@ class AdminController extends Controller {
 
     public function updateAdmin(Request $request,$id ){
 
-        $role = new Role();
+
+        $admin = new Admin();
 
         if($id != 'add'){
-            $role = Role::find($id);
+            $admin = Admin::find($id);
         }
 
-        $role->name = $request->input('name');
-        $role->key = str_slug($request->input('name'));
+        $admin->username = $request->input('username');
+        $admin->first_name = $request->input('first_name');
+        $admin->last_name = $request->input('last_name');
 
-        $role->resetPermissions();
-
-        if(is_array($request->input('permissions'))){
-            foreach ($request->input('permissions') as $permission) {
-                $role->addPermission($permission);
-            }
+        if(is_array($request->input('role_id'))){
+            $admin->role_id = $request->input('role_id')['id'];
         }
 
-        $role->save();
+        $admin->email = $request->input('email');
 
-        return $role;
+
+
+        $admin->save();
+
+        return $admin;
     }
 
 

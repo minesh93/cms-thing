@@ -21,6 +21,7 @@ class ClawsProvider extends ServiceProvider
             $loader->alias('PostRegister', PostRegister::class);
             $loader->alias('PermissionRegister', PermissionRegister::class);
 
+            PermissionRegister::registerSection('Claws' ,'claws' ,'Permissions that come out the box to help you manage everything.');
             PermissionRegister::registerSection('Content Permissions' ,'content' ,'All content related permissions');
         });
 

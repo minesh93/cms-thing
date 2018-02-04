@@ -53,6 +53,9 @@ Route::group(['prefix'=>'admin','middleware' => 'web'], function () {
         Route::get('/users/{id}','\Claws\Http\Controllers\Backend\AdminController@createAdmin');
         Route::get('/users/add', '\Claws\Http\Controllers\Backend\AdminController@createAdmin');
 
+        Route::post('/users/{id}','\Claws\Http\Controllers\Backend\AdminController@updateAdmin');
+        Route::post('/users/add', '\Claws\Http\Controllers\Backend\AdminController@updateAdmin');
+
         Route::get('/roles', '\Claws\Http\Controllers\Backend\AdminController@getRoles');
         Route::get('/roles/{id}','\Claws\Http\Controllers\Backend\AdminController@createRole');
         Route::get('/roles/add', '\Claws\Http\Controllers\Backend\AdminController@createRole');

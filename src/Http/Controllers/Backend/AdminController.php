@@ -15,6 +15,46 @@ class AdminController extends Controller {
         return view('claws::admin.user-list',['admins'=>$admins]);
     }
 
+
+    public function createAdmin(Request $request,$id){
+
+        $data = [
+            'user' => new Admin(),
+            'roles' => Role::all()
+        ];
+
+        if($id !== 'add') {
+            $data['user'] = Admin::find($id);
+        }
+
+        return view('claws::admin.user-create',$data);
+    }
+
+    public function updateAdmin(Request $request,$id ){
+
+        $role = new Role();
+
+        if($id != 'add'){
+            $role = Role::find($id);
+        }
+
+        $role->name = $request->input('name');
+        $role->key = str_slug($request->input('name'));
+
+        $role->resetPermissions();
+
+        if(is_array($request->input('permissions'))){
+            foreach ($request->input('permissions') as $permission) {
+                $role->addPermission($permission);
+            }
+        }
+
+        $role->save();
+
+        return $role;
+    }
+
+
     public function getRoles() {
         $roles = Role::all();
         return view('claws::admin.role-list',['roles'=>$roles]);

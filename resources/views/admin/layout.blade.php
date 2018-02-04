@@ -51,12 +51,12 @@
                             <a class="@if(strpos(url()->current(),'admin/users'))is-active @endif"" href="/admin/users/">
                                 <i class="fas fa-users"></i> <span>Users</span>
                             </a>
-                            <ul class="submenu @if(strpos(url()->current(),'admin/users'))is-active @endif">
+                            <ul class="submenu @if(strpos(url()->current(),'admin/users') || strpos(url()->current(),'admin/roles'))is-active @endif">
                                 <li>
                                     <a class="@if(Request::is('admin/users')) is-active @endif" href="/admin/settings/general">All Users</a>
                                 </li>
                                 <li>
-                                    <a class="@if(Request::is('admin/roles')) is-active @endif" href="/admin/roles">Roles</a>
+                                    <a class="@if(Request::is('admin/roles')) is-active @endif" href="/admin/roles">All Roles</a>
                                 </li>
                             </ul>
                         </li>

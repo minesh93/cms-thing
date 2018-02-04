@@ -24,7 +24,9 @@ class Admin extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 
 
     protected  $table = 'claws_admin';

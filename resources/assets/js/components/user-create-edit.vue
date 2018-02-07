@@ -31,7 +31,7 @@
 
                     <div class="col-xs-12">
                         <div class="fieldset">
-                            <multiselect class="large-field" v-model="user.role_id"  track-by="id" label="name" placeholder="Role" :options="roles" :searchable="false" :show-labels="false"></multiselect>
+                            <v-select class="large-field" v-model="user.role"  track-by="id" label="name" placeholder="Role" :options="roles" :searchable="false" :show-labels="false"></v-select>
                         </div>
                     </div>
 
@@ -100,6 +100,10 @@
             return {
                 renderMeta:false,
                 user:{
+                    username: '',
+                    first_name: '',
+                    last_name: '',
+                    last_name: '',
                     role_id:0,
                 },
                 roles:[],
@@ -107,7 +111,7 @@
         },
         mounted() {
 
-            this.user = this.$options.propsData.mountU;
+            this.user = {...this.user,...this.$options.propsData.mountU};
             this.roles = this.$options.propsData.mountR;
             // this.user.meta = this.$options.propsData.mountM;
             this.renderMeta = true;
@@ -125,6 +129,8 @@
                     newPost = false;
                     location = `/admin/users/${this.user.id}`;
                 }
+
+                console.log(this.user);
 
                 axios.post(location,this.user).then((response)=>{
                     this.$parent.$emit('make-notification',{text:'Post Saved!',type:'is-success'});

@@ -27,6 +27,7 @@ Vue.component('role-create-edit', require('./components/role-create-edit.vue'));
 Vue.component('user-create-edit', require('./components/user-create-edit.vue'));
 
 Vue.component('multiselect', Multiselect);
+Vue.component('v-select', require('./components/select.vue'));
 
 const app = new Vue({
     el: '#app'

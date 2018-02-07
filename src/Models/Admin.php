@@ -30,4 +30,10 @@ class Admin extends Authenticatable
 
 
     protected  $table = 'claws_admin';
+
+
+    public function role() {
+        return $this->belongsTo('Claws\Models\Role');
+    }
+
 }

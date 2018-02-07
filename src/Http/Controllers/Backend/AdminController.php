@@ -25,6 +25,7 @@ class AdminController extends Controller {
 
         if($id !== 'add') {
             $data['user'] = Admin::find($id);
+            $data['user']->load('role');
         }
 
         return view('claws::admin.user-create',$data);
@@ -36,7 +37,7 @@ class AdminController extends Controller {
         $admin = new Admin();
 
         if($id != 'add'){
-            $admin = Admin::find($id);
+            $admin = Admin::with('role')->find($id);
         }
 
         $admin->username = $request->input('username');
@@ -49,6 +50,13 @@ class AdminController extends Controller {
 
         $admin->email = $request->input('email');
 
+        if($request->has('password') && $request->has('confirm_password')){
+            if(strcmp($request->input('password'), $request->input('confirm_password')) !== 0){
+                $admin->password = bcrypt($request->input('password'));
+            } else {
+                //- Erorr about mismatch passwords
+            }
+        }
 
 
         $admin->save();
@@ -58,6 +66,7 @@ class AdminController extends Controller {
 
 
     public function getRoles() {
+
         $roles = Role::all();
         return view('claws::admin.role-list',['roles'=>$roles]);
     }

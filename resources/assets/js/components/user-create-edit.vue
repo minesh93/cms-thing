@@ -31,7 +31,7 @@
 
                     <div class="col-xs-12">
                         <div class="fieldset">
-                            <v-select class="large-field" v-model="user.role"  track-by="id" label="name" placeholder="Role" :options="roles" :searchable="false" :show-labels="false"></v-select>
+                            <v-select class="large-field" v-model="user.role_id" return="id" track-by="id" label="name" placeholder="Role" :options="roles" :searchable="false" :show-labels="false"></v-select>
                         </div>
                     </div>
 

@@ -37,16 +37,16 @@ class AdminController extends Controller {
         $admin = new Admin();
 
         if($id != 'add'){
-            $admin = Admin::with('role')->find($id);
+            $admin = Admin::find($id);
+            $admin->load('role');
         }
 
         $admin->username = $request->input('username');
         $admin->first_name = $request->input('first_name');
         $admin->last_name = $request->input('last_name');
 
-        if(is_array($request->input('role_id'))){
-            $admin->role_id = $request->input('role_id')['id'];
-        }
+        //- No longer stripping back role array from request as its no longer needed.
+        $admin->role_id = $request->input('role_id');
 
         $admin->email = $request->input('email');
 
@@ -55,11 +55,13 @@ class AdminController extends Controller {
                 $admin->password = bcrypt($request->input('password'));
             } else {
                 //- Erorr about mismatch passwords
+                //- Seriously I need to finish this at some point.
             }
         }
 
 
         $admin->save();
+
 
         return $admin;
     }

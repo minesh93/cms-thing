@@ -10,7 +10,12 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import Multiselect from 'vue-multiselect'
+import { quillEditor } from 'vue-quill-editor'
 
+// require styles
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
  
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,6 +33,8 @@ Vue.component('user-create-edit', require('./components/user-create-edit.vue'));
 
 Vue.component('multiselect', Multiselect);
 Vue.component('v-select', require('./components/select.vue'));
+
+Vue.component('quill', quillEditor);
 
 const app = new Vue({
     el: '#app'

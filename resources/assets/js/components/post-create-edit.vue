@@ -7,6 +7,44 @@
                     <input class="large-field" type="text" placeholder="Name Here" v-model="post.name" v-on:change="generateSlug">
                 </div>
 
+
+                <!-- Get rid of this shit when I actually have components for fancy stuff -->
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="fieldset large-field">
+                            <label>Meta 1</label>
+                            <input class="large-field" type="text" placeholder="Name Here" v-model="post.meta1">
+                            <span>Description</span>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-6">
+                        <div class="fieldset large-field">
+                            <label>Meta 2</label>
+                            <textarea class="large-field" placeholder="Name Here" v-model="post.meta2"></textarea> 
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="fieldset large-field">
+                            <textarea class="large-field" placeholder="Name Here" v-model="post.meta3"></textarea> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="fieldset large-field">
+                            <label>Meta 2</label>
+                              <quill v-model="post.meta4" ref="myQuillEditor"></quill>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="meta-section" v-if="renderMeta">
                     <slot></slot>
                 </div>
@@ -53,6 +91,7 @@
             }
         },
         mounted() {
+            console.log(this);
             this.post = this.$options.propsData.mountP;
             this.type = this.$options.propsData.mountT;
             // this.post.meta = this.$options.propsData.mountM;

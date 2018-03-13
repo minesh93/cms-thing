@@ -22,7 +22,7 @@
 
                 {{ csrf_field() }}
 
-                <button class="full-width" type="submit">
+                <button class="full-width primary" type="submit">
                     Login
                 </button>
             </div>

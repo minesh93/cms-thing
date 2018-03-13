@@ -63,5 +63,7 @@ Route::group(['prefix'=>'admin','middleware' => 'web'], function () {
         Route::post('/roles/{id}','\Claws\Http\Controllers\Backend\AdminController@updateRole');
         Route::post('/roles/add', '\Claws\Http\Controllers\Backend\AdminController@updateRole');
 
+        Route::get('/media', '\Claws\Http\Controllers\Backend\MediaController@getMedia');
+        Route::post('/media', '\Claws\Http\Controllers\Backend\MediaController@uploadMedia');
     });
 });

@@ -14,15 +14,7 @@
                         <div class="fieldset large-field">
                             <label>Meta 1</label>
                             <input class="large-field" type="text" placeholder="Name Here" v-model="post.meta1">
-                            <span>Description</span>
-                        </div>
-                    </div>
-
-
-                    <div class="col-xs-6">
-                        <div class="fieldset large-field">
-                            <label>Meta 2</label>
-                            <textarea class="large-field" placeholder="Name Here" v-model="post.meta2"></textarea> 
+                            <span class="description">Description</span>
                         </div>
                     </div>
                 </div>
@@ -31,16 +23,9 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="fieldset large-field">
-                            <textarea class="large-field" placeholder="Name Here" v-model="post.meta3"></textarea> 
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="fieldset large-field">
                             <label>Meta 2</label>
-                              <quill v-model="post.meta4" ref="myQuillEditor"></quill>
+                            <v-editor class="large-field" type="text" placeholder="Name Here" v-model="post.meta2"></v-editor>
+                            <span class="description">Description</span>
                         </div>
                     </div>
                 </div>
@@ -51,8 +36,6 @@
             </div>
             
             <div class="col-xs-3">
-
-                
                 <div class="post-sidebar-wrap">
                     <h3>Settings</h3>
                     <div class="post-sidebar">                    
@@ -77,6 +60,7 @@
                 </div>
             </div>
         </form>
+        <v-uploader></v-uploader>
     </main>
 </template>
 
@@ -91,9 +75,9 @@
             }
         },
         mounted() {
-            console.log(this);
             this.post = this.$options.propsData.mountP;
             this.type = this.$options.propsData.mountT;
+
             // this.post.meta = this.$options.propsData.mountM;
             this.renderMeta = true;
 

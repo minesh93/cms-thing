@@ -91,7 +91,7 @@
             </div>
             <div class="uploader-footer">
                 <button class="button primary large full-width" v-on:click="triggerUpload">Drag Files or Click to Upload</button>
-                <input type="file" id="file-upload" class="input-image" v-on:change="readFrame">
+                <input type="file" id="file-upload" class="input-image" v-on:change="readFile">
             </div>
         </div>
     </div>
@@ -113,13 +113,13 @@
                 document.getElementById('file-upload').click();
             },
 
-            readFrame(e) {
+            readFile(e) {
                 console.log('upload');
                 if(e.target.files[0]){
 
                     let data = new FormData();
-                    data.append('file', e.target.files[0]);
-                    axios.post('/admin/media/', data, {
+                    data.append('user-file', e.target.files[0]);
+                    axios.post('/admin/media', data, {
                         headers: {
                           'Content-Type': 'multipart/form-data'
                         },
@@ -128,7 +128,8 @@
                             console.log(percentCompleted);
                         }
                     }).then(response => {
-                        console.log('yay')
+                        console.log('yay');
+                        console.log(response);
                     }).catch((error,err)=>{
                         console.log(error);
                     })

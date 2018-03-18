@@ -16,4 +16,9 @@ class MediaController extends Controller {
         return $media->toJSON();
     }
 
+    public function uploadMedia(Request $request){
+    	dd($request->file('user-file'));
+    	dd($request->file('file'));
+    }
+
 }

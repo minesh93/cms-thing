@@ -6,88 +6,17 @@
                 <h2>Media</h2>
             </div>
             <div class="media-wrap">
-                <button class="file">
+                <button class="file" v-for="mediaItem in media" v-on:click="selectFile(mediaItem.id)">
                     <div class="img-wrap">
-                        <img src="https://placeimg.com/640/480/tech/sepia">
+                        <img :src="mediaItem.path">
                     </div>
                     <div class="file-info">
-                        <div class="name">Important Image Name</div>
+                        <div class="name">{{mediaItem.title}}</div>
                     </div>
                 </button>
-                <button class="file">
-                    <div class="img-wrap">
-                        <img src="https://placeimg.com/1920/300/tech/sepia">
-                    </div>
-                    <div class="file-info">
-                        <div class="name">Important Image Name</div>
-                    </div>
-                </button>
-                <button class="file">
-                    <div class="img-wrap">
-                        <img src="https://placeimg.com/1920/1080/tech/sepia">
-                    </div>
-                    <div class="file-info">
-                        <div class="name">Important Image Name</div>
-                    </div>
-                </button>
-                <button class="file">
-                    <div class="img-wrap">
-                        <img src="https://placeimg.com/500/500/tech/sepia">
-                    </div>
-                    <div class="file-info">
-                        <div class="name">Important Image Name</div>
-                    </div>
-                </button>
-                <button class="file">
-                    <div class="img-wrap">
-                        <img src="https://placeimg.com/640/480/tech/sepia">
-                    </div>
-                    <div class="file-info">
-                        <div class="name">Important Image Name</div>
-                    </div>
-                </button>
-
-                <button class="file">
-                    <div class="img-wrap">
-                        <img src="https://placeimg.com/640/480/tech/sepia">
-                    </div>
-                    <div class="file-info">
-                        <div class="name">Important Image Name</div>
-                    </div>
-                </button>
-                <button class="file">
-                    <div class="img-wrap">
-                        <img src="https://placeimg.com/1920/300/tech/sepia">
-                    </div>
-                    <div class="file-info">
-                        <div class="name">Important Image Name</div>
-                    </div>
-                </button>
-                <button class="file">
-                    <div class="img-wrap">
-                        <img src="https://placeimg.com/1920/1080/tech/sepia">
-                    </div>
-                    <div class="file-info">
-                        <div class="name">Important Image Name</div>
-                    </div>
-                </button>
-                <button class="file">
-                    <div class="img-wrap">
-                        <img src="https://placeimg.com/500/500/tech/sepia">
-                    </div>
-                    <div class="file-info">
-                        <div class="name">Important Image Name</div>
-                    </div>
-                </button>
-                <button class="file">
-                    <div class="img-wrap">
-                        <img src="https://placeimg.com/640/480/tech/sepia">
-                    </div>
-                    <div class="file-info">
-                        <div class="name">Important Image Name</div>
-                    </div>
-                </button>
-                
+                <div class="selected-file" v-if="activeFile !== undefined ">
+                    {{activeFile.name}}
+                </div>                
             </div>
             <div class="uploader-footer">
                 <button class="button primary large full-width" v-on:click="triggerUpload">Drag Files or Click to Upload</button>
@@ -104,7 +33,8 @@
             return {
                 uploading: false,
                 hidden: true,
-                media: []
+                media: [],
+                activeFile: undefined,
             }
         },
 
@@ -129,8 +59,8 @@
                             console.log(percentCompleted);
                         }
                     }).then(response => {
-                        console.log('uploaded');
-                        console.log(response);
+                        this.media.push(response.data);
+                        this.selectFile(response.data.id);
                     }).catch((error,err)=>{
                         console.log(error);
                     });
@@ -141,6 +71,10 @@
 
             },
 
+            selectFile(fileID) {
+                this.activeFile = this.media.find(file => file.id == fileID);
+            },
+
             searchMediaHere(term) {
 
             },
@@ -149,7 +83,7 @@
 
         mounted() {
             axios.get('/admin/media').then((response)=>{
-                this.media = response;
+                this.media = response.data;
             }).catch((error)=>{
                 console.log(error);
             });

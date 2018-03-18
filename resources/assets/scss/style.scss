@@ -562,6 +562,18 @@ button,
             padding: 15px;
         }
 
+        .selected-file {
+            display: block;
+            position: absolute;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            top: 0;
+            background: #ffffff;
+            border-left: 1px solid $accent;
+            padding: 15px;
+        }
+
         .media-wrap {
             flex: 1;
             padding: 15px 0px;
@@ -573,6 +585,7 @@ button,
             overflow-y: scroll;
             align-items: start;
             align-content: start;
+            position: relative;
 
             .file {
                 cursor: pointer;
@@ -610,9 +623,9 @@ button,
                 left: 0;
                 right: 0;
                 bottom: 0;
-                margin: 0;
-                height: 100%;
-                width: 100%;
+                max-width: 100%;
+                height: auto;
+                margin: auto;
                 object-fit: cover;
             }
             

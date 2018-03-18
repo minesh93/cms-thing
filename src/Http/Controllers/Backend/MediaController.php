@@ -1,12 +1,14 @@
 <?php
 
 namespace Claws\Http\Controllers\Backend;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Claws\Http\Controllers\Controller;
 use Claws\Models\Admin;
 use Claws\Models\Role;
 use Claws\Models\Media;
 use Auth;
+use Storage;
 use PermissionRegister;
 
 class MediaController extends Controller {
@@ -16,9 +18,21 @@ class MediaController extends Controller {
         return $media->toJSON();
     }
 
-    public function uploadMedia(Request $request){
-    	dd($request->file('user-file'));
-    	dd($request->file('file'));
+    public function uploadMedia(Request $request) {
+
+        $file = $request->file('user-file');
+
+        $media = new Media();
+        $media->name = $file->getClientOriginalName();
+        $media->title = $file->getClientOriginalName();
+
+        $path = Storage::disk('public')->putFile('claws-files', $file);
+
+        $media->path = '/storage/' . $path;
+        $media->save(); 
+
+        return $media;
+
     }
 
 }

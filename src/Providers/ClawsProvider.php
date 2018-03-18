@@ -10,9 +10,8 @@ use Claws\Support\PermissionRegister;
 class ClawsProvider extends ServiceProvider
 {
     public function boot() {
-
-        $this->loadViewsFrom('/Users/minesh/Sites/test-valet/cms-thing/resources/views', 'claws');
-        $this->loadMigrationsFrom('/Users/minesh/Sites/test-valet/cms-thing/database/migrations/');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'claws');
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations/');
         $this->loadRoutesFrom(__DIR__.'../../routes.php');
     }
 

@@ -102,6 +102,7 @@
 
         data() {
             return {
+                uploading: false,
                 hidden: true,
                 media: []
             }
@@ -128,51 +129,11 @@
                             console.log(percentCompleted);
                         }
                     }).then(response => {
-                        console.log('yay');
+                        console.log('uploaded');
                         console.log(response);
                     }).catch((error,err)=>{
                         console.log(error);
-                    })
-
-                    // let reader  = new FileReader();
-                    // reader.addEventListener("load", () => {
-
-                    //     let background = {
-                    //         hex:  '#ffffff',
-                    //         hsl:  {h: 255, s: 255, l: 255},
-                    //         hsv:  {h: 255, s: 255, v: 255},
-                    //         rgba: {r: 255, g: 255, b: 255, a: 1},
-                    //         a: 1
-                    //     };
-
-
-                    //     let image = new Image();
-                    //     image.src = reader.result;
-                    //     image.onload = () => {
-
-                    //         this.workspaceContext.fillStyle = `rgba(${background.rgba.r},${background.rgba.g},${background.rgba.b},${background.rgba.a})`;
-                    //         this.workspaceContext.fillRect(0,0,this.width,this.height);
-                    //         this.workspaceContext.drawImage(image, 0,0);
-                    //         this.frames.push({
-                    //             type:'IMAGE',
-                    //             id: this.frames.length,
-                    //             image:{
-                    //                 x:0,
-                    //                 y:0,
-                    //                 width: image.width,
-                    //                 height: image.height,
-                    //                 src: image,
-                    //             },
-                    //             preview: this.workspaceContext.canvas.toDataURL(),
-                    //             background: background,
-                    //         });
-
-                    //         this.goToFrame(this.frames.length - 1);
-
-                    //     };
-                    //     e.target.value = '';
-                    // });
-                    // reader.readAsDataURL(e.target.files[0]);
+                    });
                 }
             },
 

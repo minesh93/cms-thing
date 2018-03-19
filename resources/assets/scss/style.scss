@@ -11,7 +11,7 @@ $accent:#dbebf9;
 $background: #f9f9f9;
 
 //- Typography and shit
-$open-sans: 'Open Sans';
+$open-sans: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Sans Serif';
 $small-letter-spacing: 0.2px;
 
 @import 'select';
@@ -567,8 +567,8 @@ button,
             position: absolute;
             right: 0;
             width: 300px;
-            height: 100%;
-            top: 0;
+            height: calc(100% - 115px);
+            top: 55px;
             background: #ffffff;
             border-left: 1px solid $accent;
             padding: 15px;

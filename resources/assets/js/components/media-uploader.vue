@@ -13,11 +13,52 @@
                     <div class="file-info">
                         <div class="name">{{mediaItem.title}}</div>
                     </div>
-                </button>
-                <div class="selected-file" v-if="activeFile !== undefined ">
-                    {{activeFile.name}}
-                </div>                
+                </button>             
             </div>
+            <div class="selected-file" v-if="activeFile !== undefined ">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="fieldset">
+                            <label>Title</label>
+                            <input type="text" v-model="activeFile.title">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="fieldset">
+                            <label>Description</label>
+                            <textarea type="text" v-model="activeFile.description"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="fieldset">
+                            <label>Uploaded on</label>
+                            <span class="description">{{activeFile.created_at}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="fieldset">
+                            <button class="button primary full-width" v-on:click="updateFile">Update</button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xs-6">
+                        <div class="fieldset">
+                            <button class="button primary full-width" v-on:click="updateFile">Use File</button>
+                        </div>
+                    </div>
+
+                </div>
+             </div>   
             <div class="uploader-footer">
                 <button class="button primary large full-width" v-on:click="triggerUpload">Drag Files or Click to Upload</button>
                 <input type="file" id="file-upload" class="input-image" v-on:change="readFile">
@@ -44,6 +85,10 @@
                 document.getElementById('file-upload').click();
             },
 
+            updateFile(){
+                axios.post(`/admin/update-media/${this.activeFile.id}`,this.activeFile).then(response => console.log(response));
+            },
+
             readFile(e) {
                 console.log('upload');
                 if(e.target.files[0]){
@@ -59,16 +104,13 @@
                             console.log(percentCompleted);
                         }
                     }).then(response => {
+                        this.uploading = false;
                         this.media.push(response.data);
                         this.selectFile(response.data.id);
                     }).catch((error,err)=>{
                         console.log(error);
                     });
                 }
-            },
-
-            uploadMediaHere() {
-
             },
 
             selectFile(fileID) {

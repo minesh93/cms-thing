@@ -35,4 +35,21 @@ class MediaController extends Controller {
 
     }
 
+    public function updateMedia(Request $request, $id) {
+
+        if(!$id){
+            return 'No Media ID';
+        }
+
+        $media = Media::find($id);
+        $media->title = $request->input('title');
+        $media->description = $request->input('description');
+
+        $media->save(); 
+
+        return $media;
+
+    }
+
+
 }

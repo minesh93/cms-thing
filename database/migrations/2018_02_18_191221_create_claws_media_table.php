@@ -17,8 +17,9 @@ class CreateClawsMediaTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('title');
+            $table->string('description')->nullable();
             $table->string('path');
-            $table->string('alt')->nullable();
+            $table->string('internal_path')->nullable();
             $table->timestamps();
         });
     }

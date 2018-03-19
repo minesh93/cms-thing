@@ -65,5 +65,6 @@ Route::group(['prefix'=>'admin','middleware' => 'web'], function () {
 
         Route::get('/media', '\Claws\Http\Controllers\Backend\MediaController@getMedia');
         Route::post('/media', '\Claws\Http\Controllers\Backend\MediaController@uploadMedia');
+        Route::post('/update-media/{id}', '\Claws\Http\Controllers\Backend\MediaController@updateMedia');
     });
 });

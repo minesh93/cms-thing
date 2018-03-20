@@ -9,9 +9,11 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import Multiselect from 'vue-multiselect'
-import { quillEditor } from 'vue-quill-editor'
+import Multiselect from 'vue-multiselect';
+import ClawsUploader from './plugins/uploader';
+import { quillEditor } from 'vue-quill-editor';
 
+Vue.use(ClawsUploader);
  
 /**
  * Next, we will create a fresh Vue application instance and attach it to

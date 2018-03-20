@@ -60,7 +60,7 @@
                 </div>
             </div>
         </form>
-        <v-uploader></v-uploader>
+        
     </main>
 </template>
 
@@ -70,7 +70,12 @@
         data:function(){
             return {
                 renderMeta:false,
-                post:{},
+                post:{
+                    content: {
+                        meta1: '',
+                        meta2: ''
+                    },
+                },
                 type:{},
             }
         },
@@ -78,12 +83,20 @@
             this.post = this.$options.propsData.mountP;
             this.type = this.$options.propsData.mountT;
 
-            // this.post.meta = this.$options.propsData.mountM;
+            // this.post.content.meta1 = '';
+            // this.post.content.meta2 = '';
             this.renderMeta = true;
+            console.log(this);
 
         },
         methods:{
             savePost(e){
+                console.log(this.post);
+
+                for (let i in this.post) {
+                    console.log(this.post[i]);
+                }
+
                 e.preventDefault();
                 let location = `/admin/content/${this.post.type}/add`;
                 let newPost = true;

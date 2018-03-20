@@ -4,6 +4,13 @@
         <div class="uploader">
             <div class="uploader-header">
                 <h2>Media</h2>
+                <div class="uploader-search">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <input type="text">
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="media-wrap">
                 <button class="file" v-for="mediaItem in media" v-on:click="selectFile(mediaItem.id)">

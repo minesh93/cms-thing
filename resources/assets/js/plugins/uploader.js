@@ -1,5 +1,11 @@
 const ClawsUploader = {
+
+
     install(Vue, options) {
+
+    this.event = new Vue();    
+
+
     // 1. add global method or property
         Vue.myGlobalMethod = () => {
         // something logic ...
@@ -21,7 +27,7 @@ const ClawsUploader = {
 
         // 4. add an instance method
         Vue.prototype.$openUploader = (methodOptions) => {
-        
+            this.event.$emit('open-uploader', methodOptions);
         }
     }
 };

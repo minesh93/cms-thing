@@ -1,5 +1,5 @@
 <template>
-    <div class="uploader-wrap">
+    <div class="uploader-wrap" :class="{'active':!hidden}">
         <div class="overlay"></div>
         <div class="uploader">
             <div class="uploader-header">
@@ -75,6 +75,9 @@
 </template>
 
 <script>
+
+    import ClawsUploader from '../plugins/uploader';
+
     export default {
 
         data() {
@@ -84,6 +87,15 @@
                 media: [],
                 activeFile: undefined,
             }
+        },
+
+        beforeMount(){
+            console.log('hook beforeMounted');
+            ClawsUploader.event.$on('open-uploader', (options) => {
+                this.hidden = false;
+                console.log(options);
+                console.log(options.a = 100);
+            });
         },
 
         methods:{

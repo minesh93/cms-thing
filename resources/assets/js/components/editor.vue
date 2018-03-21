@@ -12,7 +12,7 @@ export default {
 
   data () {
     return {
-      internalValue: 10
+      internalValue: {}
     }
   },
 
@@ -29,7 +29,8 @@ export default {
   },
   methods: {
   	handleUpload(){
-  		console.log('I am handling your upload yo.');
+      console.log(this);
+      this.$openUploader(this.internalValue);
   	}
   }   
 }

@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
     </head>
     <body>
-        <main>
+        <main id="app">
             <div class="sidebar-ting">
                 <div class="sidebar-header">
                     <h2>Claws</h2>
@@ -67,6 +67,7 @@
             <div class="content-ting">
                 @yield('content')
             </div>
+            <v-uploader></v-uploader>
         </main>
         <script type="text/javascript" src="{{ asset('admin/js/app.js') }}"></script>
     </body>

@@ -34,6 +34,7 @@ Vue.component('v-select', require('./components/select.vue'));
 Vue.component('v-editor', require('./components/editor.vue'));
 
 Vue.component('v-uploader', require('./components/media-uploader.vue'));
+Vue.component('v-media', require('./components/media-item.vue'));
 
 
 Vue.component('quill', quillEditor);

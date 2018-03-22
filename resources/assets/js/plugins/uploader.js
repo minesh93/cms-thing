@@ -1,33 +1,12 @@
 const ClawsUploader = {
 
-
     install(Vue, options) {
+        this.event = new Vue();    
 
-    this.event = new Vue();    
-
-
-    // 1. add global method or property
-        Vue.myGlobalMethod = () => {
-        // something logic ...
-        }
-
-        // 2. add a global asset
-        Vue.directive('my-directive', {
-            bind (el, binding, vnode, oldVnode) {
-                
+        Vue.prototype.$uploader = {
+            open(){
+                ClawsUploader.event.$emit('open-uploader');
             }
-        });
-
-        // 3. inject some component options
-        Vue.mixin({
-            created: function () {
-                console.log('component'); 
-            }
-        });
-
-        // 4. add an instance method
-        Vue.prototype.$openUploader = (methodOptions) => {
-            this.event.$emit('open-uploader', methodOptions);
         }
     }
 };

@@ -17,6 +17,14 @@
                             <span class="description">Description</span>
                         </div>
                     </div>
+
+                    <div class="col-xs-6">
+                        <div class="fieldset large-field">
+                            <label>Media</label>
+                            <v-media></v-media>
+                        </div>
+                    </div>
+
                 </div>
 
 
@@ -86,7 +94,6 @@
             // this.post.content.meta1 = '';
             // this.post.content.meta2 = '';
             this.renderMeta = true;
-            console.log(this);
 
         },
         methods:{

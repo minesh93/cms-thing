@@ -60,7 +60,7 @@
                     
                     <div class="col-xs-6">
                         <div class="fieldset">
-                            <button class="button primary full-width" v-on:click="updateFile">Use File</button>
+                            <button class="button primary full-width" v-on:click="useFile">Use File</button>
                         </div>
                     </div>
 
@@ -85,16 +85,17 @@
                 uploading: false,
                 hidden: true,
                 media: [],
+                currentMediaObject:{
+                    path: ''
+                },
                 activeFile: undefined,
             }
         },
 
         beforeMount(){
-            console.log('hook beforeMounted');
             ClawsUploader.event.$on('open-uploader', (options) => {
                 this.hidden = false;
-                console.log(options);
-                console.log(options.a = 100);
+                this.currentMediaObject = options;
             });
         },
 
@@ -106,6 +107,14 @@
 
             updateFile(){
                 axios.post(`/admin/update-media/${this.activeFile.id}`,this.activeFile).then(response => console.log(response));
+            },
+
+            useFile(){
+                this.currentMediaObject = this.activeFile;
+                console.log('emitted select-media');
+                console.log(this);
+                ClawsUploader.event.$emit('select-media',this.activeFile);
+                this.hidden = true;
             },
 
             readFile(e) {

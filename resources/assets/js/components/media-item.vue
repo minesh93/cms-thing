@@ -1,7 +1,24 @@
 <template>
     <div class="media-item">
-        <img :src="mediaObject.path">
-        <button v-on:click="openUploader" type="button" class="primary full-width">Add Media</button>
+        <template v-if="filePath == '' || filePath === undefined || filePath === null">
+            <button v-on:click="openUploader" type="button" class="primary full-width">Add Media</button>
+        </template>
+        <template v-else>
+            <div class="file">
+                <img :src="filePath">
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <button v-on:click="openUploader" type="button" class="primary full-width">Change</button>
+                    </div>
+                    
+                    <div class="col-xs-6">
+                        <button v-on:click="openUploader" type="button" class="danger full-width">Remove</button>
+                    </div>
+                </div>            
+            </div>
+        </template>
     </div>
 </template>
 
@@ -9,27 +26,22 @@
     import ClawsUploader from '../plugins/uploader';
 
     export default {
+        props: ['value'],
 
         data() {
             return {
-                uploading: false,
-                hidden: true,
-                media: [],
-                mediaObject: {
-                    path:''
-                },
-                activeFile: undefined,
+                filePath: this.value || this.value === 0
             }
         },
 
         beforeMount(){
             ClawsUploader.event.$on('select-media', (mediaObject) => {
-                this.mediaObject = mediaObject;
+                this.filePath = mediaObject.path;
+                this.$emit('input',this.filePath);
             });
         },
 
         created(){
-            console.log(this);
         },
 
         methods:{
@@ -38,9 +50,6 @@
             },
         },
         mounted() {
-
-
-
             axios.get('/admin/media').then((response)=>{
                 this.media = response.data;
             }).catch((error)=>{
@@ -55,6 +64,10 @@
     background: #ececec;
     padding: 15px;
     text-align: center;
+}
+
+.media-item .file {
+    margin-bottom: 15px;
 }
 
 .media-item img {

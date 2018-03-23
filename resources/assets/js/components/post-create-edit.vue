@@ -21,7 +21,7 @@
                     <div class="col-xs-6">
                         <div class="fieldset large-field">
                             <label>Media</label>
-                            <v-media></v-media>
+                            <v-media v-model="post.meta3"></v-media>
                         </div>
                     </div>
 
@@ -81,7 +81,8 @@
                 post:{
                     content: {
                         meta1: '',
-                        meta2: ''
+                        meta2: '',
+                        meta3: ''
                     },
                 },
                 type:{},
@@ -100,11 +101,10 @@
             savePost(e){
                 console.log(this.post);
 
-                for (let i in this.post) {
-                    console.log(this.post[i]);
-                }
+
 
                 e.preventDefault();
+                return;
                 let location = `/admin/content/${this.post.type}/add`;
                 let newPost = true;
                 if(this.post.id != undefined){

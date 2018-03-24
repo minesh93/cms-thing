@@ -19,6 +19,7 @@
 PostRegister::register([
     'name' => 'page',
     'urlBase' => '/',
+    'customTemplates' => true,
 ]);
 
 PostRegister::register([

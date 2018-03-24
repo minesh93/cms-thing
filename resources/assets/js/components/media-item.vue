@@ -14,7 +14,7 @@
                     </div>
                     
                     <div class="col-xs-6">
-                        <button v-on:click="openUploader" type="button" class="danger full-width">Remove</button>
+                        <button v-on:click="removeFile" type="button" class="danger full-width">Remove</button>
                     </div>
                 </div>            
             </div>
@@ -30,24 +30,31 @@
 
         data() {
             return {
-                filePath: this.value || this.value === 0
+                filePath: this.value || this.value === 0,
+                listeningForFile: false,
             }
         },
 
         beforeMount(){
             ClawsUploader.event.$on('select-media', (mediaObject) => {
-                this.filePath = mediaObject.path;
-                this.$emit('input',this.filePath);
+                if(this.listeningForFile) {
+                    this.filePath = mediaObject.path;
+                    this.$emit('input',this.filePath);
+                    this.listeningForFile = false;
+                }
             });
-        },
-
-        created(){
         },
 
         methods:{
             openUploader() {
+                this.listeningForFile = true;
                 this.$uploader.open();
             },
+
+            removeFile() {
+                this.filePath = '';
+                this.$emit('input',this.filePath); 
+            }
         },
         mounted() {
             axios.get('/admin/media').then((response)=>{

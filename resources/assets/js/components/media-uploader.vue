@@ -11,6 +11,9 @@
                         </div>
                     </div>
                 </div>
+                <button class="close" v-on:click="closeUploader">
+                    <i class="fa fa-times"></i>
+                </button>
             </div>
             <div class="media-wrap">
                 <button class="file" v-for="mediaItem in media" v-on:click="selectFile(mediaItem.id)">
@@ -22,7 +25,7 @@
                     </div>
                 </button>             
             </div>
-            <div class="selected-file" v-if="activeFile !== undefined ">
+            <div class="selected-file" v-if="activeFile">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="fieldset">
@@ -88,7 +91,7 @@
                 currentMediaObject:{
                     path: ''
                 },
-                activeFile: undefined,
+                activeFile: null,
             }
         },
 
@@ -110,17 +113,12 @@
             },
 
             useFile(){
-                this.currentMediaObject = this.activeFile;
-                console.log('emitted select-media');
-                console.log(this);
                 ClawsUploader.event.$emit('select-media',this.activeFile);
                 this.hidden = true;
             },
 
             readFile(e) {
-                console.log('upload');
                 if(e.target.files[0]){
-
                     let data = new FormData();
                     data.append('user-file', e.target.files[0]);
                     axios.post('/admin/media', data, {
@@ -145,9 +143,9 @@
                 this.activeFile = this.media.find(file => file.id == fileID);
             },
 
-            searchMediaHere(term) {
-
-            },
+            closeUploader() {
+                this.hidden = true;
+            }
         },
 
 
@@ -161,5 +159,12 @@
     }
 </script>
 <style type="text/scss">
-
+button.close{
+    position: absolute;
+    top: 5px;
+    right: 0;
+    color: #333333;
+    background: none;
+    font-size: 20px;
+}
 </style>

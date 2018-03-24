@@ -5,52 +5,57 @@ import { quillEditor } from 'vue-quill-editor'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
-
+import ClawsUploader from '../plugins/uploader';
 
 export default {
-  mixins: [quillEditor],
+    mixins: [quillEditor],
 
-  data () {
-    return {
-      internalValue: {}
-    }
-  },
+    data () {
+        return {
+            internalValue: {},
+            listeningForFile: false
+        }
+    },
 
-  props: {
-    return: {
-      type: String,
-      default: ''
-    }
-  },
+    props: {
+        return: {
+        type: String,
+            default: ''
+        }
+    },
 
-  mounted(){
-  	//- Quill should be here
-  	this.quill.getModule('toolbar').handlers.image = this.handleUpload;
-  },
-  methods: {
-  	handleUpload(){
-      console.log(this);
-      this.$openUploader(this.internalValue);
-  	}
-  }   
+    beforeMount() {
+        ClawsUploader.event.$on('select-media', (mediaObject) => {
+            if(this.listeningForFile) {
+                const range =  this.quill.getSelection();
+                this.quill.insertEmbed(range.index, 'image', mediaObject.path);
+                this.listeningForFile = false;
+            }
+        });
+    },
+
+    mounted() {
+        this.quill.getModule('toolbar').handlers.image = this.handleUpload;
+    },
+    methods: {
+        handleUpload(){
+            this.listeningForFile = true;
+            this.$uploader.open();
+        }
+    }   
 }
 </script>
 <style type="text/css">	
-	.quill-editor {
-	    background: #ffffff;
-	}	
-
-	.ql-toolbar.ql-snow {
-	    border: 1px solid #dbebf9;
-	}
-
-
-
-	.ql-toolbar.ql-snow + .ql-container.ql-snow {
-	    border: 1px solid #dbebf9;
-	    border-top: none;
-	}
-
+    .quill-editor {
+        background: #ffffff;
+    }
+    .ql-toolbar.ql-snow {
+        border: 1px solid #dbebf9;
+    }
+    .ql-toolbar.ql-snow + .ql-container.ql-snow {
+        border: 1px solid #dbebf9;
+        border-top: none;
+    }
 </style>
 
 

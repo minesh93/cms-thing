@@ -5,7 +5,6 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
         <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet" type="text/css" >
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css" >
     </head>
     <body>
         <main id="app">
@@ -48,7 +47,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="@if(strpos(url()->current(),'admin/users'))is-active @endif"" href="/admin/users/">
+                            <a class="@if(strpos(url()->current(),'admin/users'))is-active @endif" href="/admin/users/">
                                 <i class="fas fa-users"></i> <span>Users</span>
                             </a>
                             <ul class="submenu @if(strpos(url()->current(),'admin/users') || strpos(url()->current(),'admin/roles'))is-active @endif">

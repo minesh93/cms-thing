@@ -44,7 +44,7 @@
 		                <td class="col-xs-1">{{$post->updated_at->format('d/m/Y')}}</td>
 		                <td class="col-xs-2">
 		                	<div class="fieldset">
-	                        	<a class="button primary full-width" href='/admin/content/{{$type->name}}/{{$post->id}}'">Edit</a>
+	                        	<a class="button primary full-width" href='/admin/content/{{$type->name}}/{{$post->id}}'>Edit</a>
 		                	</div>
 		                	<div class="fieldset">
 	                        	<a class="button danger full-width">Delete</a>

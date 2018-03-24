@@ -2,6 +2,7 @@ $some-red: #CE3B3B;
 $some-blue: #1789FC;
 $some-green: #46A95A;
 
+@import "~flexboxgrid/dist/flexboxgrid.min.css";
 
 //-Colours and shit
 $white: #ffffff;
@@ -555,7 +556,6 @@ button,
     }
 
     .uploader {
-        border-top: 1px solid $accent;
         position: relative;
         background: $white;
         width: calc(100% - 120px);

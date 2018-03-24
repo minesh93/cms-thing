@@ -37,7 +37,8 @@ class PostRegister{
             'listName' => $postTitlePlural,
             'meta' => [],
             'createRoleName' => "create-{$safeName}",
-            'deleteRoleName' => "delete-{$safeName}"
+            'deleteRoleName' => "delete-{$safeName}",
+            'customTemplates' => false,
         ];
 
         $postToRegister = $post + $defaultPost;
@@ -48,6 +49,7 @@ class PostRegister{
             'name' => self::$registered[$post['name']]->createText,
             'key' => self::$registered[$post['name']]->createRoleName,
         ] , 'content');
+
         PermissionRegister::register([
             'name' => self::$registered[$post['name']]->deleteText,
             'key' => self::$registered[$post['name']]->deleteRoleName,
@@ -69,6 +71,13 @@ class PostRegister{
         // ob_start();
         //     include Theme::getThemePath() . "/" . self::$registered[$post]->meta[$key]['template'];
         // ob_get_clean();
+    }
+
+
+    public static function registerTemplate($post, $templateFile, $templateName) {
+        if(self::isRegistered($post)){
+            
+        }
     }
 
     public static function getMetaObject($post){

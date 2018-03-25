@@ -9,6 +9,7 @@ $white: #ffffff;
 $base-font-color: #32373c;
 $link-color: #4D9DE0;
 $accent:#dbebf9;
+$outline:#adbbda;
 $background: #f9f9f9;
 
 //- Typography and shit
@@ -96,7 +97,7 @@ input[type='search'] {
     font-weight: 500;
     background: $white;
     &:focus {
-        outline: 3px solid #adbbda;
+        outline: 3px solid $outline;
     }
 
     &.large-field {
@@ -115,7 +116,7 @@ textarea {
     background: $white;
     resize: vertical;
     &:focus {
-        outline: 3px solid #adbbda;
+        outline: 3px solid $outline;
     }
 }
 
@@ -145,7 +146,7 @@ textarea {
     }
 
     .multiselect__content-wrapper {
-        outline: 3px solid #adbbda;
+        outline: 3px solid $outline;
     }
 
     .multiselect__option {
@@ -161,7 +162,7 @@ textarea {
 
 
     &:focus {
-        outline: 3px solid #adbbda;
+        outline: 3px solid $outline;
     }
 
     &.large-field {
@@ -210,7 +211,7 @@ textarea {
                 background: #818890
             }
             &:focus + div:before {
-                outline: 3px solid #adbbda;
+                outline: 3px solid $outline;
             }
         }
     }
@@ -242,7 +243,7 @@ button,
     }
 
     &:focus {
-        outline: 3px solid #adbbda;
+        outline: 3px solid $outline;
     }
 
     &.danger { 
@@ -307,7 +308,7 @@ button,
                 }
 
                 &:focus {
-                    outline: 3px solid #adbbda;
+                    outline: 3px solid $outline;
                 }
 
                 &:hover {
@@ -570,28 +571,43 @@ button,
 
         .selected-file {
             display: block;
-            position: absolute;
-            right: 0;
             width: 300px;
-            height: calc(100% - 115px);
-            top: 55px;
             background: #ffffff;
             border-left: 1px solid $accent;
             padding: 15px;
         }
 
-        .media-wrap {
+        .uploader-content {
             flex: 1;
-            padding: 15px 0px;
             background: #f3f3f3;
             border-top: 1px solid $accent;
             border-bottom: 1px solid $accent;
             display: flex;
-            flex-wrap: wrap;
-            overflow-y: scroll;
-            align-items: start;
+            align-items: stretch;
             align-content: start;
             position: relative;
+
+            .media-container {
+                overflow-y: scroll;
+                width: calc(100% - 300px);
+            }
+
+            h3 {
+                width: 100%;
+                padding: 0px 15px;
+                font-size: 14px;
+                margin: 15px 0px 0px;
+                letter-spacing: $small-letter-spacing;
+            }
+
+            .media-wrap {
+                flex: 1;
+                display: flex;
+                align-items: start;
+                align-content: start;
+                position: relative;
+                flex-wrap: wrap;
+            }
 
             .file {
                 cursor: pointer;
@@ -606,21 +622,40 @@ button,
                 color: $base-font-color;
                 font-size: 12px;
 
+                &.uploading {
+                    width: 240px;
+                    height: 120px;
+                    flex-direction: row;
+                    border: 1px solid $outline;
+                }
+
                 &:hover,&:focus {
                     outline: none;
                     .img-wrap{
-                        outline: 3px solid #adbbda;
+                        outline: 3px solid $outline;
                     }
                 }
 
             }
 
+            .progress-wrap {
+                width: 100%;
+                height: 15px;
+                border: 1px solid $outline;
+                margin: 15px;
+                .progress {
+                    height: 100%;
+                    background: $accent;
+                }
+            }
+
             .img-wrap{
-                border: 1px solid #adbbda;
+                border: 1px solid $outline;
                 position: relative;
                 width: 240px;
                 height: 240px;
                 margin-bottom: 5px;
+                overflow: hidden;
             }
 
             img {

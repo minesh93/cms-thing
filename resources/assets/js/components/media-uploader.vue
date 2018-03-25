@@ -12,63 +12,78 @@
                     </div>
                 </div>
                 <button class="close" v-on:click="closeUploader">
-                    <i class="fa fa-times"></i>
+                    &times;
                 </button>
             </div>
-            <div class="media-wrap">
-                <button class="file" v-for="mediaItem in media" v-on:click="selectFile(mediaItem.id)">
-                    <div class="img-wrap">
-                        <img :src="mediaItem.path">
+            <div class="uploader-content">
+                <div class="media-container">
+                    <!-- Uploading Files here -->
+                    <div class="media-wrap uploaded-files" v-if="uploading">
+                        <h3>Uploading Files</h3>
+                        <button class="file uploading" v-for="mediaItem in uploadingMedia">
+                            <div class="progress-wrap">
+                                <div class="progress" v-bind:style="{ width: `${mediaItem.progress}%`}"></div>
+                            </div>
+                        </button>
                     </div>
-                    <div class="file-info">
-                        <div class="name">{{mediaItem.title}}</div>
-                    </div>
-                </button>             
-            </div>
-            <div class="selected-file" v-if="activeFile">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="fieldset">
-                            <label>Title</label>
-                            <input type="text" v-model="activeFile.title">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="fieldset">
-                            <label>Description</label>
-                            <textarea type="text" v-model="activeFile.description"></textarea>
-                        </div>
+                    <!-- UploadED Files here -->
+                    <div class="media-wrap">
+                        <button class="file" v-for="mediaItem in media" v-on:click="selectFile(mediaItem.id)">
+                            <div class="img-wrap">
+                                <img :src="mediaItem.path">
+                            </div>
+                            <div class="file-info">
+                                <div class="name">{{mediaItem.title}}</div>
+                            </div>
+                        </button>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="fieldset">
-                            <label>Uploaded on</label>
-                            <span class="description">{{activeFile.created_at}}</span>
+                <div class="selected-file">
+                    <template v-if="activeFile">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="fieldset">
+                                    <label>Title</label>
+                                    <input type="text" v-model="activeFile.title">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div class="fieldset">
-                            <button class="button primary full-width" v-on:click="updateFile">Update</button>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="fieldset">
+                                    <label>Description</label>
+                                    <textarea type="text" v-model="activeFile.description"></textarea>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="col-xs-6">
-                        <div class="fieldset">
-                            <button class="button primary full-width" v-on:click="useFile">Use File</button>
-                        </div>
-                    </div>
 
-                </div>
-             </div>   
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="fieldset">
+                                    <label>Uploaded on</label>
+                                    <span class="description">{{activeFile.created_at}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="fieldset">
+                                    <button class="button primary full-width" v-on:click="updateFile">Update</button>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6">
+                                <div class="fieldset">
+                                    <button class="button primary full-width" v-on:click="useFile">Use File</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </template>
+                </div> 
+            </div>  
             <div class="uploader-footer">
                 <button class="button primary large full-width" v-on:click="triggerUpload">Drag Files or Click to Upload</button>
                 <input type="file" id="file-upload" class="input-image" v-on:change="readFile">
@@ -87,6 +102,7 @@
             return {
                 uploading: false,
                 hidden: true,
+                uploadingMedia: [],
                 media: [],
                 currentMediaObject:{
                     path: ''
@@ -120,19 +136,39 @@
             readFile(e) {
                 if(e.target.files[0]){
                     let data = new FormData();
+
                     data.append('user-file', e.target.files[0]);
+
+                    this.uploading = true;
+
+                    let id = Math.random().toString(32);
+
+                    this.uploadingMedia.push({
+                        id: id,
+                        progress: 0,
+                    });
+
                     axios.post('/admin/media', data, {
+
                         headers: {
                           'Content-Type': 'multipart/form-data'
                         },
-                        onUploadProgress: function(progressEvent) {
-                            var percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
-                            console.log(percentCompleted);
+
+                        onUploadProgress: (progressEvent) => {
+                            let percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+                            this.uploadingMedia.find(file => file.id === id).progress = percentCompleted;
                         }
                     }).then(response => {
-                        this.uploading = false;
+                        console.log(id);
+                        this.uploadingMedia = this.uploadingMedia.filter(file =>  file.id !== id ); 
+
+                        if(this.uploadingMedia.length == 0) {
+                            this.uploading = false;
+                        }
+
                         this.media.push(response.data);
                         this.selectFile(response.data.id);
+
                     }).catch((error,err)=>{
                         console.log(error);
                     });

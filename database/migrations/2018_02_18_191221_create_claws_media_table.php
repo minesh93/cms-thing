@@ -19,6 +19,7 @@ class CreateClawsMediaTable extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('path');
+            $table->string('mime');
             $table->string('internal_path')->nullable();
             $table->timestamps();
         });

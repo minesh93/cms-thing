@@ -40,12 +40,13 @@ class PostController extends Controller
         $data = [
             'post' => new Post('','',$type),
             'type' => PostRegister::getRegisteredPost($type),
-            'meta' => json_encode(PostRegister::getMetaObject($type))
+            'meta' => PostRegister::getMetaObject($type)
         ];
 
         if($id !== 'add') {
             $data['post'] = Post::find($id);
-            $data['meta'] = json_encode(unserialize($data['post']->meta));
+            $data['post']['meta1'] = ''; 
+            $data['post']['meta3'] = ''; 
         }
 
         return view('claws::admin.post-create',$data);

@@ -29,6 +29,8 @@ PostRegister::register([
     'icon' => 'fa-thumbtack',
 ]);
 
+PostRegister::addPostContentTemplate('page','content_test', 'test-content.php');
+
 Route::group(['prefix'=>'admin','middleware' => 'web'], function () {
 
     Route::get('/login', '\Claws\Http\Controllers\Auth\AdminLoginController@getLoginForm');

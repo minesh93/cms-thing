@@ -9,24 +9,10 @@
 
 
                 <!-- Get rid of this shit when I actually have components for fancy stuff -->
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div class="fieldset large-field">
-                            <label>Meta 1</label>
-                            <input class="large-field" type="text" placeholder="Name Here" v-model="post.meta1">
-                            <span class="description">Description</span>
-                        </div>
-                    </div>
 
-                    <div class="col-xs-6">
-                        <div class="fieldset large-field">
-                            <label>Media</label>
-                            <v-media v-model="post.meta3"></v-media>
-                        </div>
-                    </div>
-
+                <div class="meta-section">
+                    <slot :post="post"></slot>
                 </div>
-
 
                 <div class="row">
                     <div class="col-xs-12">
@@ -36,10 +22,6 @@
                             <span class="description">Description</span>
                         </div>
                     </div>
-                </div>
-
-                <div class="meta-section" v-if="renderMeta">
-                    <slot></slot>
                 </div>
             </div>
             
@@ -79,6 +61,8 @@
             return {
                 renderMeta:false,
                 post:{
+                    meta1:'',
+                    meta3:'',
                     content: {
                         meta1: '',
                         meta2: '',
@@ -94,17 +78,11 @@
 
             // this.post.content.meta1 = '';
             // this.post.content.meta2 = '';
-            this.renderMeta = true;
+            // this.renderMeta = true;
 
         },
         methods:{
             savePost(e){
-                console.log(this.post);
-
-
-
-                e.preventDefault();
-                return;
                 let location = `/admin/content/${this.post.type}/add`;
                 let newPost = true;
                 if(this.post.id != undefined){
@@ -123,6 +101,7 @@
             },
 
             deletePost(e){
+                this.renderMeta = true;
                 e.preventDefault();
                 console.log('Preventing Default');
             },

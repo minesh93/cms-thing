@@ -60,17 +60,18 @@ class PostRegister{
         return array_key_exists($post,self::$registered);
     }
 
-    public static function addPostMeta($post,$key,$template){
+    public static function addPostContentTemplate($post,$key,$template){
+
         self::$registered[$post]->meta[$key] = [];
         self::$registered[$post]->meta[$key]['template'] = $template;
-        self::$registered[$post]->meta[$key]['data'] = new \StdClass();
+        self::$registered[$post]->meta[$key]['data'] = [];
 
         self::$currentMeta = $key;
         self::$currentPost = $post;
 
-        // ob_start();
-        //     include Theme::getThemePath() . "/" . self::$registered[$post]->meta[$key]['template'];
-        // ob_get_clean();
+        ob_start();
+        include config('claws.admin_templates') . "/" . self::$registered[$post]->meta[$key]['template'];
+        ob_get_clean();
     }
 
 
@@ -92,7 +93,7 @@ class PostRegister{
         foreach (self::$registered[$post]->meta as $key => $value) {
             self::$currentMeta = $key;
             self::$currentPost = $post;
-            // include Theme::getThemePath() . "/" . self::$registered[$post]->meta[$key]['template'];
+            
         }
     }
 

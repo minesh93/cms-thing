@@ -18,12 +18,10 @@ class PostController extends Controller
         }
 
         $post->name = $request->input('name');
-        $post->content = $request->input('content');
+        $post->content = json_encode($request->input('content'));
         if(empty($post->slug)){
             $post->slug = $this->slugGen($request);
         }
-        // $post->meta = $request->input('meta');
-        // $post->meta = serialize($post->meta);
 
         $post->save();
         $post->meta = [];
@@ -42,11 +40,11 @@ class PostController extends Controller
             'type' => PostRegister::getRegisteredPost($type),
             'meta' => PostRegister::getMetaObject($type)
         ];
+        $data['post']->content = $data['meta'];
 
         if($id !== 'add') {
             $data['post'] = Post::find($id);
-            $data['post']['meta1'] = ''; 
-            $data['post']['meta3'] = ''; 
+            $data['post']->content = json_decode($data['post']->content);
         }
 
         return view('claws::admin.post-create',$data);

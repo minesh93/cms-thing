@@ -64,7 +64,7 @@ class PostRegister{
 
         self::$registered[$post]->meta[$key] = [];
         self::$registered[$post]->meta[$key]['template'] = $template;
-        self::$registered[$post]->meta[$key]['data'] = [];
+        self::$registered[$post]->meta[$key]['data'] = new \StdClass();
 
         self::$currentMeta = $key;
         self::$currentPost = $post;

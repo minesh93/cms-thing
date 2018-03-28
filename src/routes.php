@@ -71,3 +71,5 @@ Route::group(['prefix'=>'admin','middleware' => 'web'], function () {
         Route::post('/update-media/{id}', '\Claws\Http\Controllers\Backend\MediaController@updateMedia');
     });
 });
+
+Route::get('/{slug}', '\Claws\Http\Controllers\Frontend\SiteController@getPost');

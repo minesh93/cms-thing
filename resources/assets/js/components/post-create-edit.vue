@@ -7,21 +7,8 @@
                     <input class="large-field" type="text" placeholder="Name Here" v-model="post.name" v-on:change="generateSlug">
                 </div>
 
-
-                <!-- Get rid of this shit when I actually have components for fancy stuff -->
-
                 <div class="meta-section">
                     <slot :post="post"></slot>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="fieldset large-field">
-                            <label>Meta 2</label>
-                            <v-editor class="large-field" type="text" placeholder="Name Here" v-model="post.meta2"></v-editor>
-                            <span class="description">Description</span>
-                        </div>
-                    </div>
                 </div>
             </div>
             
@@ -61,20 +48,22 @@
             return {
                 renderMeta:false,
                 post:{
-                    meta1:'',
-                    meta3:'',
-                    content: {
-                        meta1: '',
-                        meta2: '',
-                        meta3: ''
-                    },
+                    content: {},
                 },
                 type:{},
             }
         },
-        mounted() {
+
+        beforeMount(){
+            console.log('before Mount');
             this.post = this.$options.propsData.mountP;
             this.type = this.$options.propsData.mountT;
+        },
+
+        mounted() {
+            console.log('mounted');
+            // this.post = this.$options.propsData.mountP;
+            // this.type = this.$options.propsData.mountT;
 
             // this.post.content.meta1 = '';
             // this.post.content.meta2 = '';
@@ -83,6 +72,9 @@
         },
         methods:{
             savePost(e){
+                
+                e.preventDefault();
+
                 let location = `/admin/content/${this.post.type}/add`;
                 let newPost = true;
                 if(this.post.id != undefined){

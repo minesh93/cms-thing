@@ -33,7 +33,7 @@ class PostRegister{
             'deleteText' => "Delete {$postTitle}",
             'listTitle' => "All {$postTitlePlural}",
             'icon' => "fa-file-alt",
-            'urlBase' => "/{$safeName}/",
+            'urlBase' => $safeName,
             'listName' => $postTitlePlural,
             'meta' => [],
             'createRoleName' => "create-{$safeName}",
@@ -42,6 +42,8 @@ class PostRegister{
         ];
 
         $postToRegister = $post + $defaultPost;
+
+        $postToRegister['urlBase'] = str_slug($postToRegister['urlBase']);
 
         self::$registered[$post['name']] = (object)$postToRegister;
 

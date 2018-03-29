@@ -22,12 +22,14 @@ class Post extends Model
         'updated_at',
     ];
 
+    protected $casts = [
+        'content' => 'object',
+    ];
 
 
     public function __construct($name = '',$content = '',$type = 'page',$attributes = array()) {
         parent::__construct($attributes);
         $this->name = $name;
-        $this->content = $content;
         $this->type = $type;
     }
 

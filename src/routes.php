@@ -25,7 +25,7 @@ PostRegister::register([
 PostRegister::register([
     'name' => 'post',
     'createText' => 'Write A New Post',
-    'urlBase' => '/',
+    'urlBase' => 'blog',
     'icon' => 'fa-thumbtack',
 ]);
 

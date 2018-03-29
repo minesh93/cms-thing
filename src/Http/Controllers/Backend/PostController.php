@@ -18,13 +18,12 @@ class PostController extends Controller
         }
 
         $post->name = $request->input('name');
-        $post->content = json_encode($request->input('content'));
-        if(empty($post->slug)){
-            $post->slug = $this->slugGen($request);
-        }
+        $post->content = $request->input('content');
+        // if(empty($post->slug)){
+            $post->slug = $this->slugGen($request->input('name'),$type);
+        // }
 
         $post->save();
-        $post->meta = [];
 
         return $post;
     }
@@ -40,23 +39,29 @@ class PostController extends Controller
             'type' => PostRegister::getRegisteredPost($type),
             'meta' => PostRegister::getMetaObject($type)
         ];
+
         $data['post']->content = $data['meta'];
 
         if($id !== 'add') {
             $data['post'] = Post::find($id);
-            $data['post']->content = json_decode($data['post']->content);
         }
+
+        // dd($data['post']);
 
         return view('claws::admin.post-create',$data);
     }
 
-    public function slugGen(Request $request){
-        return $this->createSlug($request->input('name'),$request->input('type'));
+    public function slugGen($name, $type){
+        return $this->createSlug($name,$type);
     }
 
     public function createSlug($text,$type){
         $register = PostRegister::getRegisteredPost($type);
-        $slug = $register->urlBase . str_slug($text);
+
+        $urlBase = ltrim($register->urlBase, '/');
+        $urlBase = rtrim($register->urlBase, '/');
+
+        $slug = $register->urlBase . '/' . str_slug($text);
         $slug = ltrim($slug,'/');
         $slug = rtrim($slug,'/');
         return $slug;

@@ -8,8 +8,8 @@ const ClawsUploader = {
                 ClawsUploader.event.$emit('open-uploader');
             },
 
-            uploadFiles(files){
-                ClawsUploader.event.$emit(files);
+            upload(files){
+                ClawsUploader.event.$emit('upload', files);
             }
         }
     }

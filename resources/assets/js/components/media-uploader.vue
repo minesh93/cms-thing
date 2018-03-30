@@ -30,7 +30,7 @@
                     <div class="media-wrap">
                         <button class="file" v-for="mediaItem in media" v-on:click="selectFile(mediaItem.id)">
                             <div class="img-wrap">
-                                <template v-if="['image/png','image/jpg','image/jpeg'].includes(media.mime)">
+                                <template v-if="['image/png','image/jpg','image/jpeg'].includes(mediaItem.mime)">
                                     <img :src="mediaItem.path">
                                 </template>
                                 <template v-else>
@@ -112,6 +112,9 @@
                 currentMediaObject:{
                     path: ''
                 },
+                options: {
+                    
+                },
                 activeFile: null,
             }
         },
@@ -119,7 +122,13 @@
         beforeMount(){
             ClawsUploader.event.$on('open-uploader', (options) => {
                 this.hidden = false;
-                this.currentMediaObject = options;
+                this.options = options;
+            });
+
+            ClawsUploader.event.$on('upload', (files) => {
+                _.each(files,(file) => {
+                    this.uploadFile(file);
+                });
             });
         },
 
@@ -166,7 +175,6 @@
                         this.uploadingMedia.find(file => file.id === id).progress = percentCompleted;
                     }
                 }).then(response => {
-                    console.log(id);
                     this.uploadingMedia = this.uploadingMedia.filter(file =>  file.id !== id ); 
 
                     if(this.uploadingMedia.length == 0) {
@@ -174,6 +182,7 @@
                     }
 
                     this.media.push(response.data);
+                    console.log(response.data);
                     this.selectFile(response.data.id);
 
                 }).catch((error,err)=>{

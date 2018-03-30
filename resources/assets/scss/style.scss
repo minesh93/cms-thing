@@ -120,10 +120,6 @@ textarea {
     }
 }
 
-.large-field {
-
-}
-
 
 //- Find a less shitty way to do this
 .multiselect {
@@ -154,12 +150,10 @@ textarea {
         padding: 5px;
         height: 30px;
         line-height: 30px;
-        vertical-align: middle;
         position: relative;
         cursor: pointer;
         white-space: nowrap;
     }
-
 
     &:focus {
         outline: 3px solid $outline;

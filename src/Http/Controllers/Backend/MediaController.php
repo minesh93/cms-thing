@@ -25,6 +25,7 @@ class MediaController extends Controller {
         $media = new Media();
         $media->name = $file->getClientOriginalName();
         $media->title = $file->getClientOriginalName();
+        $media->mime = $file->getMimeType();
 
         $path = Storage::disk('public')->putFile('claws-files', $file);
 

@@ -30,7 +30,12 @@
                     <div class="media-wrap">
                         <button class="file" v-for="mediaItem in media" v-on:click="selectFile(mediaItem.id)">
                             <div class="img-wrap">
-                                <img :src="mediaItem.path">
+                                <template v-if="['image/png','image/jpg','image/jpeg'].includes(media.mime)">
+                                    <img :src="mediaItem.path">
+                                </template>
+                                <template v-else>
+                                    <div class="file-placeholder"></div>
+                                </template>
                             </div>
                             <div class="file-info">
                                 <div class="name">{{mediaItem.title}}</div>
@@ -134,45 +139,47 @@
             },
 
             readFile(e) {
-                if(e.target.files[0]){
-                    let data = new FormData();
-
-                    data.append('user-file', e.target.files[0]);
-
-                    this.uploading = true;
-
-                    let id = Math.random().toString(32);
-
-                    this.uploadingMedia.push({
-                        id: id,
-                        progress: 0,
-                    });
-
-                    axios.post('/admin/media', data, {
-
-                        headers: {
-                          'Content-Type': 'multipart/form-data'
-                        },
-
-                        onUploadProgress: (progressEvent) => {
-                            let percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
-                            this.uploadingMedia.find(file => file.id === id).progress = percentCompleted;
-                        }
-                    }).then(response => {
-                        console.log(id);
-                        this.uploadingMedia = this.uploadingMedia.filter(file =>  file.id !== id ); 
-
-                        if(this.uploadingMedia.length == 0) {
-                            this.uploading = false;
-                        }
-
-                        this.media.push(response.data);
-                        this.selectFile(response.data.id);
-
-                    }).catch((error,err)=>{
-                        console.log(error);
-                    });
+                if(e.target.files[0]) {
+                    this.uploadFile(e.target.files[0]);
                 }
+            },
+
+            uploadFile(file) {
+                let id = Math.random().toString(32);
+                
+                let data = new FormData();
+                data.append('user-file', file);
+
+                this.uploading = true;
+                this.uploadingMedia.push({
+                    id: id,
+                    progress: 0,
+                });
+
+                axios.post('/admin/media', data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    },
+
+                    onUploadProgress: (progressEvent) => {
+                        let percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+                        this.uploadingMedia.find(file => file.id === id).progress = percentCompleted;
+                    }
+                }).then(response => {
+                    console.log(id);
+                    this.uploadingMedia = this.uploadingMedia.filter(file =>  file.id !== id ); 
+
+                    if(this.uploadingMedia.length == 0) {
+                        this.uploading = false;
+                    }
+
+                    this.media.push(response.data);
+                    this.selectFile(response.data.id);
+
+                }).catch((error,err)=>{
+                    console.log(error);
+                });
+
             },
 
             selectFile(fileID) {

@@ -1,6 +1,10 @@
 <template>
     <div class="media-item">
         <template v-if="filePath == '' || filePath === undefined || filePath === null">
+            <div class="drag-zone">
+
+            </div>
+            <input type="file" v-on:change="uploadFile">
             <button v-on:click="openUploader" type="button" class="primary full-width">Add Media</button>
         </template>
         <template v-else>
@@ -49,6 +53,10 @@
             openUploader() {
                 this.listeningForFile = true;
                 this.$uploader.open();
+            },
+
+            uploadFile(e) {
+                this.$uploader.uploadFiles(e.target.files);
             },
 
             removeFile() {

@@ -6,6 +6,10 @@ const ClawsUploader = {
         Vue.prototype.$uploader = {
             open(){
                 ClawsUploader.event.$emit('open-uploader');
+            },
+
+            uploadFiles(files){
+                ClawsUploader.event.$emit(files);
             }
         }
     }

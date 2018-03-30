@@ -600,6 +600,12 @@ button,
                 letter-spacing: $small-letter-spacing;
             }
 
+            .file-placeholder {
+                width: 100%;
+                background: #83c6ff;
+                height: 100%;
+            }
+
             .media-wrap {
                 flex: 1;
                 display: flex;

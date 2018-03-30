@@ -38,7 +38,8 @@ class PostRegister{
             'meta' => [],
             'createRoleName' => "create-{$safeName}",
             'deleteRoleName' => "delete-{$safeName}",
-            'customTemplates' => false,
+            'useCustomTemplates' => false,
+            'renderTemplates' => []
         ];
 
         $postToRegister = $post + $defaultPost;
@@ -46,7 +47,8 @@ class PostRegister{
         $postToRegister['urlBase'] = str_slug($postToRegister['urlBase']);
 
         self::$registered[$post['name']] = (object)$postToRegister;
-
+        self::addPostRenderTemplate($post['name'],'Use Default Template',-1);
+        
         PermissionRegister::register([
             'name' => self::$registered[$post['name']]->createText,
             'key' => self::$registered[$post['name']]->createRoleName,
@@ -63,24 +65,13 @@ class PostRegister{
     }
 
     public static function addPostContentTemplate($post,$key,$template){
-
         self::$registered[$post]->meta[$key] = [];
         self::$registered[$post]->meta[$key]['template'] = $template;
         self::$registered[$post]->meta[$key]['data'] = new \StdClass();
-
-        self::$currentMeta = $key;
-        self::$currentPost = $post;
-
-        ob_start();
-        include config('claws.admin_templates') . "/" . self::$registered[$post]->meta[$key]['template'];
-        ob_get_clean();
     }
 
-
-    public static function registerTemplate($post, $templateFile, $templateName) {
-        if(self::isRegistered($post)){
-            
-        }
+    public static function addPostRenderTemplate($post, $templateName, $templateFile) {
+        self::$registered[$post]->renderTemplates[] = ['name' => $templateName, 'file' => $templateFile];
     }
 
     public static function getMetaObject($post){
@@ -95,12 +86,7 @@ class PostRegister{
         foreach (self::$registered[$post]->meta as $key => $value) {
             self::$currentMeta = $key;
             self::$currentPost = $post;
-            
         }
-    }
-
-    public static function addMetaField($key){
-        self::$registered[self::$currentPost]->meta[self::$currentMeta]['data']->{$key} = '';
     }
 
     public static function getRegisteredPost($post){

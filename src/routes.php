@@ -19,8 +19,9 @@
 PostRegister::register([
     'name' => 'page',
     'urlBase' => '/',
-    'customTemplates' => true,
+    'useCustomTemplates' => true,
 ]);
+
 
 PostRegister::register([
     'name' => 'post',
@@ -29,7 +30,9 @@ PostRegister::register([
     'icon' => 'fa-thumbtack',
 ]);
 
-PostRegister::addPostContentTemplate('page','content_test', 'test-content.php');
+PostRegister::addPostContentTemplate('page','content_test', 'test-content');
+PostRegister::addPostRenderTemplate('page','Custom Page Template','custom-page');
+PostRegister::addPostContentTemplate('page','content_test', 'test-content', 'custom-page');
 
 Route::group(['prefix'=>'admin','middleware' => 'web'], function () {
 

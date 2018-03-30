@@ -19,6 +19,10 @@ class PostController extends Controller
 
         $post->name = $request->input('name');
         $post->content = $request->input('content');
+
+        if(PostRegister::getRegisteredPost($type)->useCustomTemplates){
+            $post->template = $request->input('template');
+        }
         // if(empty($post->slug)){
             $post->slug = $this->slugGen($request->input('name'),$type);
         // }

@@ -1,16 +1,17 @@
 <template>
     <div class="media-item">
-        <template v-if="filePath == '' || filePath === undefined || filePath === null">
+        <template v-if="media === null || media === undefined">
             <div class="drag-zone"  :class="{'dragging':dragging}" v-on:dragenter="dragging = true" v-on:dragleave="dragging = false">
                 <div>Drop Files Here</div>
                 <div>Or</div> 
                 <div>Click To Upload</div> 
                 <input type="file" v-on:change="upload">
             </div>
+            <button v-on:click="openUploader" type="button" class="primary full-width">Choose Existing File</button>
         </template>
         <template v-else>
             <div class="file">
-                <img :src="filePath">
+                <img :src="media.path">
             </div>
             <div>
                 <div class="row">
@@ -35,28 +36,30 @@
 
         data() {
             return {
-                filePath: this.value || this.value === 0,
+                media: {},
                 listeningForFile: false,
                 dragging: false,
             }
         },
 
         beforeMount(){
+            if(this.value !== undefined && this.value !== null){
+                this.media = this.value;
+            } else {
+                this.media = null;
+            }
+
             ClawsUploader.event.$on('select-media', (mediaObject) => {
                 if(this.listeningForFile) {
                     console.log('listening for file');
-                    this.filePath = mediaObject.path;
-                    this.$emit('input',this.filePath);
+                    this.media = mediaObject;
+                    this.$emit('input',this.media);
                     this.listeningForFile = false;
                 }
             });
         },
 
         methods:{
-            handleDragOver(){
-                
-            },
-
             openUploader() {
                 this.listeningForFile = true;
                 this.$uploader.open();
@@ -69,17 +72,10 @@
             },
 
             removeFile() {
-                this.filePath = '';
-                this.$emit('input',this.filePath); 
+                this.media = null;
+                this.$emit('input',this.media);
             }
         },
-        mounted() {
-            axios.get('/admin/media').then((response)=>{
-                this.media = response.data;
-            }).catch((error)=>{
-                console.log(error);
-            });
-        }
     }
 </script>
 <style type="text/scss">
@@ -108,6 +104,7 @@
     text-transform: uppercase;
     transition: all 0.2 ease;
     transform: scale(1);
+    margin-bottom: 15px;
 }
 
 .media-item .drag-zone.dragging {

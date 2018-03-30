@@ -20,6 +20,12 @@
                             <label class="label">URL</label>
                             <input type="text" placeholder="" v-model="post.slug">
                         </div>
+
+                        <div class="fieldset">
+                            <label class="label">Template</label>
+                             <v-select  v-model="post.template" return="file" track-by="file" label="name" placeholder="Template" :options="mountT.renderTemplates" :searchable="false" :show-labels="false"></v-select>
+                        </div>
+
                         <div class="post-stats" v-if="post.id">
                             <div class="post-date">Last Updated: {{post.updated_at}}</div>
                             <div class="post-date">Created: {{post.created_at}}</div>

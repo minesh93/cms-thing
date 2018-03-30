@@ -141,6 +141,18 @@ textarea {
         }
     }
 
+    .multiselect__select {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        &:before {
+            top: 20px;
+            border-style: solid;
+            border-width: 5px 5px 0;
+        }
+    }
+
+
     .multiselect__content-wrapper {
         outline: 3px solid $outline;
     }
@@ -165,6 +177,18 @@ textarea {
             font-size: 22px;
             padding: 15px;
         }
+
+        .multiselect__select {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            &:before {
+                top: 40px;
+                border-style: solid;
+                border-width: 10px 10px 0;
+            }
+        }
+
 
         .multiselect__single {
             font-size: 22px;

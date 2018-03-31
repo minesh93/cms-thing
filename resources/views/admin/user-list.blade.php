@@ -53,7 +53,7 @@
 		                <div class="col-xs-2"><a href="mailto:{{$admin->email}}"><i class="fas fa-at"></i> {{$admin->email}}</a></div>
 		                <div class="col-xs-1">-</div>
 		                <div class="col-xs-1">
-	                        <a class="button primary" href='/admin/users/{{$admin->id}}'">Edit</a>
+	                        <a class="button primary" href="/admin/users/{{$admin->id}}">Edit</a>
 		                </div>
 			        	<div class="col-xs-1">-</div>
 		            </div>

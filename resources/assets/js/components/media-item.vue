@@ -51,7 +51,6 @@
 
             ClawsUploader.event.$on('select-media', (mediaObject) => {
                 if(this.listeningForFile) {
-                    console.log('listening for file');
                     this.media = mediaObject;
                     this.$emit('input',this.media);
                     this.listeningForFile = false;

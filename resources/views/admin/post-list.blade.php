@@ -28,9 +28,8 @@
 						</div>
 					</th>
 			        <th class="col-xs-6">Name</th>
-			        <th class="col-xs-3"></th>
-			        <th class="col-xs-1">Edited</th>
-			        <th class="col-xs-2"></th>
+			        <th class="col-xs-3">Updated At</th>
+			        <th class="col-xs-2">Edited</th>
 			    </tr>
 		    </thead>
 		    <tbody>
@@ -40,8 +39,7 @@
 		                <td class="col-xs-6">
 		                	<div class="post-name">{{$post->name}}</div>
 		                </td>
-		                <td class="col-xs-3"></td>
-		                <td class="col-xs-1">{{$post->updated_at->format('d/m/Y')}}</td>
+		                <td class="col-xs-3">{{$post->updated_at->format('d/m/Y')}}</td>
 		                <td class="col-xs-2">
 		                	<div class="fieldset">
 	                        	<a class="button primary full-width" href='/admin/content/{{$type->name}}/{{$post->id}}'>Edit</a>

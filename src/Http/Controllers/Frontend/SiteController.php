@@ -28,10 +28,10 @@ class SiteController extends Controller {
             }
         }
         
-        if(view()->exists("claws.site.{$template}")){
-            return view("claws.site.{$template}", ['post' => $post]); 
+        if(view()->exists(config('claws.site_templates').".{$template}")){
+            return view(config('claws.site_templates').".{$template}", ['post' => $post]); 
         } else {
-            return $this->noTemplateError("claws.site.{$template}");
+            return $this->noTemplateError(config('claws.site_templates').".{$template}");
         }
     }
 

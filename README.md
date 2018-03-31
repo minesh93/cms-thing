@@ -14,8 +14,8 @@ Add config file to use admin templates.
 
 Claws.php 
  ```
-return [
-    'admin_templates' => resource_path('views/claws/admin/templates'),
-    'post_file' => resource_path('views'),
-];
+    return [
+        'admin_templates' => 'claws.admin.templates',
+        'site_templates' => 'claws.site',
+    ];
 ```

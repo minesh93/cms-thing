@@ -21,7 +21,7 @@
                             <input type="text" placeholder="" v-model="post.slug">
                         </div>
 
-                        <div class="fieldset">
+                        <div class="fieldset" v-if="mountT.useCustomTemplates">
                             <label class="label">Template</label>
                              <v-select  v-model="post.template" return="file" track-by="file" label="name" placeholder="Template" :options="mountT.renderTemplates" :searchable="false" :show-labels="false"></v-select>
                         </div>

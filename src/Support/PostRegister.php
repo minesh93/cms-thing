@@ -47,7 +47,10 @@ class PostRegister{
         $postToRegister['urlBase'] = str_slug($postToRegister['urlBase']);
 
         self::$registered[$post['name']] = (object)$postToRegister;
-        self::addPostRenderTemplate($post['name'],'Use Default Template',-1);
+        
+        if(self::$registered[$post['name']]->useCustomTemplates){
+            self::addPostRenderTemplate($post['name'],'Use Default Template',-1);
+        }
         
         PermissionRegister::register([
             'name' => self::$registered[$post['name']]->createText,

@@ -30,9 +30,10 @@ PostRegister::register([
     'icon' => 'fa-thumbtack',
 ]);
 
-PostRegister::addPostContentTemplate('page','content_test', 'test-content');
 PostRegister::addPostRenderTemplate('page','Custom Page Template','custom-page');
-PostRegister::addPostContentTemplate('page','content_test', 'test-content', 'custom-page');
+
+PostRegister::addPostContentTemplate('page','content_test', 'test-content');
+PostRegister::addPostContentTemplate('page','only_page_type', 'test-content-1', 'custom-page');
 
 Route::group(['prefix'=>'admin','middleware' => 'web'], function () {
 
@@ -75,4 +76,4 @@ Route::group(['prefix'=>'admin','middleware' => 'web'], function () {
     });
 });
 
-Route::get('/{slug}', '\Claws\Http\Controllers\Frontend\SiteController@getPost');
+Route::get('/{slug?}', '\Claws\Http\Controllers\Frontend\SiteController@getPost')->where('slug', '.*');

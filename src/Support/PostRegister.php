@@ -64,9 +64,10 @@ class PostRegister{
         return array_key_exists($post,self::$registered);
     }
 
-    public static function addPostContentTemplate($post,$key,$template){
+    public static function addPostContentTemplate($post, $key, $template, $templateRestriction = false){
         self::$registered[$post]->meta[$key] = [];
         self::$registered[$post]->meta[$key]['template'] = $template;
+        self::$registered[$post]->meta[$key]['template-restriction'] = $templateRestriction;
         self::$registered[$post]->meta[$key]['data'] = new \StdClass();
     }
 

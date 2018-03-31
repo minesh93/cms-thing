@@ -48,9 +48,8 @@ class PostController extends Controller
 
         if($id !== 'add') {
             $data['post'] = Post::find($id);
+            $data['post']->content = (object) array_merge((array) $data['meta'], (array) $data['post']->content);
         }
-
-        // dd($data['post']);
 
         return view('claws::admin.post-create',$data);
     }

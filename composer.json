@@ -1,7 +1,12 @@
 {
-    "name": "minesh93/thing",
+    "name": "minesh93/cms-thing",
     "description": "CMS Thing",
     "type": "library",
     "require": {},
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Claws": "src/"
+        }
+    }
 }

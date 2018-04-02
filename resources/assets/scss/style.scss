@@ -2,7 +2,7 @@ $some-red: #CE3B3B;
 $some-blue: #1789FC;
 $some-green: #46A95A;
 
-@import "~flexboxgrid/dist/flexboxgrid.min.css";
+
 
 //-Colours and shit
 $white: #ffffff;
@@ -16,8 +16,11 @@ $background: #f9f9f9;
 $open-sans: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Sans Serif';
 $small-letter-spacing: 0.2px;
 
-@import 'select';
+@import "~flexboxgrid/dist/flexboxgrid.min.css";
+
 @import 'media';
+@import 'select';
+@import 'sidebar';
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -121,93 +124,6 @@ textarea {
     }
 }
 
-
-//- Find a less shitty way to do this
-.multiselect {
-    .multiselect__tags {
-        height: 30px;
-        width: 100%;
-        border: 1px solid $accent;
-        border-radius: 0;
-        padding: 5px;
-        font-family: $open-sans;
-        font-weight: 500;
-        background: $white;
-        .multiselect__single {
-            font-size: 14px;
-            margin: 0;
-            padding: 0;
-            display: block;
-            color: $base-font-color;
-        }
-    }
-
-    .multiselect__select {
-        position: absolute;
-        width: 30px;
-        height: 30px;
-        &:before {
-            top: 20px;
-            border-style: solid;
-            border-width: 5px 5px 0;
-        }
-    }
-
-
-    .multiselect__content-wrapper {
-        outline: 3px solid $outline;
-    }
-
-    .multiselect__option {
-        display: block;
-        padding: 5px;
-        height: 30px;
-        line-height: 30px;
-        position: relative;
-        cursor: pointer;
-        white-space: nowrap;
-    }
-
-    &:focus {
-        outline: 3px solid $outline;
-    }
-
-    &.large-field {
-        .multiselect__tags {
-            height: 60px;
-            font-size: 22px;
-            padding: 15px;
-        }
-
-        .multiselect__select {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            &:before {
-                top: 40px;
-                border-style: solid;
-                border-width: 10px 10px 0;
-            }
-        }
-
-
-        .multiselect__single {
-            font-size: 22px;
-        }
-
-        .multiselect__option {
-            height: 60px;
-            font-size: 22px;
-            line-height: 60px;
-            padding: 0 15px;
-        }
-
-
-    }
-
-}
-
-
 .checkbox-wrap {
     label {    
         display: flex;
@@ -274,86 +190,7 @@ button,
     }
 }
 
-// SIDEBAR TING
-.sidebar-ting {
-    position: fixed;
-    width: 240px;
-    background: $white;
-    color: #32373c;
-    height: 100%;
-    padding: 15px 0px;
 
-    h2 {
-        font-weight: 500;
-        font-size: 22px;
-        margin: 0 0 30px;
-    }
-
-    h3 {
-        margin: 5px 15px;
-        font-size: 11px;
-        letter-spacing: $small-letter-spacing;
-    }
-
-    ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .sidebar-header {
-        padding: 0px 15px;
-    }
-
-    .sidebar-list {
-        margin-bottom: 30px;
-        li {
-            a {
-                color: #4D9DE0;
-                text-decoration: none;
-                padding: 10px 15px;
-                display: block;
-                font-size: 12px;
-                letter-spacing: -0.1px;
-                min-height: 30px;
-                transition: all 0.1s ease;
-
-                i {
-                    margin-right: 5px;
-                }
-
-                span {
-                    display: inline-block;
-                }
-
-                &:focus {
-                    outline: 3px solid $outline;
-                }
-
-                &:hover {
-                    text-indent: 2px;
-                }
-            }
-        }
-
-        .menu-list>li>a.is-active{
-            background: rgba(77, 157, 224, 0.2);
-            color: #2d72ad;
-        }
-
-        .submenu {
-            display: none;
-            margin-left: 30px;
-            &.is-active {
-                display: block;
-            }
-
-            a.is-active {
-                font-weight: 600;
-            }
-        }
-    }
-}
 
 .box-row { 
     background:red;

@@ -20,24 +20,30 @@ Claws.php
     ];
 ```
 
-##Current Dilema of adding content
-Right now there is no concrete way of adding content types so while this is being built I am dumping all the content type creation in routes.php
+## Binding Content
+Currently different posts types are assigned to the AppService Provider within the boot method.
 
-Adding types of content 
+Adding types of content or settings
 ```
-PostRegister::register([
-    'name' => 'page',
-    'urlBase' => '/',
-    'useCustomTemplates' => true,
-]);
+        PostRegister::register([
+            'name' => 'page',
+            'urlBase' => '/',
+            'useCustomTemplates' => true,
+        ]);
 
+        PostRegister::register([
+            'name' => 'post',
+            'createText' => 'Write A New Post',
+            'urlBase' => 'blog',
+            'icon' => 'fa-thumbtack',
+        ]);
 
-PostRegister::register([
-    'name' => 'post',
-    'createText' => 'Write A New Post',
-    'urlBase' => 'blog',
-    'icon' => 'fa-thumbtack',
-]);
+        PostRegister::addPostRenderTemplate('page','Custom Page Template','custom-page');
+        PostRegister::addPostContentTemplate('page','content_test', 'test-content' );
+        PostRegister::addPostContentTemplate('page','only_page_type', 'test-content-1', 'custom-page');
+
+        SettingsRegister::addSection('general','General','general');
+        // SettingsRegister::addSection('test','Test');
 ```
 
 

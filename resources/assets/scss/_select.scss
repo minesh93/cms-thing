@@ -343,3 +343,88 @@ fieldset[disabled] .multiselect {
         transform:rotate(2turn)
     }
 }
+
+
+.multiselect {
+    .multiselect__tags {
+        height: 30px;
+        width: 100%;
+        border: 1px solid $accent;
+        border-radius: 0;
+        padding: 5px;
+        font-family: $open-sans;
+        font-weight: 500;
+        background: $white;
+        .multiselect__single {
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            display: block;
+            color: $base-font-color;
+        }
+    }
+
+    .multiselect__select {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        &:before {
+            top: 20px;
+            border-style: solid;
+            border-width: 5px 5px 0;
+        }
+    }
+
+
+    .multiselect__content-wrapper {
+        outline: 3px solid $outline;
+    }
+
+    .multiselect__option {
+        display: block;
+        padding: 5px;
+        height: 30px;
+        line-height: 30px;
+        position: relative;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+
+    &:focus {
+        outline: 3px solid $outline;
+    }
+
+    &.large-field {
+        .multiselect__tags {
+            height: 60px;
+            font-size: 22px;
+            padding: 15px;
+        }
+
+        .multiselect__select {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            &:before {
+                top: 40px;
+                border-style: solid;
+                border-width: 10px 10px 0;
+            }
+        }
+
+
+        .multiselect__single {
+            font-size: 22px;
+        }
+
+        .multiselect__option {
+            height: 60px;
+            font-size: 22px;
+            line-height: 60px;
+            padding: 0 15px;
+        }
+
+
+    }
+
+}

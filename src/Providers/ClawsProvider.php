@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 use Claws\Support\PostRegister;
 use Claws\Support\PermissionRegister;
+use Claws\Support\SettingsRegister;
 
 class ClawsProvider extends ServiceProvider
 {
@@ -20,6 +21,7 @@ class ClawsProvider extends ServiceProvider
             $loader = AliasLoader::getInstance();
             $loader->alias('PostRegister', PostRegister::class);
             $loader->alias('PermissionRegister', PermissionRegister::class);
+            $loader->alias('SettingsRegister', SettingsRegister::class);
 
             PermissionRegister::registerSection('Claws' ,'claws' ,'Permissions that come out the box to help you manage everything.');
             PermissionRegister::registerSection('Content Permissions' ,'content' ,'All content related permissions');

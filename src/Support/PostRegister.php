@@ -2,7 +2,7 @@
 
 namespace Claws\Support;
 
-class PostRegister{
+class PostRegister {
 
     static private $registered = [];
     static private $currentMeta = '';

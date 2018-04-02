@@ -56,6 +56,10 @@ export default {
         border: 1px solid #dbebf9;
         border-top: none;
     }
+
+    .ql-container {
+        height: 300px;
+    }
 </style>
 
 

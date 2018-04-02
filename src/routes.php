@@ -16,24 +16,6 @@
 //- SO THAT THE PROVIDER I WANT WILL BE THERE
 //- OH AND MIDDLEWARE
 
-PostRegister::register([
-    'name' => 'page',
-    'urlBase' => '/',
-    'useCustomTemplates' => true,
-]);
-
-
-PostRegister::register([
-    'name' => 'post',
-    'createText' => 'Write A New Post',
-    'urlBase' => 'blog',
-    'icon' => 'fa-thumbtack',
-]);
-
-PostRegister::addPostRenderTemplate('page','Custom Page Template','custom-page');
-
-PostRegister::addPostContentTemplate('page','content_test', 'test-content');
-PostRegister::addPostContentTemplate('page','only_page_type', 'test-content-1', 'custom-page');
 
 Route::group(['prefix'=>'admin','middleware' => 'web'], function () {
 
@@ -73,6 +55,12 @@ Route::group(['prefix'=>'admin','middleware' => 'web'], function () {
         Route::get('/media', '\Claws\Http\Controllers\Backend\MediaController@getMedia');
         Route::post('/media', '\Claws\Http\Controllers\Backend\MediaController@uploadMedia');
         Route::post('/update-media/{id}', '\Claws\Http\Controllers\Backend\MediaController@updateMedia');
+
+
+        Route::get('/settings/{section}','\Claws\Http\Controllers\Backend\SettingsController@getSettings');
+        Route::post('/settings/{section}','\Claws\Http\Controllers\Backend\SettingsController@updateSettings');
+
+
     });
 });
 

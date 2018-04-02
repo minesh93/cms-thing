@@ -11,7 +11,7 @@ use PostRegister;
 
 class SiteController extends Controller {
 
-    public function getPost(Request $request, $slug) {
+    public function getPost(Request $request, $slug = '') {
 
         $post = Post::where('slug' , $slug)->get()->first();
 

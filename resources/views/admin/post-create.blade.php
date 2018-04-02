@@ -5,7 +5,13 @@
     <post-create-edit :mount-p="{{$post->toJSON()}}" :mount-t="{{json_encode($type)}}" :mount-m="{}">
         <template slot-scope="props">
             @foreach ($type->meta as $singleType)
-                @include(config('claws.admin_templates') . "." . $singleType['template'])
+                @if($singleType['template-restriction'])
+                    @if($singleType['template-restriction'] == $post->template)
+                        @include(config('claws.admin_content_templates') . "." . $singleType['template'])
+                    @endif
+                @else
+                    @include(config('claws.admin_content_templates') . "." . $singleType['template'])
+                @endif
             @endforeach
         </template>
     </post-create-edit>

@@ -42,9 +42,18 @@
                     <h3>Configuration</h3>
                     <ul class="menu-list">
                         <li>
-                            <a class="@if(Request::is('admin/settings/general')) is-active @endif" href="/admin/settings/general">
+                            <a class="is-active" href="/admin/settings/general">
                                 <i class="fas fa-cog"></i> <span>Settings</span>
                             </a>
+
+                            <ul class="submenu is-active">
+                                @foreach(SettingsRegister::getSettings() as $settingKey => $setting)
+                                    <li>
+                                        <a href="/admin/settings/{{$settingKey}}">{{$setting['name']}}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+
                         </li>
                         <li>
                             <a class="@if(strpos(url()->current(),'admin/users'))is-active @endif" href="/admin/users/">

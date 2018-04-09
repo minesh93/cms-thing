@@ -1,0 +1,33 @@
+.notification-wrap {
+    padding-bottom: 15px;
+}
+
+.notification {
+    margin: 0px -15px;
+    padding: 15px;
+    min-height: 60px;
+    color: $white;
+    background: #31313a;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    position: relative;
+    &.danger{
+        background: $some-red;
+    }
+    &.success {
+        background: $some-green;
+    }
+    button.close {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 30px;
+        color: $white;
+        background: none;
+        font-size: 20px;
+        height: 100%;
+        padding: 0px;
+        outline: none;
+    }
+}

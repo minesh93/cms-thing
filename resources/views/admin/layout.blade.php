@@ -73,6 +73,7 @@
 
             </div>
             <div class="content-ting">
+                <v-notification></v-notification>
                 @yield('content')
             </div>
             <v-uploader></v-uploader>

@@ -52,7 +52,6 @@
         props:['mount-p','mount-t','mount-m'],
         data:function(){
             return {
-                renderMeta:false,
                 post:{
                     content: {},
                 },
@@ -83,25 +82,26 @@
 
                 let location = `/admin/content/${this.post.type}/add`;
                 let newPost = true;
+
+                this.$notification.clear();
+
                 if(this.post.id != undefined){
                     newPost = false;
                     location = `/admin/content/${this.post.type}/${this.post.id}`;
                 }
                 axios.post(location,this.post).then((response)=>{
-                    this.$parent.$emit('make-notification',{text:'Post Saved!',type:'is-success'});
+                    this.$notification.add({content:'Saved!',type:'success'});
                     this.post = response.data;
                     if(newPost){
                        window.location = `/admin/content/${this.post.type}/${this.post.id}`; 
                     }
                 }).catch((error)=>{
-                    this.$parent.$emit('make-notification',{text:'Something Just Broke...',type:'is-danger'});
+                    this.$notification.add({content:'Something Just Broke...',type:'danger'});
                 });
             },
 
             deletePost(e){
-                this.renderMeta = true;
                 e.preventDefault();
-                console.log('Preventing Default');
             },
 
             addImage(){

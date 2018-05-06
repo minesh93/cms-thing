@@ -49,7 +49,7 @@
                         </div>
                         </div>
                     <div class="col-xs-1">
-                        <div class="post-date">{{$post->updated_at->format('d/m/Y')}}</div>
+                        <div class="post-date">{{$post->updated_at->format('d M Y')}}</div>
                     </div>
                     <div class="col-xs-2">
                         <div class="button-wrap">

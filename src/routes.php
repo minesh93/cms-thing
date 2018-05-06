@@ -17,7 +17,7 @@
 //- OH AND MIDDLEWARE
 
 
-Route::group(['prefix'=>'admin','middleware' => 'web'], function () {
+Route::group(['prefix'=> config('claws.admin_url'),'middleware' => 'web'], function () {
 
     Route::get('/login', '\Claws\Http\Controllers\Auth\AdminLoginController@getLoginForm');
     Route::post('/login', '\Claws\Http\Controllers\Auth\AdminLoginController@login');

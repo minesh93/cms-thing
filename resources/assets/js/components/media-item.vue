@@ -104,6 +104,7 @@
     transition: all 0.2 ease;
     transform: scale(1);
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .media-item .drag-zone.dragging {

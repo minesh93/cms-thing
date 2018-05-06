@@ -11,6 +11,7 @@ $link-color: #4D9DE0;
 $accent:#dbebf9;
 $outline:#adbbda;
 $background: #f9f9f9;
+$grey: #e0e0e0;
 
 //- Typography and shit
 $open-sans: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Sans Serif';
@@ -22,6 +23,7 @@ $small-letter-spacing: 0.2px;
 @import 'notification';
 @import 'select';
 @import 'sidebar';
+@import 'post-list';
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -30,7 +32,7 @@ $small-letter-spacing: 0.2px;
 body {
 	background: $background;
 	font-family: $open-sans;
-	color: #32373c;
+	color: $base-font-color;
 	margin: 0;
     font-size: 14px;
 }
@@ -189,6 +191,17 @@ button,
     &.primary {
         background: $some-blue;
     }
+
+    &.link {
+        background: none;
+        &.danger { 
+            color: $some-red;
+        }
+
+        &.primary {
+            color: $some-blue;
+        }
+    }
 }
 
 
@@ -222,50 +235,12 @@ button,
     }
 
     .post-sidebar {
-        color: #32373c;
+        color: $base-font-color;
         padding: 15px;
         width: 100%;
     }
 }
 
-//- post-list
-.post-list-wrap {
-    margin: 60px 0.5rem;
-}
-
-.post-list {
-    width: 100%;
-    border-collapse: collapse;
-
-    th {
-        text-align: left;
-        font-weight: 500;
-        background-color: #fafafa;
-    }
-
-    th,td {
-        text-align: left;
-        padding: 5px 15px;
-    }
-
-    tr {
-        background-color: #C1C3C9;
-        border-bottom: 1px solid #8890A5;
-        &:nth-child(odd){
-            background-color: #D2D5DD;
-        }
-    }
-
-    button,
-    .button {
-        margin: 0px 5px;
-    }
-
-    .post-name {
-        font-size: 18px;
-        font-weight: 600;
-    }
-}
 
 //- User-list
 .user-list-wrap {

@@ -1,56 +1,64 @@
 @extends('claws::admin.layout')
 
 @section('content')
-	<div class="row between-xs middle-xs post-list-header">
-	    <div class="col-xs-9">
-	        <h1 class="title">
-	            {{$type->listTitle}}
-	        </h1>
-	    </div>
-	    <div class="col-xs-3">
-	        <a href="/admin/content/{{$type->name}}/add" class="button primary full-width large">{{$type->createText}}</a>
-	    </div>
-	</div>
-	<div class="post-list-search">
+    <div class="row between-xs middle-xs">
+        <div class="col-xs-9">
+            <h1 class="title">
+                {{$type->listTitle}}
+            </h1>
+        </div>
+        <div class="col-xs-auto">
+            <a href="/admin/content/{{$type->name}}/add" class="button primary full-width large link">{{$type->createText}}</a>
+        </div>
+    </div>
+    <div class="post-list-search">
 
 
-	</div>
-	<div class="post-list-wrap">
-		<table class="post-list">
-		    <thead>
-			    <tr class="row">
-					<th class="col-xs-1">
-						<div class="checkbox-wrap">
-							<label>
-								<input type="checkbox">
-								<div></div>
-							</label>
-						</div>
-					</th>
-			        <th class="col-xs-6">Name</th>
-			        <th class="col-xs-3">Updated At</th>
-			        <th class="col-xs-2">Edited</th>
-			    </tr>
-		    </thead>
-		    <tbody>
-		        @foreach ($posts as $post)
-		            <tr class="row middle-xs">
-		                <td class="col-xs-1"></td>
-		                <td class="col-xs-6">
-		                	<div class="post-name">{{$post->name}}</div>
-		                </td>
-		                <td class="col-xs-3">{{$post->updated_at->format('d/m/Y')}}</td>
-		                <td class="col-xs-2">
-		                	<div class="fieldset">
-	                        	<a class="button primary full-width" href='/admin/content/{{$type->name}}/{{$post->id}}'>Edit</a>
-		                	</div>
-		                	<div class="fieldset">
-	                        	<a class="button danger full-width">Delete</a>
-	                    	</div>
-		                </td>
-		            </tr>
-		        @endforeach
-		    </tbody>
-		</table>
-	</div>
+    </div>
+    <div class="post-list-wrap">
+        <div class="post-list">
+            <div class="row middle-xs post-list-header">
+                <div class="col-xs-auto">
+                    <div class="checkbox-wrap">
+                        <label>
+                            <input type="checkbox">
+                            <div></div>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-xs-8">Name</div>
+                <div class="col-xs-1 icon"><i class="far fa-calendar"></i></div>
+                <div class="col-xs-2"></div>
+            </div>
+            @foreach ($posts as $post)
+                <div class="row middle-xs post-list-item">
+                    <div class="col-xs-auto">
+                        <div class="checkbox-wrap">
+                            <label>
+                                <input type="checkbox">
+                                <div></div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="post-name">
+                            <a href='/admin/content/{{$type->name}}/{{$post->id}}'>{{$post->name}}</a>
+                        </div>
+                        <div class="post-actions">
+                            <a href='/{{$post->slug}}'>View</a>
+                        </div>
+                        </div>
+                    <div class="col-xs-1">
+                        <div class="post-date">{{$post->updated_at->format('d/m/Y')}}</div>
+                    </div>
+                    <div class="col-xs-2">
+                        <div class="button-wrap">
+                            <a class="button primary link" href='/admin/content/{{$type->name}}/{{$post->id}}'><i class="fas fa-edit"></i> Edit</a>
+                            <a class="button danger link"> <i class="fas fa-times"></i> Delete</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
 @endsection

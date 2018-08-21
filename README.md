@@ -19,6 +19,20 @@ Claws.php
         'site_templates' => 'claws.site',
     ];
 ```
+Changes to Auth (Adding Guard and Provider
+```
+'claws_admin' => [
+    'driver' => 'session',
+    'provider' => 'claws_admins',
+],
+        
+'claws_admins' => [
+    'driver' => 'eloquent',
+    'model' => Claws\Models\Admin::class,
+],
+
+        
+ ```
 
 ## Binding Content
 Currently different posts types are assigned to the AppService Provider within the boot method.

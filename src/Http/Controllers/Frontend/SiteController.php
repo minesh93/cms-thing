@@ -16,7 +16,7 @@ class SiteController extends Controller {
         $post = Post::where('slug' , $slug)->get()->first();
 
         if(!$post){
-            return response(':(',404);
+            abort(404);
         }
 
         $template = $post->type;

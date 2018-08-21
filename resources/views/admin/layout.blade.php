@@ -2,6 +2,7 @@
     <head>
         <title>Claws</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="admin-prefix" content="{{ config('claws.admin_url') }}">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
         <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet" type="text/css" >

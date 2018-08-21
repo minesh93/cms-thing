@@ -80,20 +80,20 @@
                 
                 e.preventDefault();
 
-                let location = `/admin/content/${this.post.type}/add`;
+                let location = `/claws-admin/content/${this.post.type}/add`;
                 let newPost = true;
 
                 this.$notification.clear();
 
                 if(this.post.id != undefined){
                     newPost = false;
-                    location = `/admin/content/${this.post.type}/${this.post.id}`;
+                    location = `/claws-admin/content/${this.post.type}/${this.post.id}`;
                 }
                 axios.post(location,this.post).then((response)=>{
                     this.$notification.add({content:'Saved!',type:'success'});
                     this.post = response.data;
                     if(newPost){
-                       window.location = `/admin/content/${this.post.type}/${this.post.id}`; 
+                       window.location = `/claws-admin/content/${this.post.type}/${this.post.id}`; 
                     }
                 }).catch((error)=>{
                     this.$notification.add({content:'Something Just Broke...',type:'danger'});

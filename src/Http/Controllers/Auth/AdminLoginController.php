@@ -19,7 +19,7 @@ class AdminLoginController extends Controller {
 
 
         if (Auth::guard('claws_admin')->attempt(['username' => $request->username, 'password' => $request->password])) {
-            return redirect()->intended('/admin/dashboard');
+            return redirect()->intended('/'.config('claws.admin_url').'/dashboard');
         }
 
         return redirect()->back()->withInput($request->only('username', 'remember'));

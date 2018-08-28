@@ -14,6 +14,10 @@ class ClawsProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'claws');
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations/');
         $this->loadRoutesFrom(__DIR__.'../../routes.php');
+        
+        $this->publishes([
+            __DIR__.'/../../config/claws.php' => config_path('claws.php'),
+        ]);
     }
 
     public function register() {

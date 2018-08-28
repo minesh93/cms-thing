@@ -139,7 +139,7 @@
             },
 
             updateFile(){
-                axios.post(`/admin/update-media/${this.activeFile.id}`,this.activeFile).then(response => console.log(response));
+                axios.post(`/${admin}/update-media/${this.activeFile.id}`,this.activeFile).then(response => console.log(response));
             },
 
             useFile(){

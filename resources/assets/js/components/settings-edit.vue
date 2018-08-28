@@ -27,7 +27,7 @@
         methods:{
             savePost(e){
                 e.preventDefault();
-                const location = `/admin/settings/${this.mountS.key}`;
+                const location = `/${admin}/settings/${this.mountS.key}`;
 
                 axios.post(location,this.settings).then((response)=>{
                     this.$parent.$emit('make-notification',{text:'Post Saved!',type:'is-success'});

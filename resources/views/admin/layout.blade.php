@@ -79,6 +79,6 @@
             </div>
             <v-uploader></v-uploader>
         </main>
-        <script type="text/javascript" src="{{ asset('admin/js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('claws-admin/js/app.js') }}"></script>
     </body>
 </html>

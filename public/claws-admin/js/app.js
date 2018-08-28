@@ -1880,7 +1880,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 
 var token = document.head.querySelector('meta[name="csrf-token"]');
-var admin = document.head.querySelector('meta[name="admin-url"]');
+window.admin = document.head.querySelector('meta[name="admin-prefix"]').content;
 
 if (token) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
@@ -54753,7 +54753,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             e.preventDefault();
-            var location = '/admin/settings/' + this.mountS.key;
+            var location = '/' + admin + '/settings/' + this.mountS.key;
 
             axios.post(location, this.settings).then(function (response) {
                 _this.$parent.$emit('make-notification', { text: 'Post Saved!', type: 'is-success' });
@@ -55251,17 +55251,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             e.preventDefault();
-            var location = '/admin/roles/add';
+            var location = '/' + admin + '/roles/add';
             var newRole = true;
             if (this.role.id != undefined) {
                 newRole = false;
-                location = '/admin/roles/' + this.role.id;
+                location = '/' + admin + '/roles/' + this.role.id;
             }
             axios.post(location, this.role).then(function (response) {
                 _this.$parent.$emit('make-notification', { text: 'Role Saved!', type: 'is-success' });
                 _this.role = response.data;
                 if (newRole) {
-                    window.location = '/admin/roles/' + _this.role.id;
+                    window.location = '/' + admin + '/roles/' + _this.role.id;
                 }
             }).catch(function (error) {
                 _this.$parent.$emit('make-notification', { text: 'Something Just Broke...', type: 'is-danger' });
@@ -55599,12 +55599,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
             e.preventDefault();
 
-            var location = '/admin/users/add';
+            var location = '/' + admin + '/users/add';
             var newPost = true;
 
             if (this.user.id != undefined) {
                 newPost = false;
-                location = '/admin/users/' + this.user.id;
+                location = '/' + admin + '/users/' + this.user.id;
             }
 
             console.log(this.user);
@@ -55613,7 +55613,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this.$parent.$emit('make-notification', { text: 'Post Saved!', type: 'is-success' });
                 _this.user = response.data;
                 if (newPost) {
-                    window.location = '/admin/users/' + _this.user.id;
+                    window.location = '/' + admin + '/users/' + _this.user.id;
                 }
             }).catch(function (error) {
                 _this.$parent.$emit('make-notification', { text: 'Something Just Broke...', type: 'is-danger' });
@@ -56863,7 +56863,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             document.getElementById('file-upload').click();
         },
         updateFile: function updateFile() {
-            axios.post('/admin/update-media/' + this.activeFile.id, this.activeFile).then(function (response) {
+            axios.post('/' + admin + '/update-media/' + this.activeFile.id, this.activeFile).then(function (response) {
                 return console.log(response);
             });
         },

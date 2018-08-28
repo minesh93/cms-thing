@@ -52,17 +52,17 @@
         methods:{
             savePost(e){
                 e.preventDefault();
-                let location = `/admin/roles/add`;
+                let location = `/${admin}/roles/add`;
                 let newRole = true;
                 if(this.role.id != undefined){
                     newRole = false;
-                    location = `/admin/roles/${this.role.id}`;
+                    location = `/${admin}/roles/${this.role.id}`;
                 }
                 axios.post(location,this.role).then((response)=>{
                     this.$parent.$emit('make-notification',{text:'Role Saved!',type:'is-success'});
                     this.role = response.data;
                     if(newRole){
-                       window.location = `/admin/roles/${this.role.id}`; 
+                       window.location = `/${admin}/roles/${this.role.id}`; 
                     }
                 }).catch((error)=>{
                     this.$parent.$emit('make-notification',{text:'Something Just Broke...',type:'is-danger'});

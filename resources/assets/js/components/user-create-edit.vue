@@ -122,12 +122,12 @@
             saveUser(e){
                 e.preventDefault();
 
-                let location = `/admin/users/add`;
+                let location = `/${admin}/users/add`;
                 let newPost = true;
 
                 if(this.user.id != undefined){
                     newPost = false;
-                    location = `/admin/users/${this.user.id}`;
+                    location = `/${admin}/users/${this.user.id}`;
                 }
 
                 console.log(this.user);
@@ -136,7 +136,7 @@
                     this.$parent.$emit('make-notification',{text:'Post Saved!',type:'is-success'});
                     this.user = response.data;
                     if(newPost){
-                       window.location = `/admin/users/${this.user.id}`; 
+                       window.location = `/${admin}/users/${this.user.id}`; 
                     }
                 }).catch((error)=>{
                     this.$parent.$emit('make-notification',{text:'Something Just Broke...',type:'is-danger'});

@@ -10,13 +10,14 @@
     background: #31313a;
     display: flex;
     align-items: center;
-    font-size: 13px;
+    font-size: 18px;
+    font-weight: 900;
     position: relative;
     &.danger{
-        background: $some-red;
+        background: $danger;
     }
     &.success {
-        background: $some-green;
+        background: $success;
     }
     button.close {
         position: absolute;

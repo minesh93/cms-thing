@@ -8,7 +8,7 @@ class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     *  
      * @return void
      */
     public function up()
@@ -22,7 +22,9 @@ class CreatePostsTable extends Migration
             $table->string('status')->nullable();
             $table->boolean('visible')->default(true);
             $table->longText('content')->nullable();
-            $table->integer('user_id')->nullable();
+            $table->integer('author')->nullable();
+            $table->integer('editor')->nullable();
+            $table->timestamp('published_at');
             $table->timestamps();
         });
     }

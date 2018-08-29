@@ -54915,16 +54915,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['mount-p', 'mount-t', 'mount-m'],
     data: function data() {
         return {
             post: {
+                slug: '',
                 content: {}
             },
-            type: {}
+            type: {},
+            editingURL: false
         };
+    },
+    computed: {
+        location: function location() {
+            return window.location;
+        }
     },
 
     beforeMount: function beforeMount() {
@@ -54934,6 +54952,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         console.log('mounted');
+
+        if (this.post.slug == '' || typeof this.post.slug == 'undefined') {
+            this.editingURL = true;
+        }
         // this.post = this.$options.propsData.mountP;
         // this.type = this.$options.propsData.mountT;
 
@@ -54997,7 +55019,7 @@ var render = function() {
   return _c("main", [
     _c("h1", { staticClass: "title" }, [_vm._v(_vm._s(_vm.type.createText))]),
     _vm._v(" "),
-    _c("form", { staticClass: "row", on: { submit: _vm.savePost } }, [
+    _c("div", { staticClass: "row", on: { submit: _vm.savePost } }, [
       _c("div", { staticClass: "col-xs-9" }, [
         _c("div", { staticClass: "fieldset" }, [
           _c("input", {
@@ -55036,96 +55058,152 @@ var render = function() {
         _c("div", { staticClass: "post-sidebar-wrap" }, [
           _c("h3", [_vm._v("Settings")]),
           _vm._v(" "),
-          _c("div", { staticClass: "post-sidebar" }, [
-            _c("div", { staticClass: "fieldset" }, [
-              _c("label", { staticClass: "label" }, [_vm._v("URL")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.post.slug,
-                    expression: "post.slug"
-                  }
-                ],
-                attrs: { type: "text", placeholder: "" },
-                domProps: { value: _vm.post.slug },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.post, "slug", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _vm.mountT.useCustomTemplates
-              ? _c(
-                  "div",
-                  { staticClass: "fieldset" },
-                  [
-                    _c("label", { staticClass: "label" }, [_vm._v("Template")]),
-                    _vm._v(" "),
-                    _c("v-select", {
-                      attrs: {
-                        return: "file",
-                        "track-by": "file",
-                        label: "name",
-                        placeholder: "Template",
-                        options: _vm.mountT.renderTemplates,
-                        searchable: false,
-                        "show-labels": false
-                      },
-                      model: {
-                        value: _vm.post.template,
-                        callback: function($$v) {
-                          _vm.$set(_vm.post, "template", $$v)
+          _c(
+            "div",
+            { staticClass: "post-sidebar" },
+            [
+              _vm.editingURL
+                ? [
+                    _c("div", { staticClass: "post-url" }, [
+                      _c("div", { staticClass: "url-prefix" }, [
+                        _c("span", [_vm._v(_vm._s(_vm.location.host + "/"))]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.post.slug,
+                              expression: "post.slug"
+                            }
+                          ],
+                          attrs: { type: "text", placeholder: "" },
+                          domProps: { value: _vm.post.slug },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.post, "slug", $event.target.value)
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "primary",
+                          on: {
+                            click: function($event) {
+                              _vm.editingURL = false
+                            }
+                          }
                         },
-                        expression: "post.template"
-                      }
-                    })
+                        [_vm._v("Done")]
+                      )
+                    ])
+                  ]
+                : [
+                    _c("div", { staticClass: "post-url" }, [
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href: _vm.location.host + "/" + _vm.post.slug,
+                            target: "_blank"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(_vm.location.host + "/" + _vm.post.slug)
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "primary",
+                          on: {
+                            click: function($event) {
+                              _vm.editingURL = true
+                            }
+                          }
+                        },
+                        [_vm._v("Edit")]
+                      )
+                    ])
                   ],
-                  1
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.post.id
-              ? _c("div", { staticClass: "post-stats" }, [
-                  _c("div", { staticClass: "post-date" }, [
-                    _vm._v("Last Updated: " + _vm._s(_vm.post.updated_at))
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "post-date" }, [
-                    _vm._v("Created: " + _vm._s(_vm.post.created_at))
+              _vm._v(" "),
+              _vm.mountT.useCustomTemplates
+                ? _c(
+                    "div",
+                    { staticClass: "fieldset" },
+                    [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Template")
+                      ]),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          return: "file",
+                          "track-by": "file",
+                          label: "name",
+                          placeholder: "Template",
+                          options: _vm.mountT.renderTemplates,
+                          searchable: false,
+                          "show-labels": false
+                        },
+                        model: {
+                          value: _vm.post.template,
+                          callback: function($$v) {
+                            _vm.$set(_vm.post, "template", $$v)
+                          },
+                          expression: "post.template"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.post.id
+                ? _c("div", { staticClass: "post-stats" }, [
+                    _c("div", { staticClass: "post-date" }, [
+                      _vm._v("Updated: " + _vm._s(_vm.post.updated_at))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "post-date" }, [
+                      _vm._v("Created: " + _vm._s(_vm.post.created_at))
+                    ])
                   ])
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _c("div", { staticClass: "fieldset" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "button primary full-width",
-                  on: { click: _vm.savePost }
-                },
-                [_vm._v("Save")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "fieldset" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "button danger full-width",
-                  on: { click: _vm.deletePost }
-                },
-                [_vm._v("Delete")]
-              )
-            ])
-          ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "fieldset" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "button primary full-width",
+                    on: { click: _vm.savePost }
+                  },
+                  [_vm._v("Save")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "fieldset" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "button danger full-width",
+                    on: { click: _vm.deletePost }
+                  },
+                  [_vm._v("Delete")]
+                )
+              ])
+            ],
+            2
+          )
         ])
       ])
     ])

@@ -1,7 +1,7 @@
 <template>
     <main>
         <h1 class="title">{{type.createText}}</h1>
-        <form class="row" v-on:submit="savePost">
+        <div class="row" v-on:submit="savePost">
             <div class="col-xs-9">
                 <div class="fieldset">
                     <input class="large-field" type="text" placeholder="Name Here" v-model="post.name" v-on:change="generateSlug">
@@ -15,19 +15,30 @@
             <div class="col-xs-3">
                 <div class="post-sidebar-wrap">
                     <h3>Settings</h3>
-                    <div class="post-sidebar">                    
-                        <div class="fieldset">
-                            <label class="label">URL</label>
-                            <input type="text" placeholder="" v-model="post.slug">
-                        </div>
+                    <div class="post-sidebar">
+                        <template v-if="editingURL">
+                             <div class="post-url">
+                                <div class="url-prefix">
+                                    <span>{{`${location.host}/`}}</span>
+                                    <input type="text" placeholder="" v-model="post.slug">
+                                </div>
+                                <button class="primary" v-on:click="editingURL = false">Done</button>
+                            </div>
+                        </template>
+                        <template v-else>
+                            <div class="post-url">
+                                <a :href="`${location.host}/${post.slug}`" target="_blank">{{`${location.host}/${post.slug}`}}</a>
+                                <button class="primary" v-on:click="editingURL = true;">Edit</button>
+                            </div>
+                        </template>
 
                         <div class="fieldset" v-if="mountT.useCustomTemplates">
                             <label class="label">Template</label>
-                             <v-select  v-model="post.template" return="file" track-by="file" label="name" placeholder="Template" :options="mountT.renderTemplates" :searchable="false" :show-labels="false"></v-select>
+                             <v-select v-model="post.template" return="file" track-by="file" label="name" placeholder="Template" :options="mountT.renderTemplates" :searchable="false" :show-labels="false"></v-select>
                         </div>
 
                         <div class="post-stats" v-if="post.id">
-                            <div class="post-date">Last Updated: {{post.updated_at}}</div>
+                            <div class="post-date">Updated: {{post.updated_at}}</div>
                             <div class="post-date">Created: {{post.created_at}}</div>
                         </div>
 
@@ -42,7 +53,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
         
     </main>
 </template>
@@ -53,9 +64,16 @@
         data:function(){
             return {
                 post:{
+                    slug:'',
                     content: {},
                 },
                 type:{},
+                editingURL: false
+            }
+        },
+        computed: {
+            location() {
+                return window.location;
             }
         },
 
@@ -67,6 +85,10 @@
 
         mounted() {
             console.log('mounted');
+
+            if(this.post.slug == '' || typeof this.post.slug == 'undefined') {
+                this.editingURL = true;
+            }
             // this.post = this.$options.propsData.mountP;
             // this.type = this.$options.propsData.mountT;
 

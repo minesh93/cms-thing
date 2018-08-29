@@ -1,20 +1,27 @@
-$some-red: #CE3B3B;
-$some-blue: #1789FC;
-$some-green: #46A95A;
+// OLD
+// $danger: #C9341D;
+// $primary: #1789FC;
+// $success: #46A95A;
 
+// NEW
+$danger: #D72105;
+$primary: #4D9DE0;
+$success: #29B163;
+$warning: #d4b626;
+$base: #272829;
 
 
 //-Colours and shit
 $white: #ffffff;
 $base-font-color: #32373c;
-$link-color: #4D9DE0;
+$link-color: $primary;
 $accent:#dbebf9;
 $outline:#adbbda;
 $background: #f9f9f9;
 $grey: #e0e0e0;
 
 //- Typography and shit
-$open-sans: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Sans Serif';
+$open-sans: 'Nunito', 'Helvetica Neue', 'Helvetica', 'Sans Serif';
 $small-letter-spacing: 0.2px;
 
 @import "~flexboxgrid/dist/flexboxgrid.min.css";
@@ -48,8 +55,20 @@ h2 {
 }
 
 a {
-    color: $link-color;
+    color: $primary;
     text-decoration: none;
+    &.danger {
+        color: $danger;
+    }
+    &.success {
+        color: $success;
+    }
+    &.warning {
+        color: $warning;
+    }
+    &.base {
+        color: $base;
+    }
 }
 
 #login-form-wrap {
@@ -84,6 +103,7 @@ label {
    display: block;
    margin-bottom: 5px;
    font-size: 13px;
+    font-weight: 600;
 
     &.large-field {
         font-size: 18px;
@@ -163,8 +183,8 @@ button,
     text-decoration: none;
     cursor: pointer;
     font-family: $open-sans;
-    background: #31313a;
-    color: #f2f2fa;
+    background: $base;
+    color: $white;
     border: none;
     padding: 5px 15px;
     height: 30px;
@@ -185,21 +205,21 @@ button,
     }
 
     &.danger { 
-        background: $some-red;
+        background: $danger;
     }
 
     &.primary {
-        background: $some-blue;
+        background: $primary;
     }
 
     &.link {
         background: none;
         &.danger { 
-            color: $some-red;
+            color: $danger;
         }
 
         &.primary {
-            color: $some-blue;
+            color: $primary;
         }
     }
 }
@@ -212,8 +232,8 @@ button,
 }
 
 
-// CONTENT TING
-.content-ting {
+// CONTENT
+.content{
     margin-left: 240px;
     padding: 0px 15px;
 }
@@ -229,16 +249,47 @@ button,
         padding: 15px;
         border-bottom: 1px solid $accent;
         font-weight: 600;
-        font-size: 11px;
+        font-size: 12px;
         letter-spacing: 0.2px;
         text-align: center;
+        text-transform: uppercase;
     }
 
     .post-sidebar {
         color: $base-font-color;
         padding: 15px;
         width: 100%;
+
+        .post-url {
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+
+            span,
+            a {
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .url-prefix {
+                display: flex;
+                padding-right: 15px;
+                align-items: center;
+                input {
+                    padding: 0;
+                    font-size: 16px;
+                    font-weight: bold;
+                    border-top: 0;
+                    border-left: 0;
+                    border-right: 0;
+                }
+            }
+        }
     }
+
+
 }
 
 
@@ -344,12 +395,12 @@ button,
                     }
                     :before {
                         vertical-align: middle;
-                        border-color: $some-red;
-                        background-color: $some-red;
+                        border-color: $danger;
+                        background-color: $danger;
                     }
                     input:checked + div:before{
-                        border-color: $some-green;
-                        background-color: $some-green;
+                        border-color: $success;
+                        background-color: $success;
                     }
                 }
             }

@@ -9,30 +9,39 @@ use PostRegister;
 
 class PostController extends Controller
 {
-    public function update(Request $request,$type = 'page',$id){
+    public function update(Request $request, $type = 'page', $id) {
 
         $post = new Post('','',$type);
 
-        if($id != 'add'){
+        if($id != 'add') {
             $post = Post::find($id);
         }
 
         $post->name = $request->input('name');
+        
         $post->content = $request->input('content');
+
+        if($post->exists) {
+            
+        }
 
         if(PostRegister::getRegisteredPost($type)->useCustomTemplates){
             $post->template = $request->input('template');
         }
-        // if(empty($post->slug)){
-            $post->slug = $this->slugGen($request->input('name'),$type);
-        // }
+
+
+        if($request->input('slug') != '') {
+            $post->slug = $this->createSlug(basename($request->input('slug')), $type);
+        } else {
+            $post->slug = $this->slugGen($post->name,$type);
+        }
 
         $post->save();
 
         return $post;
     }
 
-    public function create(Request $request,$type = 'page',$id){
+    public function create(Request $request, $type = 'page' ,$id) {
 
         if(!PostRegister::isRegistered($type)){
             return 'post not registered';
@@ -54,7 +63,7 @@ class PostController extends Controller
         return view('claws::admin.post-create',$data);
     }
 
-    public function slugGen($name, $type){
+    public function slugGen($name, $type) {
         return $this->createSlug($name,$type);
     }
 

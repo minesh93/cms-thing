@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="col-xs-8">Name</div>
-                <div class="col-xs-1 icon"><i class="far fa-calendar"></i></div>
+                <div class="col-xs-1 centered">Date</div>
                 <div class="col-xs-2"></div>
             </div>
             @foreach ($posts as $post)
@@ -47,14 +47,13 @@
                         <div class="post-actions">
                             <a href="/{{$post->slug}}">View</a>
                         </div>
-                        </div>
+                    </div>
                     <div class="col-xs-1">
                         <div class="post-date">{{$post->updated_at->format('d M Y')}}</div>
                     </div>
                     <div class="col-xs-2">
                         <div class="button-wrap">
                             <a class="button primary link" href="/{{ config('claws.admin_url') }}/content/{{$type->name}}/{{$post->id}}"><i class="fas fa-edit"></i> Edit</a>
-                            <a class="button danger link"> <i class="fas fa-times"></i> Delete</a>
                         </div>
                     </div>
                 </div>

@@ -3,13 +3,13 @@
         <title>Claws</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="admin-prefix" content="{{ config('claws.admin_url') }}">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,800" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
         <link href="{{ asset('claws-admin/css/style.css') }}" rel="stylesheet" type="text/css" >
     </head>
     <body>
         <main id="app">
-            <div class="sidebar-ting">
+            <div class="sidebar">
                 <div class="sidebar-header">
                     <h2>Claws</h2>
                 </div>
@@ -73,7 +73,7 @@
                 </div>
 
             </div>
-            <div class="content-ting">
+            <div class="content">
                 <v-notification></v-notification>
                 @yield('content')
             </div>

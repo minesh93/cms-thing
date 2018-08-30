@@ -17,18 +17,19 @@ class PostController extends Controller
             $post = Post::find($id);
         }
 
+
         $post->name = $request->input('name');
         
+        //- SHIT BREAKS HERE WHEN TRYING TO MERGE LAYOUT WITH CONTENT FROM VIEW
         $post->content = $request->input('content');
 
-        if($post->exists) {
-            
-        }
+        $meta = PostRegister::getMetaObject($type);
+
+        $post->content = (object) array_merge((array) $meta, (array) $post->content);
 
         if(PostRegister::getRegisteredPost($type)->useCustomTemplates){
             $post->template = $request->input('template');
         }
-
 
         if($request->input('slug') != '') {
             $post->slug = $this->createSlug(basename($request->input('slug')), $type);

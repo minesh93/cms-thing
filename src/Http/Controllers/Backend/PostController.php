@@ -18,8 +18,6 @@ class PostController extends Controller
             $post = Post::find($id);
         }
 
-        $meta = PostRegister::getMetaObject($type);
-
         $post->name = $request->input('name');
         
         foreach ($request->input('content') as $key => $value) {
@@ -37,13 +35,9 @@ class PostController extends Controller
             $post->content()->save($content);
         }
 
-        // $post->content = (object) array_merge((array) $meta, (array) $request->input('content'));
-
         if(PostRegister::getRegisteredPost($type)->useCustomTemplates){
             $post->template = $request->input('template');
         }
-
-        // return response(json_encode($post->content),400);
 
         if($request->input('slug') != '') {
             $post->slug = $this->createSlug(basename($request->input('slug')), $type);

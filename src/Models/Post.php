@@ -31,6 +31,10 @@ class Post extends Model
         return $this->hasMany('Claws\Models\Content', 'post_id', 'id');
     }
 
+    public function getContentByKey($key = '') {
+        return $this->content()->where('content_key', $key)->get()->first()->content;
+    }
+
     public function mapContent() {
         $contentArray = [];
 

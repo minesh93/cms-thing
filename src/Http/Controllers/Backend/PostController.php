@@ -47,6 +47,8 @@ class PostController extends Controller
 
 
         $post->save();
+
+        $post->load('content');
         $post->mapContent();
         return $post;
     }

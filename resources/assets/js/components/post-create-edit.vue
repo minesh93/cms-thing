@@ -80,6 +80,7 @@
         beforeMount(){
             console.log('before Mount');
             this.post = this.$options.propsData.mountP;
+            this.post.content = this.post.mappedContent;
             this.type = this.$options.propsData.mountT;
         },
 
@@ -89,12 +90,6 @@
             if(this.post.slug == '' || typeof this.post.slug == 'undefined') {
                 this.editingURL = true;
             }
-            // this.post = this.$options.propsData.mountP;
-            // this.type = this.$options.propsData.mountT;
-
-            // this.post.content.meta1 = '';
-            // this.post.content.meta2 = '';
-            // this.renderMeta = true;
 
         },
         methods:{
@@ -114,6 +109,7 @@
                 axios.post(location,this.post).then((response)=>{
                     this.$notification.add({content:'Saved!',type:'success'});
                     this.post = response.data;
+                    this.post.content = response.data.mappedContent;
                     if(newPost){
                        window.location = `/${admin}/content/${this.post.type}/${this.post.id}`; 
                     }

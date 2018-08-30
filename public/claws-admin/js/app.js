@@ -54948,6 +54948,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     beforeMount: function beforeMount() {
         console.log('before Mount');
         this.post = this.$options.propsData.mountP;
+        this.post.content = this.post.mappedContent;
         this.type = this.$options.propsData.mountT;
     },
     mounted: function mounted() {
@@ -54956,12 +54957,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (this.post.slug == '' || typeof this.post.slug == 'undefined') {
             this.editingURL = true;
         }
-        // this.post = this.$options.propsData.mountP;
-        // this.type = this.$options.propsData.mountT;
-
-        // this.post.content.meta1 = '';
-        // this.post.content.meta2 = '';
-        // this.renderMeta = true;
     },
 
     methods: {
@@ -54982,6 +54977,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post(location, this.post).then(function (response) {
                 _this.$notification.add({ content: 'Saved!', type: 'success' });
                 _this.post = response.data;
+                _this.post.content = response.data.mappedContent;
                 if (newPost) {
                     window.location = '/' + admin + '/content/' + _this.post.type + '/' + _this.post.id;
                 }

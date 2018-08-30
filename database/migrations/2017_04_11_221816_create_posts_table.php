@@ -21,7 +21,6 @@ class CreatePostsTable extends Migration
             $table->string('template')->nullable();
             $table->string('status')->nullable();
             $table->boolean('visible')->default(true);
-            $table->longText('content')->nullable();
             $table->integer('author')->nullable();
             $table->integer('editor')->nullable();
             $table->timestamp('published_at');

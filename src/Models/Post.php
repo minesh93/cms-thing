@@ -6,31 +6,39 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    // use ModelValidation;
+
     protected $fillable = [];
     protected $hidden = [];
-    protected static $rules = [];
-    protected static $dirtyRules = [];
-    protected static $messages = [];
 
     protected $table = 'claws_post';
-
-    // protected $with = ['creator'];
 
     protected $dates = [
         'created_at',
         'updated_at',
     ];
-
-    protected $casts = [
-        'content' => 'object',
+    
+    protected $with = [
+        'content'
     ];
 
-
-    public function __construct($name = '',$content = '',$type = 'page',$attributes = array()) {
+    public function __construct($name = '',$type = 'page',$attributes = array()) {
         parent::__construct($attributes);
         $this->name = $name;
         $this->type = $type;
+    }
+    
+    public function content() {
+        return $this->hasMany('Claws\Models\Content', 'post_id', 'id');
+    }
+
+    public function mapContent() {
+        $contentArray = [];
+
+        foreach ($this->content as $content) {
+            $contentArray[$content->content_key] = (object) $content->content;
+        }
+
+        $this->mappedContent = $contentArray;
     }
 
 }

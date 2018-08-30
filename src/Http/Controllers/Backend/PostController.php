@@ -5,31 +5,45 @@ namespace Claws\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use Claws\Http\Controllers\Controller;
 use Claws\Models\Post;
+use Claws\Models\Content;
 use PostRegister;
 
 class PostController extends Controller
 {
     public function update(Request $request, $type = 'page', $id) {
 
-        $post = new Post('','',$type);
+        $post = new Post('',$type);
 
         if($id != 'add') {
             $post = Post::find($id);
         }
 
+        $meta = PostRegister::getMetaObject($type);
 
         $post->name = $request->input('name');
         
-        //- SHIT BREAKS HERE WHEN TRYING TO MERGE LAYOUT WITH CONTENT FROM VIEW
-        $post->content = $request->input('content');
+        foreach ($request->input('content') as $key => $value) {
 
-        $meta = PostRegister::getMetaObject($type);
+            $content = new Content();
+            $content->content_key = $key;
 
-        $post->content = (object) array_merge((array) $meta, (array) $post->content);
+            if($post->content()->where('content_key',$key)->count()) {
+                $content = $post->content()->where('content_key',$key)->get()->first();
+            }
+            
+            $content->content = $value;
+            $content->save();
+            
+            $post->content()->save($content);
+        }
+
+        // $post->content = (object) array_merge((array) $meta, (array) $request->input('content'));
 
         if(PostRegister::getRegisteredPost($type)->useCustomTemplates){
             $post->template = $request->input('template');
         }
+
+        // return response(json_encode($post->content),400);
 
         if($request->input('slug') != '') {
             $post->slug = $this->createSlug(basename($request->input('slug')), $type);
@@ -37,8 +51,9 @@ class PostController extends Controller
             $post->slug = $this->slugGen($post->name,$type);
         }
 
-        $post->save();
 
+        $post->save();
+        $post->mapContent();
         return $post;
     }
 
@@ -49,7 +64,7 @@ class PostController extends Controller
         }
 
         $data = [
-            'post' => new Post('','',$type),
+            'post' => new Post('',$type),
             'type' => PostRegister::getRegisteredPost($type),
             'meta' => PostRegister::getMetaObject($type)
         ];
@@ -58,8 +73,9 @@ class PostController extends Controller
 
         if($id !== 'add') {
             $data['post'] = Post::find($id);
-            $data['post']->content = (object) array_merge((array) $data['meta'], (array) $data['post']->content);
+            $data['post']->mapContent();
         }
+
 
         return view('claws::admin.post-create',$data);
     }

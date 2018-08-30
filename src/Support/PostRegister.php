@@ -78,12 +78,12 @@ class PostRegister {
         self::$registered[$post]->renderTemplates[] = ['name' => $templateName, 'file' => $templateFile];
     }
 
-    public static function getMetaObject($post){
-        $meta = [];
+    public static function getMetaObject($post) {
+        $meta = new \StdClass();
         foreach (self::$registered[$post]->meta as $key => $value) {
-            $meta[$key] = $value['data'];
+            $meta->{$key} = $value['data'];
         }
-        return (object) $meta;
+        return $meta;
     }
 
     public static function getMetaTemplates($post){

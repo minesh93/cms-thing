@@ -20,6 +20,19 @@ class PostController extends Controller
 
         $post->name = $request->input('name');
         
+        if(PostRegister::getRegisteredPost($type)->useCustomTemplates){
+            $post->template = $request->input('template');
+        }
+
+        if($request->input('slug') != '') {
+            $post->slug = $this->createSlug(basename($request->input('slug')), $type);
+        } else {
+            $post->slug = $this->slugGen($post->name,$type);
+        }
+
+
+        $post->save();
+
         foreach ($request->input('content') as $key => $value) {
 
             $content = new Content();
@@ -34,19 +47,6 @@ class PostController extends Controller
             
             $post->content()->save($content);
         }
-
-        if(PostRegister::getRegisteredPost($type)->useCustomTemplates){
-            $post->template = $request->input('template');
-        }
-
-        if($request->input('slug') != '') {
-            $post->slug = $this->createSlug(basename($request->input('slug')), $type);
-        } else {
-            $post->slug = $this->slugGen($post->name,$type);
-        }
-
-
-        $post->save();
 
         $post->load('content');
         $post->mapContent();
@@ -65,7 +65,7 @@ class PostController extends Controller
             'meta' => PostRegister::getMetaObject($type)
         ];
 
-        $data['post']->content = $data['meta'];
+        $data['post']->mappedContent = $data['meta'];
 
         if($id !== 'add') {
             $data['post'] = Post::find($id);

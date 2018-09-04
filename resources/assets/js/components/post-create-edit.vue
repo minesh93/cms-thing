@@ -118,15 +118,15 @@
                 });
             },
 
-            deletePost(e){
+            deletePost(e) {
                 e.preventDefault();
             },
 
-            addImage(){
-
+            logAction(e) {
+                console.log('aaaa');
             },
 
-            generateSlug(e){
+            generateSlug(e) {
                 if(this.post.slug != ''){
                     return;
                 }

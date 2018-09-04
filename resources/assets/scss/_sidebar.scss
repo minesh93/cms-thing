@@ -60,20 +60,22 @@
             }
         }
 
-        .menu-list>li>a.is-active{
+        .menu-list>li>a.is-active {
             background: rgba(77, 157, 224, 0.2);
             color: #2d72ad;
         }
 
         .submenu {
             display: none;
-            margin-left: 30px;
             &.is-active {
                 display: block;
             }
-
-            a.is-active {
-                font-weight: 600;
+            
+            a {
+                padding-left: 30px;
+                &.is-active {
+                    font-weight: 600;
+                }
             }
         }
     }

@@ -34,6 +34,7 @@ Vue.component('v-notification', require('./components/notification.vue'));
 
 Vue.component('v-uploader', require('./components/media-uploader.vue'));
 Vue.component('v-media', require('./components/media-item.vue'));
+Vue.component('v-repeater', require('./components/repeater.vue'));
 
 const app = new Vue({
     el: '#app'

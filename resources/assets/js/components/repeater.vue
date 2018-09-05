@@ -1,6 +1,10 @@
 <template>
-    <div class="media-item">
-
+    <div class="repeater">
+        <div class="repeater-content">
+                <slot name="repeater-content" :content="content"></slot>
+                <slot></slot> 
+            </footer>
+        </div>
     </div>
 </template>
 
@@ -10,21 +14,15 @@
 
         data() {
             return {
-                media: {},
-                listeningForFile: false,
-                dragging: false,
+                content: [{a:'test'},{a:'temp'}],
             }
         },
 
         beforeMount(){
-            this.$emit('input',[{a:'test'},{a:'temp'}]);
+            this.$emit('input',this.content);
         },
-
         methods:{
-            // removeFile() {
-            //     this.media = null;
-            //     this.$emit('input',this.media);
-            // }
+
         },
     }
 </script>

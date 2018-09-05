@@ -57609,28 +57609,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['value'],
 
     data: function data() {
         return {
-            media: {},
-            listeningForFile: false,
-            dragging: false
+            content: [{ a: 'test' }, { a: 'temp' }]
         };
     },
     beforeMount: function beforeMount() {
-        this.$emit('input', [{ a: 'test' }, { a: 'temp' }]);
+        this.$emit('input', this.content);
     },
 
-
-    methods: {
-        // removeFile() {
-        //     this.media = null;
-        //     this.$emit('input',this.media);
-        // }
-    }
+    methods: {}
 });
 
 /***/ }),
@@ -57641,7 +57637,18 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "media-item" })
+  return _c("div", { staticClass: "repeater" }, [
+    _c(
+      "div",
+      { staticClass: "repeater-content" },
+      [
+        _vm._t("repeater-content", null, { content: _vm.content }),
+        _vm._v(" "),
+        _vm._t("default")
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

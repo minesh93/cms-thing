@@ -14,7 +14,12 @@
         props: ['value','type'],
 
         beforeMount() {
-             
+            
+            if(this.value == undefined){
+                this.value = [];
+                this.$emit('input',this.value);
+            }
+
             ClawsRepeater.event.$on('clone', (type) => {
                 //- Check type before we clone since other repeaters share the same event bus
                 if(type == this.type) {

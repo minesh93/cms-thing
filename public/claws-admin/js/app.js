@@ -57624,15 +57624,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['value'],
+    props: ['value', 'type'],
 
-    data: function data() {},
     beforeMount: function beforeMount() {
         var _this = this;
 
-        __WEBPACK_IMPORTED_MODULE_0__plugins_repeater__["a" /* default */].event.$on('clone', function (tag) {
-            _this.value.push({});
-            _this.$emit('input', _this.value);
+        __WEBPACK_IMPORTED_MODULE_0__plugins_repeater__["a" /* default */].event.$on('clone', function (type) {
+            //- Check type before we clone since other repeaters share the same event bus
+            if (type == _this.type) {
+
+                //- Contains a crappy random ID to track the object only used when deleteing an object
+                var content = {
+                    claws_repeater_ID: Math.random().toString(32)
+                };
+
+                _this.value.push(content);
+                _this.$emit('input', _this.value);
+            }
+        });
+
+        __WEBPACK_IMPORTED_MODULE_0__plugins_repeater__["a" /* default */].event.$on('remove', function (type, content) {
+            if (type == _this.type) {
+                var index = _this.value.findIndex(function (item) {
+                    return content.claws_repeater_ID === item.claws_repeater_ID;
+                });
+
+                _this.value.splice(index, 1);
+            }
         });
     },
 

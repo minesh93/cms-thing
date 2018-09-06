@@ -13,11 +13,13 @@ import Multiselect from 'vue-multiselect';
 
 import ClawsUploader from './plugins/uploader';
 import ClawsNotifications from './plugins/notifications';
+import ClawsRepeater from './plugins/repeater';
 
 import { quillEditor } from 'vue-quill-editor';
 
 Vue.use(ClawsUploader);
 Vue.use(ClawsNotifications);
+Vue.use(ClawsRepeater);
  
 Vue.component('settings-edit', require('./components/settings-edit.vue'));
 Vue.component('post-create-edit', require('./components/post-create-edit.vue'));

@@ -1,28 +1,34 @@
 <template>
     <div class="repeater">
         <div class="repeater-content">
-                <slot name="repeater-content" :content="content"></slot>
-                <slot></slot> 
-            </footer>
+            <slot name="repeater-content" :content="value"></slot>
+            <slot></slot> 
         </div>
     </div>
 </template>
 
 <script>
+    import ClawsRepeater from '../plugins/repeater';
+
     export default {
         props: ['value'],
 
         data() {
-            return {
-                content: [{a:'test'},{a:'temp'}],
-            }
         },
 
         beforeMount(){
-            this.$emit('input',this.content);
+            ClawsRepeater.event.$on('clone', (tag) => {
+                this.value.push({});
+                this.$emit('input',this.value);
+            });
         },
-        methods:{
+        methods: {
 
         },
     }
 </script>
+<style lang="scss">
+.repeater {
+    margin-bottom: 15px;
+}
+</style>

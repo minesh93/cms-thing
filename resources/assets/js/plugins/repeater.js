@@ -4,9 +4,13 @@ const ClawsRepeater = {
         this.event = new Vue();    
 
         Vue.prototype.$repeater = {
-            clone(type){
+            clone(type) {
                 ClawsRepeater.event.$emit('clone', type);
             },
+
+            remove(type, content) {
+                ClawsRepeater.event.$emit('remove',type,content)
+            }
         }
     }
 };

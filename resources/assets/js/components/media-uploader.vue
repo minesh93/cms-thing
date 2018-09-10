@@ -165,7 +165,7 @@
                     progress: 0,
                 });
 
-                axios.post('/admin/media', data, {
+                axios.post(`/${admin}/media`, data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     },

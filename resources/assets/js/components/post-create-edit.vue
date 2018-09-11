@@ -38,8 +38,22 @@
                         </div>
 
                         <div class="post-stats" v-if="post.id">
-                            <div class="post-date">Updated: {{post.updated_at}}</div>
-                            <div class="post-date">Created: {{post.created_at}}</div>
+                            <div class="post-dates">
+                                <div class="post-date">
+                                    <div class="date-title">
+                                        <i class="far fa-calendar"></i>
+                                        Updated
+                                    </div>
+                                    <div>{{post.updated_at}}</div>
+                                </div>
+                                <div class="post-date">
+                                    <div class="date-title">
+                                        <i class="far fa-calendar"></i>
+                                        Created
+                                    </div>
+                                    <div>{{post.created_at}}</div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="fieldset">

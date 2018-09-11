@@ -918,6 +918,22 @@ h2 {
   margin: 0;
 }
 
+span.danger {
+  color: #D72105;
+}
+
+span.success {
+  color: #29B163;
+}
+
+span.warning {
+  color: #d4b626;
+}
+
+span.primary {
+  color: #4D9DE0;
+}
+
 a {
   color: #4D9DE0;
   text-decoration: none;
@@ -1255,6 +1271,32 @@ button.link.primary,
 .user-list .nested-info td {
   text-align: left;
   padding: 0px;
+}
+
+.post-dates {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.post-date {
+  margin-bottom: 15px;
+}
+
+.post-dates .date-title {
+  margin-bottom: 5px;
+}
+
+.post-dates i {
+  font-size: 18px;
+  display: block;
+  margin-bottom: 5px;
 }
 
 .role-form {

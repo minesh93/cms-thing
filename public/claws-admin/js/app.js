@@ -54953,6 +54953,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['mount-p', 'mount-t', 'mount-m'],
@@ -55195,12 +55209,18 @@ var render = function() {
               _vm._v(" "),
               _vm.post.id
                 ? _c("div", { staticClass: "post-stats" }, [
-                    _c("div", { staticClass: "post-date" }, [
-                      _vm._v("Updated: " + _vm._s(_vm.post.updated_at))
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "post-date" }, [
-                      _vm._v("Created: " + _vm._s(_vm.post.created_at))
+                    _c("div", { staticClass: "post-dates" }, [
+                      _c("div", { staticClass: "post-date" }, [
+                        _vm._m(0),
+                        _vm._v(" "),
+                        _c("div", [_vm._v(_vm._s(_vm.post.updated_at))])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "post-date" }, [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c("div", [_vm._v(_vm._s(_vm.post.created_at))])
+                      ])
                     ])
                   ])
                 : _vm._e(),
@@ -55234,7 +55254,30 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "date-title" }, [
+      _c("i", { staticClass: "far fa-calendar" }),
+      _vm._v(
+        "\n                                    Updated\n                                "
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "date-title" }, [
+      _c("i", { staticClass: "far fa-calendar" }),
+      _vm._v(
+        "\n                                    Created\n                                "
+      )
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -57811,6 +57854,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //

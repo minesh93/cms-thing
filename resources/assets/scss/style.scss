@@ -54,6 +54,21 @@ h2 {
     margin: 0;
 }
 
+span {
+    &.danger {
+        color: $danger;
+    }
+    &.success {
+        color: $success;
+    }
+    &.warning {
+        color: $warning;
+    }
+    &.primary {
+        color: $primary;
+    }
+}
+
 a {
     color: $primary;
     text-decoration: none;
@@ -356,6 +371,27 @@ button,
     }
 }
 
+.post-dates {
+    display: flex;
+    text-align: center;
+    justify-content:space-between;
+    font-size: 13px;
+    font-weight:600;
+}
+
+.post-date {
+    margin-bottom: 15px;
+}
+
+.post-dates .date-title{
+    margin-bottom: 5px;
+}
+
+.post-dates i{
+    font-size: 18px;
+    display: block;
+    margin-bottom:5px;
+}
 
 // ROLES
 

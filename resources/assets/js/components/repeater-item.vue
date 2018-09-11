@@ -1,8 +1,11 @@
+<template>
+    <div class="repeater-item">
+        <slot></slot>
+    </div>
+</template>
 <script>
     export default {
-        render() {
-            return this.$slots.default[0];
-        },
+
     }
 </script>
 

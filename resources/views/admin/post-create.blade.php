@@ -2,7 +2,7 @@
 
 @section('content')
     <post-create-edit :mount-p="{{$post->toJSON()}}" :mount-t="{{json_encode($type)}}" :mount-m="{}">
-        <template slot-scope="props">
+        <template slot-scope="{ post }">
             @foreach ($type->meta as $singleType)
                 @if($singleType['template-restriction'])
                     @if($singleType['template-restriction'] == $post->template)

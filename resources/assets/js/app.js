@@ -30,13 +30,14 @@ Vue.component('multiselect', Multiselect);
 Vue.component('quill', quillEditor);
 
 Vue.component('v-select', require('./components/select.vue'));
-Vue.component('v-editor', require('./components/editor.vue'));
+Vue.component('editor', require('./components/editor.vue'));
 
 Vue.component('v-notification', require('./components/notification.vue'));
 
 Vue.component('v-uploader', require('./components/media-uploader.vue'));
-Vue.component('v-media', require('./components/media-item.vue'));
-Vue.component('v-repeater', require('./components/repeater.vue'));
+Vue.component('media', require('./components/media-item.vue'));
+Vue.component('repeater', require('./components/repeater.vue'));
+Vue.component('repeater-item', require('./components/repeater-item.vue'));
 
 const app = new Vue({
     el: '#app'

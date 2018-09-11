@@ -1860,13 +1860,14 @@ Vue.component('multiselect', __WEBPACK_IMPORTED_MODULE_0_vue_multiselect___defau
 Vue.component('quill', __WEBPACK_IMPORTED_MODULE_4_vue_quill_editor__["quillEditor"]);
 
 Vue.component('v-select', __webpack_require__(63));
-Vue.component('v-editor', __webpack_require__(65));
+Vue.component('editor', __webpack_require__(65));
 
 Vue.component('v-notification', __webpack_require__(77));
 
 Vue.component('v-uploader', __webpack_require__(80));
-Vue.component('v-media', __webpack_require__(85));
-Vue.component('v-repeater', __webpack_require__(90));
+Vue.component('media', __webpack_require__(85));
+Vue.component('repeater', __webpack_require__(90));
+Vue.component('repeater-item', __webpack_require__(98));
 
 var app = new Vue({
   el: '#app'
@@ -57752,6 +57753,70 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 96 */,
+/* 97 */,
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(101)
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "a-thing\\resources\\assets\\js\\components\\repeater-item.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0b8d4aea", Component.options)
+  } else {
+    hotAPI.reload("data-v-0b8d4aea", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 99 */,
+/* 100 */,
+/* 101 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    render: function render() {
+        return this.$slots.default[0];
+    }
+});
 
 /***/ })
 /******/ ]);

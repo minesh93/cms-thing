@@ -41,14 +41,14 @@
                             <div class="post-dates">
                                 <div class="post-date">
                                     <div class="date-title">
-                                        <i class="far fa-calendar"></i>
+                                        <i class="fas fa-calendar"></i>
                                         Updated
                                     </div>
                                     <div>{{post.updated_at}}</div>
                                 </div>
                                 <div class="post-date">
                                     <div class="date-title">
-                                        <i class="far fa-calendar"></i>
+                                        <i class="fas fa-calendar"></i>
                                         Created
                                     </div>
                                     <div>{{post.created_at}}</div>

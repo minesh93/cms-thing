@@ -1812,7 +1812,7 @@ var ClawsRepeater = {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(19);
-module.exports = __webpack_require__(95);
+module.exports = __webpack_require__(98);
 
 
 /***/ }),
@@ -1867,7 +1867,7 @@ Vue.component('v-notification', __webpack_require__(77));
 Vue.component('v-uploader', __webpack_require__(80));
 Vue.component('media', __webpack_require__(85));
 Vue.component('repeater', __webpack_require__(90));
-Vue.component('repeater-item', __webpack_require__(98));
+Vue.component('repeater-item', __webpack_require__(95));
 
 var app = new Vue({
   el: '#app'
@@ -55260,7 +55260,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "date-title" }, [
-      _c("i", { staticClass: "far fa-calendar" }),
+      _c("i", { staticClass: "fas fa-calendar" }),
       _vm._v(
         "\n                                    Updated\n                                "
       )
@@ -55271,7 +55271,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "date-title" }, [
-      _c("i", { staticClass: "far fa-calendar" }),
+      _c("i", { staticClass: "fas fa-calendar" }),
       _vm._v(
         "\n                                    Created\n                                "
       )
@@ -57793,22 +57793,14 @@ if (false) {
 
 /***/ }),
 /* 95 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 96 */,
-/* 97 */,
-/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(101)
+var __vue_script__ = __webpack_require__(96)
 /* template */
-var __vue_template__ = __webpack_require__(102)
+var __vue_template__ = __webpack_require__(97)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -57847,9 +57839,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 99 */,
-/* 100 */,
-/* 101 */
+/* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57864,7 +57854,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 102 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -57882,6 +57872,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-0b8d4aea", module.exports)
   }
 }
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

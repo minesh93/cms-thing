@@ -31,6 +31,7 @@ Vue.component('quill', quillEditor);
 
 Vue.component('v-select', require('./components/select.vue'));
 Vue.component('editor', require('./components/editor.vue'));
+Vue.component('code-editor', require('./components/code.vue'));
 
 Vue.component('v-notification', require('./components/notification.vue'));
 

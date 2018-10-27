@@ -1,0 +1,18 @@
+.code-wrap {
+    background: #1c252a;
+    padding-top: 15px;
+    .select-wrap {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        select {
+            background: #1c252a;
+            color: white;
+            font-family: monospace;
+            border: none;
+            margin: 10px;
+            display: block;
+            font-size: 14px;
+        }
+    }
+}

@@ -21,6 +21,8 @@ class ClawsProvider extends ServiceProvider
     }
 
     public function register() {
+        require_once __DIR__.'../../helpers.php';
+        
         $this->app->booting(function() {
             $loader = AliasLoader::getInstance();
             $loader->alias('PostRegister', PostRegister::class);

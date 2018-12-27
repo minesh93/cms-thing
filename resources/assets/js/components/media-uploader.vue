@@ -67,7 +67,7 @@
                             <div class="col-xs-12">
                                 <div class="fieldset">
                                     <label>Uploaded on</label>
-                                    <span class="description">{{activeFile.created_at}}</span>
+                                    <span class="description">{{activeFile.upload_date}}</span>
                                 </div>
                             </div>
                         </div>

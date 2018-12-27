@@ -27,7 +27,7 @@
                         </template>
                         <template v-else>
                             <div class="post-url">
-                                <a :href="`${location.host}/${post.slug}`" target="_blank">{{`${location.host}/${post.slug}`}}</a>
+                                <a :href="`//${location.host}/${post.slug}`" target="_blank">{{`${location.host}/${post.slug}`}}</a>
                                 <button class="primary" v-on:click="editingURL = true;">Edit</button>
                             </div>
                         </template>

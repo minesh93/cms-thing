@@ -9,6 +9,8 @@
     justify-content: center;
     visibility: hidden;
     opacity: 0;
+    z-index: 10000;
+
     &.active {
         visibility: visible;
         opacity: 1;
@@ -24,6 +26,7 @@
     }
 
     .uploader {
+        border-radius: 3px;
         position: relative;
         background: $white;
         width: calc(100% - 120px);

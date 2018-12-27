@@ -15,6 +15,11 @@ class MediaController extends Controller {
 
     public function getMedia() {
         $media = Media::all();
+
+        $media->each(function($m) {
+            $m->upload_date = $m->created_at->format('jS F Y');
+        });
+
         return $media->toJSON();
     }
 
@@ -30,7 +35,9 @@ class MediaController extends Controller {
         $path = Storage::disk('public')->putFile('claws-files', $file);
 
         $media->path = '/storage/' . $path;
-        $media->save(); 
+        $media->save();
+
+        $media->upload_date = $media->created_at->format('jS F Y');
 
         return $media;
 
@@ -46,7 +53,9 @@ class MediaController extends Controller {
         $media->title = $request->input('title');
         $media->description = $request->input('description');
 
-        $media->save(); 
+        $media->save();
+
+        $media->upload_date = $media->created_at->format('jS F Y');
 
         return $media;
 

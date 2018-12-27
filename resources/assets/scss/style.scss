@@ -4,7 +4,7 @@
 // $success: #46A95A;
 
 // NEW
-$danger: #D72105;
+$danger: #f94336;
 $primary: #4D9DE0;
 $success: #29B163;
 $warning: #d4b626;
@@ -205,6 +205,9 @@ button,
     border: none;
     padding: 5px 15px;
     height: 30px;
+    border-radius: 3px;
+    font-weight: 600;
+
     &.full-width {
         display: block;
         width: 100%;
@@ -249,10 +252,10 @@ button,
 }
 
 
-// CONTENT
+/* Content */
 .content{
     margin-left: 240px;
-    padding: 0px 15px;
+    padding: 15px;
 }
 
 
@@ -265,17 +268,17 @@ button,
         margin: 0;
         padding: 15px;
         border-bottom: 1px solid $accent;
-        font-weight: 600;
-        font-size: 12px;
+        font-size: 11px;
         letter-spacing: 0.2px;
-        text-align: center;
         text-transform: uppercase;
+        font-weight: 900;
     }
 
     .post-sidebar {
         color: $base-font-color;
         padding: 15px;
         width: 100%;
+        border-radius: 3px;
 
         .post-url {
             font-size: 14px;
@@ -393,6 +396,32 @@ button,
     font-size: 18px;
     display: block;
     margin-bottom:5px;
+}
+
+.post-controls {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.post-controls-footer {
+    .action {
+
+        margin: 15px -15px -15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 600;
+
+        &.danger {
+            color: $danger;
+            background: lighten($danger, 38%);
+        }
+
+        .message {
+            padding: 0px 15px;
+            margin-right: auto;
+        }
+    }
 }
 
 // ROLES

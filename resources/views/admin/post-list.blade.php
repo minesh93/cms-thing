@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="col-xs-8">Name</div>
-                <div class="col-xs-1 centered">Date</div>
+                <div class="col-xs-1 centered">Created</div>
                 <div class="col-xs-2"></div>
             </div>
             @foreach ($posts as $post)

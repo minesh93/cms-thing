@@ -56,14 +56,20 @@
                             </div>
                         </div>
 
-                        <div class="fieldset">
-                            <button class="button primary full-width" v-on:click="savePost">Save</button>
-                        </div>
-                        
-                        <div class="fieldset">
-                            <button class="button danger full-width" v-on:click="deletePost">Delete</button>
+                        <div class="post-controls button-set">
+                            <button class="button primary" v-on:click="savePost">Save</button>
+                            <button class="button danger link" v-on:click="deletingPost = true">Delete</button>
                         </div>
 
+                        <div class="post-controls-footer">
+                            <div v-if="deletingPost" class="action danger">
+                                <div class="message">Really Delete this? </div>
+                                <div class="button-set">
+                                    <button class="button danger link" v-on:click="deletePost">Yes, delete it</button>
+                                    <button class="button primary link" v-on:click="deletingPost = false">No, keep it</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,7 +88,8 @@
                     content: {},
                 },
                 type:{},
-                editingURL: false
+                editingURL: false,
+                deletingPost: false
             }
         },
         computed: {

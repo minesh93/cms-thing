@@ -4,14 +4,20 @@
         <button v-on:click="useEditor()">Editor</button>
         <button v-on:click="useHTML()">HTML</button>
     </div>
-    <slot name="toolbar"></slot>
-    <div ref="editor"></div>
+    <div class="code-wrap" v-show="!usingEditor">
+        <div class="editor" style="height:274px;"></div>
+    </div>
+    <div class="editor-wrap" v-show="usingEditor">
+        <slot name="toolbar"></slot>
+        <div ref="editor"></div>
+    </div>
   </div>
 </template>
 <script>
 import { quillEditor } from 'vue-quill-editor'
+import ace from 'brace';
+require('../ace-theme/claws');
 
-// require styles
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
@@ -23,7 +29,16 @@ export default {
     data () {
         return {
             internalValue: {},
-            listeningForFile: false
+            listeningForFile: false,
+            usingEditor: true,
+        }
+    },
+
+    computed:{
+        code() {
+            return {
+                code: this.value,
+            }
         }
     },
 
@@ -46,9 +61,30 @@ export default {
 
     mounted() {
         this.quill.getModule('toolbar').handlers.image = this.handleUpload;
+
+        this.editor = ace.edit(this.$el.querySelector('.editor'));
+        this.editor.setTheme('ace/theme/claws');
+
+        this.editor.session.setMode(`ace/mode/html`);
+        this.editor.session.setUseWorker(false);
+        this.editor.setPrintMarginColumn(-1);
+        this.editor.session.setValue(this.value);
+
     },
+
     methods: {
-        handleUpload(){
+
+        useEditor() {
+            this.usingEditor = true;
+            this.quill.clipboard.dangerouslyPasteHTML(this.editor.getValue());
+        },
+
+        useHTML() {
+            this.usingEditor = false;
+            this.editor.setValue(this.value);
+        },
+
+        handleUpload() {
             this.listeningForFile = true;
             this.$uploader.open();
         }
@@ -56,9 +92,28 @@ export default {
 }
 </script>
 <style type="text/css">	
-    .quill-editor {
-        
+    .quill-editor .controls{
+        display: flex;
+        justify-content: flex-end;
     }
+
+    .quill-editor .controls button {
+        background: #ffffff;
+        color: #000000;
+        font-weight: 600;
+        border: 1px solid #dbebf9;
+        border-bottom: none;
+        margin-right: -1px;
+        border-radius: 0;
+    }
+
+    .quill-editor .controls button:last-child {
+        margin-right: 0px;
+    }
+
+    .quill-editor .controls button:focus {
+        outline: initial;
+    }    
 
     .quill-editor .ql-toolbar {
         background: #ffffff

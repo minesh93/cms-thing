@@ -1,3 +1,13 @@
+<template>
+  <div class="quill-editor">
+    <div class="controls">
+        <button v-on:click="useEditor()">Editor</button>
+        <button v-on:click="useHTML()">HTML</button>
+    </div>
+    <slot name="toolbar"></slot>
+    <div ref="editor"></div>
+  </div>
+</template>
 <script>
 import { quillEditor } from 'vue-quill-editor'
 
@@ -47,8 +57,16 @@ export default {
 </script>
 <style type="text/css">	
     .quill-editor {
+        
+    }
+
+    .quill-editor .ql-toolbar {
+        background: #ffffff
+    }
+    .quill-editor .ql-container {
         background: #ffffff;
     }
+
     .ql-toolbar.ql-snow {
         border: 1px solid #dbebf9;
     }

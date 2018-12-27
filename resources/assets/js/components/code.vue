@@ -28,7 +28,7 @@
 
         data() {
             return {
-                language: 'javascript',
+                language: 'html',
                 editor: null,
             }
         },

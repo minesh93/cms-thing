@@ -76530,7 +76530,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(74)
 /* template */
-var __vue_template__ = null
+var __vue_template__ = __webpack_require__(121)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -76603,7 +76603,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.quill-editor {\n    background: #ffffff;\n}\n.ql-toolbar.ql-snow {\n    border: 1px solid #dbebf9;\n}\n.ql-toolbar.ql-snow + .ql-container.ql-snow {\n    border: 1px solid #dbebf9;\n    border-top: none;\n}\n.ql-container {\n    height: 300px;\n}\n", ""]);
+exports.push([module.i, "\n.quill-editor {\n}\n.quill-editor .ql-toolbar {\n    background: #ffffff\n}\n.quill-editor .ql-container {\n    background: #ffffff;\n}\n.ql-toolbar.ql-snow {\n    border: 1px solid #dbebf9;\n}\n.ql-toolbar.ql-snow + .ql-container.ql-snow {\n    border: 1px solid #dbebf9;\n    border-top: none;\n}\n.ql-container {\n    height: 300px;\n}\n", ""]);
 
 // exports
 
@@ -76656,6 +76656,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_quill_dist_quill_bubble_css__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_quill_dist_quill_bubble_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_quill_dist_quill_bubble_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__plugins_uploader__ = __webpack_require__(4);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -77023,7 +77033,7 @@ __webpack_require__(84);
 
     data: function data() {
         return {
-            language: 'javascript',
+            language: 'html',
             editor: null
         };
     },
@@ -99144,6 +99154,63 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 119 */,
+/* 120 */,
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "quill-editor" },
+    [
+      _c("div", { staticClass: "controls" }, [
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                _vm.useEditor()
+              }
+            }
+          },
+          [_vm._v("Editor")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                _vm.useHTML()
+              }
+            }
+          },
+          [_vm._v("HTML")]
+        )
+      ]),
+      _vm._v(" "),
+      _vm._t("toolbar"),
+      _vm._v(" "),
+      _c("div", { ref: "editor" })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-024f502a", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -13,7 +13,7 @@
                 <div class="sidebar-header">
                     <h2>Claws</h2>
                 </div>
-                <div class="sidebar-list">
+                <div class="sidebar-list links">
                      <ul class="menu-list">
                         <li>
                             <a class="@if(strpos(url()->current(),'/dashboard')) is-active @endif" href="/{{ config('claws.admin_url') }}/dashboard">
@@ -43,11 +43,11 @@
                     <h3>Configuration</h3>
                     <ul class="menu-list">
                         <li>
-                            <a class="is-active" href="/{{ config('claws.admin_url') }}/settings/general">
+                            <a href="/{{ config('claws.admin_url') }}/settings/general">
                                 <i class="fas fa-cog"></i> <span>Settings</span>
                             </a>
 
-                            <ul class="submenu is-active">
+                            <ul class="submenu">
                                 @foreach(SettingsRegister::getSettings() as $settingKey => $setting)
                                     <li>
                                         <a href="/{{ config('claws.admin_url') }}/settings/{{$settingKey}}">{{$setting['name']}}</a>
@@ -57,7 +57,7 @@
 
                         </li>
                         <li>
-                            <a class="@if(strpos(url()->current(),'admin/users'))is-active @endif" href="/{{ config('claws.admin_url') }}/users/">
+                            <a class="@if(strpos(url()->current(),'admin/users')) is-active @endif" href="/{{ config('claws.admin_url') }}/users/">
                                 <i class="fas fa-users"></i> <span>Users</span>
                             </a>
                             <ul class="submenu @if(strpos(url()->current(),'admin/users') || strpos(url()->current(),'admin/roles'))is-active @endif">

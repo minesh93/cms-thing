@@ -2,8 +2,8 @@
 .sidebar{
     position: fixed;
     width: 240px;
-    background: $white;
-    color: #32373c;
+    color: lighten($base-font-color, 70%);
+    background: $base-font-color;
     height: 100%;
     padding: 15px 0px;
 
@@ -17,6 +17,8 @@
         margin: 5px 15px;
         font-size: 11px;
         letter-spacing: $small-letter-spacing;
+        text-transform: uppercase;
+        font-weight: 900;
     }
 
     ul {
@@ -33,44 +35,58 @@
         margin-bottom: 30px;
         li {
             a {
-                color: #4D9DE0;
+                color: $inactive-sidebar;
                 text-decoration: none;
                 padding: 10px 15px;
+                margin: 0 15px;
                 display: block;
-                font-size: 12px;
+                font-size: 13px;
+                font-weight: 600;
                 letter-spacing: -0.1px;
                 min-height: 30px;
                 transition: all 0.1s ease;
 
                 i {
                     margin-right: 5px;
+                    font-size: 16px;
                 }
 
                 span {
+                    vertical-align: top;
                     display: inline-block;
-                }
-
-                &:focus {
-                    outline: 3px solid $outline;
                 }
             }
         }
 
-        .menu-list>li>a.is-active {
+        &.links {
+            padding: 0px 15px;
+            li a{
+                margin: 0;
+            }
+        }
+
+        .menu-list > li > a.is-active {
             background: rgba(77, 157, 224, 0.2);
-            color: #2d72ad;
+            color: $primary;
+            border-radius: 3px;
         }
 
         .submenu {
             display: none;
+            margin: 0 15px;
+
             &.is-active {
                 display: block;
             }
             
             a {
-                padding-left: 30px;
+                margin: 0;
+                
                 &.is-active {
                     font-weight: 600;
+                    background: rgba(77, 157, 224, 0.2);
+                    color: $primary;
+                    border-radius: 3px;                    
                 }
             }
         }

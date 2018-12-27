@@ -54,5 +54,10 @@
 <style lang="scss">
 .repeater {
     margin-bottom: 15px;
+
+    .remove-button {
+        margin-top: 15px;
+    }
 }
+
 </style>

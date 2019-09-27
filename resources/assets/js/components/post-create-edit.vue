@@ -32,10 +32,10 @@
                             </div>
                         </template>
 
-                        <div class="fieldset" v-if="mountT.useCustomTemplates">
+                        <!-- <div class="fieldset" v-if="mountT.useCustomTemplates">
                             <label class="label">Template</label>
-                             <v-select v-model="post.template" return="file" track-by="file" label="name" placeholder="Template" :options="mountT.renderTemplates" :searchable="false" :show-labels="false"></v-select>
-                        </div>
+                            <select v-model="post.template" return="file" track-by="file" label="name" placeholder="Template" :options="mountT.renderTemplates" :searchable="false" :show-labels="false"></v-select>
+                        </div> -->
 
                         <div class="post-stats" v-if="post.id">
                             <div class="post-dates">

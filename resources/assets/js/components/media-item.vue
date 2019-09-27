@@ -1,13 +1,13 @@
 <template>
     <div class="media-item">
         <template v-if="media === null || media === undefined">
-            <div class="drag-zone"  :class="{'dragging':dragging}" v-on:dragenter="dragging = true" v-on:dragleave="dragging = false">
+            <div class="drag-zone"  :class="{'dragging':dragging}" @dragenter="dragging = true" @dragleave="dragging = false">
                 <div>Drop Files Here</div>
                 <div>Or</div> 
                 <div>Click To Upload</div> 
-                <input type="file" v-on:change="upload">
+                <input type="file" @change="upload">
             </div>
-            <button v-on:click="openUploader" type="button" class="primary full-width">Choose Existing File</button>
+            <button @click="openUploader" type="button" class="primary full-width">Choose Existing File</button>
         </template>
         <template v-else>
             <div class="file">
@@ -16,11 +16,11 @@
             <div>
                 <div class="row">
                     <div class="col-xs-6">
-                        <button v-on:click="openUploader" type="button" class="primary full-width">Change</button>
+                        <button @click="openUploader" type="button" class="primary full-width">Change</button>
                     </div>
                     
                     <div class="col-xs-6">
-                        <button v-on:click="removeFile" type="button" class="danger full-width">Remove</button>
+                        <button @click="removeFile" type="button" class="danger full-width">Remove</button>
                     </div>
                 </div>
             </div>
@@ -80,8 +80,6 @@ export default {
 <style type="text/scss">
 .media-item {
     width: 100%;
-    background: #ececec;
-    padding: 15px;
     text-align: center;
 }
 
@@ -90,7 +88,7 @@ export default {
 }
 
 .media-item .drag-zone{
-    border: 2px dashed rgba(0, 0, 0, 0.3);
+    border: 1px dashed rgba(0, 0, 0, 0.3);
     width: 100%;
     height: 240px;
     position: relative;

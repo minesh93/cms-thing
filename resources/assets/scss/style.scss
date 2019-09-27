@@ -13,6 +13,7 @@ $base: #272829;
 
 //-Colors
 $white: #ffffff;
+$off-white: #e8eaeb;
 $base-font-color: #32373c;
 $link-color: $primary;
 $accent:#dbebf9;
@@ -21,12 +22,16 @@ $background: #f9f9f9;
 $grey: #e0e0e0;
 $inactive-sidebar: #7d7d7d;
 
+$grey: #32373c;
+
 //- Typography
 $open-sans: 'Nunito', 'Helvetica Neue', 'Helvetica', 'Sans Serif';
 $small-letter-spacing: 0.2px;
 
-@import "~flexboxgrid/dist/flexboxgrid.min.css";
+// @import "~flexboxgrid/dist/flexboxgrid.min.css";
 
+@import 'input';
+@import 'layout';
 @import 'code';
 @import 'media';
 @import 'notification';
@@ -36,6 +41,10 @@ $small-letter-spacing: 0.2px;
 
 *, *:before, *:after {
   box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
 }
 
 body {
@@ -106,64 +115,6 @@ a {
     }
 }
 
-.fieldset {
-    margin-bottom: 15px;
-
-    .description{
-        font-size: 12px;
-        color: #888888;
-        font-weight: 500;
-    }
-}
-
-label {
-   display: block;
-   margin-bottom: 5px;
-   font-size: 13px;
-    font-weight: 600;
-
-    &.large-field {
-        font-size: 18px;
-        font-weight: 600;
-    }
-
-}
-
-input[type='text'],
-input[type='password'],
-input[type='search'] {
-    height: 30px;
-    width: 100%;
-    border: 1px solid $accent;
-    border-radius: 0;
-    padding: 5px 15px;
-    font-family: $open-sans;
-    font-weight: 500;
-    background: $white;
-    &:focus {
-        outline: 3px solid $outline;
-    }
-
-    &.large-field {
-        height: 45px;
-        font-size: 18px;
-    }
-}
-
-textarea {
-    width: 100%;
-    border: 1px solid $accent;
-    border-radius: 0;
-    padding: 15px;
-    font-family: $open-sans;
-    font-weight: 500;
-    background: $white;
-    resize: vertical;
-    &:focus {
-        outline: 3px solid $outline;
-    }
-}
-
 .checkbox-wrap {
     label {    
         display: flex;
@@ -192,61 +143,6 @@ textarea {
     }
 }
 
-
-
-button,
-.button {
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    font-family: $open-sans;
-    background: $base;
-    color: $white;
-    border: none;
-    padding: 5px 15px;
-    height: 30px;
-    border-radius: 3px;
-    font-weight: 600;
-    font-size: 13px;
-
-    &.full-width {
-        display: block;
-        width: 100%;
-    }
-
-    &.large {
-        height: 60px;
-        padding: 0 15px;
-        line-height: 60px;
-        font-size: 22px;
-    }
-
-    &:focus {
-        outline: 3px solid $outline;
-    }
-
-    &.danger { 
-        background: $danger;
-    }
-
-    &.primary {
-        background: $primary;
-    }
-
-    &.link {
-        background: none;
-        &.danger { 
-            color: $danger;
-        }
-
-        &.primary {
-            color: $primary;
-        }
-    }
-}
-
-
-
 .box-row { 
     background:red;
     height: 30px;
@@ -255,7 +151,6 @@ button,
 
 /* Content */
 .content{
-    margin-left: 240px;
     padding: 15px;
 }
 

@@ -1,8 +1,9 @@
 <template>
   <div class="quill-editor">
     <div class="controls">
-        <button v-on:click="useEditor()">Editor</button>
-        <button v-on:click="useHTML()">HTML</button>
+        <label>{{ label }}</label>
+        <button @click="useEditor()">Editor</button>
+        <button @click="useHTML()">HTML</button>
     </div>
     <div class="code-wrap" v-show="!usingEditor">
         <div class="editor" style="height:274px;"></div>
@@ -44,9 +45,13 @@ export default {
 
     props: {
         return: {
-        type: String,
+            type: String,
             default: ''
-        }
+        },
+        label: {
+            type: String,
+            default: ''
+        },
     },
 
     beforeMount() {
@@ -92,9 +97,15 @@ export default {
 }
 </script>
 <style type="text/css">	
-    .quill-editor .controls{
+    .quill-editor .controls {
         display: flex;
         justify-content: flex-end;
+        align-items: center;
+    }
+
+    .quill-editor .controls label {
+        display: flex;
+        margin-right: auto;
     }
 
     .quill-editor .controls button {

@@ -1,11 +1,11 @@
 // SIDEBAR
 .sidebar{
-    position: fixed;
-    width: 240px;
-    color: lighten($base-font-color, 70%);
-    background: $base-font-color;
-    height: 100%;
+    color: $off-white;
+    background: $grey;
+    height: 100vh;
     padding: 15px 0px;
+    position: sticky;
+    top: 0;
 
     h2 {
         font-weight: 500;
@@ -37,7 +37,7 @@
             a {
                 color: $inactive-sidebar;
                 text-decoration: none;
-                padding: 10px 15px;
+                padding: 1rem 0;
                 margin: 0 15px;
                 display: block;
                 font-size: 13px;

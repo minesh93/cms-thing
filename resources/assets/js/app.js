@@ -9,8 +9,6 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import Multiselect from 'vue-multiselect';
-
 import ClawsUploader from './plugins/uploader';
 import ClawsNotifications from './plugins/notifications';
 import ClawsRepeater from './plugins/repeater';
@@ -26,10 +24,8 @@ Vue.component('post-create-edit', require('./components/post-create-edit.vue'));
 Vue.component('role-create-edit', require('./components/role-create-edit.vue'));
 Vue.component('user-create-edit', require('./components/user-create-edit.vue'));
 
-Vue.component('multiselect', Multiselect);
 Vue.component('quill', quillEditor);
 
-Vue.component('v-select', require('./components/select.vue'));
 Vue.component('editor', require('./components/editor.vue'));
 Vue.component('code-editor', require('./components/code.vue'));
 

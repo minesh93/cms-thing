@@ -22,60 +22,60 @@
                     <div class="col-xs-6">
                         <button v-on:click="removeFile" type="button" class="danger full-width">Remove</button>
                     </div>
-                </div>            
+                </div>
             </div>
         </template>
     </div>
 </template>
 
 <script>
-    import ClawsUploader from '../plugins/uploader';
+import ClawsUploader from '../plugins/uploader';
 
-    export default {
-        props: ['value'],
+export default {
+    props: ['value'],
 
-        data() {
-            return {
-                media: {},
-                listeningForFile: false,
-                dragging: false,
-            }
-        },
+    data() {
+        return {
+            media: {},
+            listeningForFile: false,
+            dragging: false,
+        }
+    },
 
-        beforeMount(){
-            if(this.value !== undefined && this.value !== null){
-                this.media = this.value;
-            } else {
-                this.media = null;
-            }
+    beforeMount(){
+        if(this.value !== undefined && this.value !== null){
+            this.media = this.value;
+        } else {
+            this.media = null;
+        }
 
-            ClawsUploader.event.$on('select-media', (mediaObject) => {
-                if(this.listeningForFile) {
-                    this.media = mediaObject;
-                    this.$emit('input',this.media);
-                    this.listeningForFile = false;
-                }
-            });
-        },
-
-        methods:{
-            openUploader() {
-                this.listeningForFile = true;
-                this.$uploader.open();
-            },
-
-            upload(e) {
-                this.dragging = false;
-                this.openUploader();
-                this.$uploader.upload(e.target.files);
-            },
-
-            removeFile() {
-                this.media = null;
+        ClawsUploader.event.$on('select-media', (mediaObject) => {
+            if(this.listeningForFile) {
+                this.media = mediaObject;
                 this.$emit('input',this.media);
+                this.listeningForFile = false;
             }
+        });
+    },
+
+    methods:{
+        openUploader() {
+            this.listeningForFile = true;
+            this.$uploader.open();
         },
-    }
+
+        upload(e) {
+            this.dragging = false;
+            this.openUploader();
+            this.$uploader.upload(e.target.files);
+        },
+
+        removeFile() {
+            this.media = null;
+            this.$emit('input',this.media);
+        }
+    },
+}
 </script>
 <style type="text/scss">
 .media-item {

@@ -4,7 +4,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="admin-prefix" content="{{ config('claws.admin_url') }}">
         <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,800" rel="stylesheet">
-        <link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" rel="stylesheet">
         <link href="{{ asset('claws-admin/css/style.css') }}" rel="stylesheet" type="text/css" >
     </head>
     <body>
@@ -19,6 +19,9 @@
                             <a class="@if(strpos(url()->current(),'/dashboard')) is-active @endif" href="/{{ config('claws.admin_url') }}/dashboard">
                                 <i class="fas fa-columns"></i> <span>Dashboard</span>
                             </a>
+                            <a class="@if(strpos(url()->current(),'/kitchen-sink')) is-active @endif" href="/{{ config('claws.admin_url') }}/kitchen-sink">
+                                <i class="fas fa-sign"></i> <span>Kitchen Sink</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -27,7 +30,7 @@
                     <ul class="menu-list">
                         @foreach(PostRegister::getRegister() as $pr)
                             <li>
-                                <a class="@if(strpos(url()->current(),$pr->name)) is-active @endif" href="/{{ config('claws.admin_url') }}/content/{{$pr->name}}/">
+                                <a class="@if(strpos(url()->current(),$pr->name)) is-active @endif has-submenu" href="/{{ config('claws.admin_url') }}/content/{{$pr->name}}/">
                                     <i class="fas {{$pr->icon}}"></i> <span>{{$pr->listName}}</span>
                                 </a>
                                 <ul class="submenu @if(strpos(url()->current(),$pr->name))is-active @endif">

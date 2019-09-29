@@ -28,6 +28,10 @@ Route::group(['prefix'=> config('claws.admin_url'),'middleware' => 'web'], funct
             return view('claws::admin.dashboard');
         });
 
+        Route::get('/kitchen-sink', function() {
+            return view('claws::admin.dashboard');
+        });
+
         Route::get('/content/{type}','\Claws\Http\Controllers\Backend\PostController@getPosts');
 
         Route::get('/content/{type}/{id}','\Claws\Http\Controllers\Backend\PostController@create');

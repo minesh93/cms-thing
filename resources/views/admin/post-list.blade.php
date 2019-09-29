@@ -1,13 +1,14 @@
 @extends('claws::admin.layout')
 
 @section('content')
-    <div class="row between-xs middle-xs">
-        <div class="col-xs-9">
+    <div class="row">
+        <div class="col-xs-6">
             <h1 class="title">
                 {{$type->listTitle}}
             </h1>
         </div>
-        <div class="col-xs-auto">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-2">
             <a href="/{{ config('claws.admin_url') }}/content/{{$type->name}}/add" class="button primary full-width large link">{{$type->createText}}</a>
         </div>
     </div>

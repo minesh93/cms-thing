@@ -6,14 +6,18 @@
         <div class="sidebar-list links">
             <ul class="menu-list">
                 <li>
-                    <a href="/dashboard">
-                        <span>Dashboard</span>
-                    </a>
+                    <router-link to="/dashboard">
+                        <span>
+                            Dashboard
+                        </span>
+                    </router-link>
                 </li>
                 <li>
-                    <a href="/kitchen-sink">
-                        <span>Kitchen Sink</span>
-                    </a>
+                    <router-link to="/test" >
+                        <span>
+                            Test
+                        </span>
+                    </router-link>
                 </li>
             </ul>
         </div>

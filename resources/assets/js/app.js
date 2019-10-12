@@ -9,6 +9,7 @@ require('./bootstrap');
 
 import Vue from 'vue';
 import Vuex from 'vuex';
+import VueRouter from 'vue-router';
 
 import ClawsUploader from './plugins/uploader';
 import ClawsNotifications from './plugins/notifications';
@@ -20,6 +21,7 @@ Vue.use(ClawsUploader);
 Vue.use(ClawsNotifications);
 Vue.use(ClawsRepeater);
 Vue.use(Vuex);
+Vue.use(VueRouter);
  
 // Vue.component('settings-edit', require('./components/settings-edit.vue'));
 // Vue.component('post-create-edit', require('./components/post-create-edit.vue'));
@@ -39,8 +41,10 @@ Vue.use(Vuex);
 // Vue.component('repeater-item', require('./components/repeater-item.vue'));
 
 import Page from './layouts/main.vue';
+import router from './router';
 
 const app = new Vue({
+    router,
     render: h => h(Page)
 }).$mount('#app');
 

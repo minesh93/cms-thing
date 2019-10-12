@@ -30,8 +30,7 @@ $grey: #32373c;
 $open-sans: 'Nunito', 'Helvetica Neue', 'Helvetica', 'Sans Serif';
 $small-letter-spacing: 0.2px;
 
-// @import "~flexboxgrid/dist/flexboxgrid.min.css";
-
+@import 'typography';
 @import 'input';
 @import 'layout';
 @import 'code';
@@ -55,16 +54,6 @@ body {
 	color: $base-font-color;
 	margin: 0;
     font-size: 14px;
-}
-
-h1 {
-	font-weight: 500;
-    margin: 0 0 15px;
-}
-
-h2 {
-    font-weight: 500;
-    margin: 0;
 }
 
 span {

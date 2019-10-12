@@ -1,0 +1,32 @@
+$font-size-xxl: 2.8rem;
+$font-size-xl: 2.4rem;
+$font-size-l: 1.8rem;
+$font-size-m: 1.3rem;
+$font-size-s: 1.0rem;
+
+$font-weight-bold: 600;
+$font-weight-normal: 500;
+
+h1 {
+    font-size: $font-size-xxl;
+    font-weight: $font-weight-normal;
+    margin: 0;
+}
+
+h2 {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-normal;
+    margin: 0;
+}
+
+h3 {
+    font-size: $font-size-l;
+    font-weight: $font-weight-normal;
+    margin: 0;
+}
+
+h4 {
+    font-size: $font-size-m;
+    font-weight: $font-weight-bold;
+    margin: 0;
+}

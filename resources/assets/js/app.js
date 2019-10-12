@@ -19,24 +19,26 @@ Vue.use(ClawsUploader);
 Vue.use(ClawsNotifications);
 Vue.use(ClawsRepeater);
  
-Vue.component('settings-edit', require('./components/settings-edit.vue'));
-Vue.component('post-create-edit', require('./components/post-create-edit.vue'));
-Vue.component('role-create-edit', require('./components/role-create-edit.vue'));
-Vue.component('user-create-edit', require('./components/user-create-edit.vue'));
+// Vue.component('settings-edit', require('./components/settings-edit.vue'));
+// Vue.component('post-create-edit', require('./components/post-create-edit.vue'));
+// Vue.component('role-create-edit', require('./components/role-create-edit.vue'));
+// Vue.component('user-create-edit', require('./components/user-create-edit.vue'));
 
-Vue.component('quill', quillEditor);
+// Vue.component('quill', quillEditor);
 
-Vue.component('editor', require('./components/editor.vue'));
-Vue.component('code-editor', require('./components/code.vue'));
+// Vue.component('editor', require('./components/editor.vue'));
+// Vue.component('code-editor', require('./components/code.vue'));
 
-Vue.component('v-notification', require('./components/notification.vue'));
+// Vue.component('v-notification', require('./components/notification.vue'));
 
-Vue.component('v-uploader', require('./components/media-uploader.vue'));
-Vue.component('media', require('./components/media-item.vue'));
-Vue.component('repeater', require('./components/repeater.vue'));
-Vue.component('repeater-item', require('./components/repeater-item.vue'));
+// Vue.component('v-uploader', require('./components/media-uploader.vue'));
+// Vue.component('media', require('./components/media-item.vue'));
+// Vue.component('repeater', require('./components/repeater.vue'));
+// Vue.component('repeater-item', require('./components/repeater-item.vue'));
+
+import Page from './layouts/main.vue';
 
 const app = new Vue({
-    el: '#app'
-});
+    render: h => h(Page)
+}).$mount('#app');
 

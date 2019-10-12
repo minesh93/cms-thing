@@ -7,7 +7,8 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+import Vue from 'vue';
+import Vuex from 'vuex';
 
 import ClawsUploader from './plugins/uploader';
 import ClawsNotifications from './plugins/notifications';
@@ -18,6 +19,7 @@ import { quillEditor } from 'vue-quill-editor';
 Vue.use(ClawsUploader);
 Vue.use(ClawsNotifications);
 Vue.use(ClawsRepeater);
+Vue.use(Vuex);
  
 // Vue.component('settings-edit', require('./components/settings-edit.vue'));
 // Vue.component('post-create-edit', require('./components/post-create-edit.vue'));

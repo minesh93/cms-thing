@@ -1,4 +1,4 @@
-<?php 
+<?php
     return [
         'admin_content_templates' => 'claws.admin.templates',
         'admin_settings_templates' => 'claws.admin.settings',

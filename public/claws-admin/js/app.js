@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"dashboard":"dashboard","test":"test"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"content-list":"content-list","dashboard":"dashboard","test":"test"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -219,8 +219,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _plugins_repeater__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./plugins/repeater */ "./cms-thing/resources/assets/js/plugins/repeater.js");
 /* harmony import */ var vue_quill_editor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-quill-editor */ "./node_modules/vue-quill-editor/dist/vue-quill-editor.js");
 /* harmony import */ var vue_quill_editor__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_quill_editor__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _layouts_main_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./layouts/main.vue */ "./cms-thing/resources/assets/js/layouts/main.vue");
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./router */ "./cms-thing/resources/assets/js/router/index.js");
+/* harmony import */ var _src_claws__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./src/claws */ "./cms-thing/resources/assets/js/src/claws.js");
+/* harmony import */ var _layouts_main_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./layouts/main.vue */ "./cms-thing/resources/assets/js/layouts/main.vue");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./router */ "./cms-thing/resources/assets/js/router/index.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./store */ "./cms-thing/resources/assets/js/store/index.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -238,7 +240,6 @@ __webpack_require__(/*! ./bootstrap */ "./cms-thing/resources/assets/js/bootstra
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_plugins_uploader__WEBPACK_IMPORTED_MODULE_3__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_plugins_notifications__WEBPACK_IMPORTED_MODULE_4__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_plugins_repeater__WEBPACK_IMPORTED_MODULE_5__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]); // Vue.component('settings-edit', require('./components/settings-edit.vue'));
 // Vue.component('post-create-edit', require('./components/post-create-edit.vue'));
 // Vue.component('role-create-edit', require('./components/role-create-edit.vue'));
@@ -254,10 +255,16 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 
 
+
+
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  router: _router__WEBPACK_IMPORTED_MODULE_8__["default"],
+  router: _router__WEBPACK_IMPORTED_MODULE_9__["default"],
+  store: _store__WEBPACK_IMPORTED_MODULE_10__["default"],
   render: function render(h) {
-    return h(_layouts_main_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
+    return h(_layouts_main_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
+  },
+  created: function created() {
+    this.$store.commit('set_initial_state', _src_claws__WEBPACK_IMPORTED_MODULE_7__["default"]);
   }
 }).$mount('#app');
 
@@ -543,6 +550,8 @@ var ClawsUploader = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _src_claws__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../src/claws */ "./cms-thing/resources/assets/js/src/claws.js");
+
 
 
 var dashboard = function dashboard() {
@@ -553,18 +562,68 @@ var test = function test() {
   return __webpack_require__.e(/*! import() | test */ "test").then(__webpack_require__.bind(null, /*! ../pages/test.vue */ "./cms-thing/resources/assets/js/pages/test.vue"));
 };
 
+var contentList = function contentList() {
+  return __webpack_require__.e(/*! import() | content-list */ "content-list").then(__webpack_require__.bind(null, /*! ../pages/content-list.vue */ "./cms-thing/resources/assets/js/pages/content-list.vue"));
+};
+
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   mode: 'history',
-  base: '/admin/',
+  base: _src_claws__WEBPACK_IMPORTED_MODULE_1__["default"].base,
   routes: [{
     path: '/dashboard',
     component: dashboard
   }, {
     path: '/test',
     component: test
+  }, {
+    path: '/content/:type',
+    component: contentList
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
+
+/***/ }),
+
+/***/ "./cms-thing/resources/assets/js/src/claws.js":
+/*!****************************************************!*\
+  !*** ./cms-thing/resources/assets/js/src/claws.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (window.Claws);
+
+/***/ }),
+
+/***/ "./cms-thing/resources/assets/js/store/index.js":
+/*!******************************************************!*\
+  !*** ./cms-thing/resources/assets/js/store/index.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
+  state: {},
+  mutations: {
+    set_initial_state: function set_initial_state(state, initialState) {
+      for (var key in initialState) {
+        if (initialState.hasOwnProperty(key)) {
+          state[key] = initialState[key];
+        }
+      }
+    }
+  }
+}));
 
 /***/ }),
 
@@ -2307,22 +2366,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'sidebar',
   data: function data() {
     return {
-      posts: [{
-        name: 'Pages',
-        type: 'page'
-      }, {
-        name: 'Posts',
-        type: 'posts'
-      }]
+      c: 1
     };
+  },
+  computed: {
+    posts: function posts() {
+      return this.$store.state.register;
+    }
   }
 });
 
@@ -44178,11 +44232,7 @@ var render = function() {
           "li",
           [
             _c("router-link", { attrs: { to: "/dashboard" } }, [
-              _c("span", [
-                _vm._v(
-                  "\n                        Dashboard\n                    "
-                )
-              ])
+              _c("span", [_vm._v("Dashboard")])
             ])
           ],
           1
@@ -44192,9 +44242,7 @@ var render = function() {
           "li",
           [
             _c("router-link", { attrs: { to: "/test" } }, [
-              _c("span", [
-                _vm._v("\n                        Test\n                    ")
-              ])
+              _c("span", [_vm._v("Test")])
             ])
           ],
           1
@@ -44209,11 +44257,16 @@ var render = function() {
         "ul",
         { staticClass: "menu-list" },
         _vm._l(_vm.posts, function(post) {
-          return _c("li", { key: post.type }, [
-            _c("a", { staticClass: "has-submenu", attrs: { href: "/" } }, [
-              _c("span", [_vm._v(_vm._s(post.name))])
-            ])
-          ])
+          return _c(
+            "li",
+            { key: post.type },
+            [
+              _c("router-link", { attrs: { to: "/content/" + post.type } }, [
+                _c("span", [_vm._v(_vm._s(post.name))])
+              ])
+            ],
+            1
+          )
         }),
         0
       )

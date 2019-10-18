@@ -7,8 +7,21 @@ use Claws\Models\Admin;
 use Claws\Models\Role;
 use Auth;
 use PermissionRegister;
+use PostRegister;
 
 class AdminController extends Controller {
+
+    public function loadAdmin() {
+        PostRegister::getRegister();
+        $data = [
+            'claws' => [
+                'register' => PostRegister::getRegister(),
+                'base' => config('claws.admin_url')
+            ]
+        ];
+
+        return view('claws::admin.dashboard', $data);
+    }
 
     public function getAdmins() {
         $admins = Admin::all();

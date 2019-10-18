@@ -8,10 +8,6 @@ class PostRegister {
     static private $currentMeta = '';
     static private $currentPost = '';
 
-    public static function derp(){
-    	return 'derp';
-    }
-
     public static function register($post){
         if(!array_key_exists('name',$post)){
             return false;

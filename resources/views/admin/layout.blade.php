@@ -9,6 +9,9 @@
     </head>
     <body>
         <div id="app"></div>
+        <script> 
+            window.Claws = @json($claws)
+        </script>
         <script type="text/javascript" src="{{ asset('claws-admin/js/app.js') }}"></script>
     </body>
 </html>

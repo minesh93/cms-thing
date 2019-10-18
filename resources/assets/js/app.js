@@ -20,7 +20,6 @@ import { quillEditor } from 'vue-quill-editor';
 Vue.use(ClawsUploader);
 Vue.use(ClawsNotifications);
 Vue.use(ClawsRepeater);
-Vue.use(Vuex);
 Vue.use(VueRouter);
  
 // Vue.component('settings-edit', require('./components/settings-edit.vue'));
@@ -40,11 +39,17 @@ Vue.use(VueRouter);
 // Vue.component('repeater', require('./components/repeater.vue'));
 // Vue.component('repeater-item', require('./components/repeater-item.vue'));
 
+import Claws from './src/claws';
 import Page from './layouts/main.vue';
 import router from './router';
+import store from './store';
 
 const app = new Vue({
-    router,
-    render: h => h(Page)
+    router: router,
+    store: store,
+    render: h => h(Page),
+    created() {
+        this.$store.commit('set_initial_state', Claws);
+    }
 }).$mount('#app');
 

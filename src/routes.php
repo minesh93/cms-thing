@@ -16,7 +16,6 @@
 //- SO THAT THE PROVIDER I WANT WILL BE THERE
 //- OH AND MIDDLEWARE
 
-
 Route::group(['prefix'=> config('claws.admin_url'),'middleware' => 'web'], function () {
 
     Route::get('/login', '\Claws\Http\Controllers\Auth\AdminLoginController@getLoginForm');
@@ -24,13 +23,7 @@ Route::group(['prefix'=> config('claws.admin_url'),'middleware' => 'web'], funct
 
     Route::group(['middleware' => ['claws_admin_check']],function (){
 
-        Route::get('/dashboard', function() {
-            return view('claws::admin.dashboard');
-        });
-
-        Route::get('/kitchen-sink', function() {
-            return view('claws::admin.dashboard');
-        });
+        Route::get('/{location?}', '\Claws\Http\Controllers\Backend\AdminController@loadAdmin')->where('location', '.*');
 
         Route::get('/content/{type}','\Claws\Http\Controllers\Backend\PostController@getPosts');
 
@@ -68,4 +61,4 @@ Route::group(['prefix'=> config('claws.admin_url'),'middleware' => 'web'], funct
     });
 });
 
-Route::get('/{slug?}', '\Claws\Http\Controllers\Frontend\SiteController@getPost')->where('slug', '.*');
+// Route::get('/{slug?}', '\Claws\Http\Controllers\Frontend\SiteController@getPost')->where('slug', '.*');

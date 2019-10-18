@@ -7,16 +7,12 @@
             <ul class="menu-list">
                 <li>
                     <router-link to="/dashboard">
-                        <span>
-                            Dashboard
-                        </span>
+                        <span>Dashboard</span>
                     </router-link>
                 </li>
                 <li>
-                    <router-link to="/test" >
-                        <span>
-                            Test
-                        </span>
+                    <router-link to="/test">
+                        <span>Test</span>
                     </router-link>
                 </li>
             </ul>
@@ -25,9 +21,9 @@
             <h4>Content</h4>
             <ul class="menu-list">
                 <li v-for="post in posts" :key="post.type">
-                    <a class="has-submenu" href="/">
+                    <router-link :to="`/content/${post.type}`">
                         <span>{{post.name}}</span>
-                    </a>
+                    </router-link>
                     <!-- <ul class="submenu @if(strpos(url()->current(),$pr->name))is-active @endif">
                         <li><a class="@if(Request::is('admin/content/'.$pr->name)) is-active @endif" href="/content/{{$pr->name}}/">{{$pr->listTitle}}</a></li>
                         <li><a class="@if(Request::is('admin/content/'.$pr->name.'/add')) is-active @endif" href="/content/{{$pr->name}}/add">{{$pr->createText}}</a></li>
@@ -76,17 +72,14 @@ export default {
     name: 'sidebar',
     data() {
         return {
-            posts: [
-                {
-                    name: 'Pages',
-                    type: 'page',
-                },
-                {
-                    name: 'Posts',
-                    type: 'posts',
-                }
-            ]
+            c: 1
         }
+    },
+
+    computed: {
+        posts() {
+            return this.$store.state.register
+        },
     }
 }
 </script>
